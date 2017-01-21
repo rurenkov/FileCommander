@@ -10,11 +10,28 @@ namespace FileCommander.Model
    public class DriveModel
     {
         public DriveInfo[] AllDrives = DriveInfo.GetDrives();
-        public List<string> DrivesName { get; set; }
+        private List<string> drivesName = new List<string>();
+        public List<string> DrivesName
+        {
+            get
+            {               
+
+                return drivesName;
+            }
+            set
+            {
+                drivesName = value;
+            }
+        }
         public DriveModel()
         {
-            DrivesName = new List<string>();
+            foreach (DriveInfo drive in AllDrives)
+            {
+                drivesName.Add(drive.Name);
+            }
 
         }
+
+
     }
 }

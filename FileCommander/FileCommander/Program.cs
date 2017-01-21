@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FileCommander.Model;
+using FileCommander.Presenter;
+using FileCommander;
 
 namespace FileCommander
 {
@@ -16,9 +19,15 @@ namespace FileCommander
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FileCommanderView());
 
-            //bogdank 11111111
+            FileCommanderView fileCommander = new FileCommanderView();
+            PresenterClass presenter = new PresenterClass(fileCommander);
+
+
+
+            Application.Run(fileCommander);
+
+            
             
         }
     }

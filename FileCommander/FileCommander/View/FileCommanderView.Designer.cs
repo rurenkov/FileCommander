@@ -179,6 +179,7 @@
             this.comboBox1.TabIndex = 3;
             this.comboBox1.Text = "c:\\";
             this.comboBox1.ValueMember = "f";
+            this.comboBox1.DropDown += new System.EventHandler(this.comboBox1_DropDown);
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // groupBox1
@@ -194,7 +195,7 @@
             this.groupBox1.Text = "LeftGroup";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // Form1
+            // FileCommanderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -202,7 +203,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "FileCommanderView";
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

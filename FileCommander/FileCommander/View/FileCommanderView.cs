@@ -21,7 +21,7 @@ namespace FileCommander
             InitializeComponent();
             LoadContent();
             DirectoryModel dirModel = new DirectoryModel();
-            var a = dirModel.DirInfo;
+            
 
         }
 
@@ -83,6 +83,12 @@ namespace FileCommander
 
 
 
+        }
+
+        private void comboBox1_DropDown(object sender, EventArgs e)
+        {
+            comboBox1.Items.Clear();
+            comboBox1.Items.AddRange(Presenter.GetDrives.ToArray());
         }
     }
 }
