@@ -8,15 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using FileCommander.Model;
+using FileCommander.Presenter;
 
 namespace FileCommander
 {
     public partial class FileCommanderView : Form
     {
+        public PresenterClass Presenter { get; set; }
         public FileCommanderView()
         {
             InitializeComponent();
             LoadContent();
+            DirectoryModel dirModel = new DirectoryModel();
+            var a = dirModel.DirInfo;
+
         }
 
         

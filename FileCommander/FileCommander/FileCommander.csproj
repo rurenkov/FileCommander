@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\DirrectoryModel.cs" />
+    <Compile Include="Model\DirectoryModel.cs" />
     <Compile Include="Model\DriveModel.cs" />
     <Compile Include="Model\FileExplorerWindowModel.cs" />
     <Compile Include="Model\FileModel.cs" />
@@ -56,7 +56,7 @@
     <Compile Include="View\FileCommanderView.Designer.cs">
       <DependentUpon>FileCommanderView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presenter\Presenter.cs" />
+    <Compile Include="Presenter\PresenterClass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="View\FileCommanderView.resx">
