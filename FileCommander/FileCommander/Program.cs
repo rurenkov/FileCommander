@@ -18,7 +18,7 @@ namespace FileCommander
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
 
-            //bogdank
+            //bogdank 1111
             
         }
     }

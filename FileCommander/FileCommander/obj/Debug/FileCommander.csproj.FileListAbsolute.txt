@@ -16,3 +16,12 @@ D:\study\projects\FileCommander\FileCommander\FileCommander\obj\Debug\FileComman
 D:\study\projects\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.Form1.resources
 D:\study\projects\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.Properties.Resources.resources
 D:\study\projects\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.csproj.GenerateResource.Cache
+C:\WORK\FileCommander\FileCommander\FileCommander\bin\Debug\FileCommander.exe.config
+C:\WORK\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.exe
+C:\WORK\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.pdb
+C:\WORK\FileCommander\FileCommander\FileCommander\bin\Debug\FileCommander.exe
+C:\WORK\FileCommander\FileCommander\FileCommander\bin\Debug\FileCommander.pdb
+C:\WORK\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.csprojResolveAssemblyReference.cache
+C:\WORK\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.Form1.resources
+C:\WORK\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.Properties.Resources.resources
+C:\WORK\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.csproj.GenerateResource.Cache
