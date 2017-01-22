@@ -19,7 +19,7 @@ namespace FileCommander
         public FileCommanderView()
         {
             InitializeComponent();
-            LoadContent();
+            
             DirectoryModel dirModel = new DirectoryModel();
             
 
@@ -45,6 +45,7 @@ namespace FileCommander
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LoadContent();
            
         }
 

@@ -156,7 +156,7 @@
             this.treeView1.Margin = new System.Windows.Forms.Padding(10);
             this.treeView1.Name = "treeView1";
             this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.Size = new System.Drawing.Size(316, 194);
+            this.treeView1.Size = new System.Drawing.Size(330, 302);
             this.treeView1.TabIndex = 2;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -189,7 +189,7 @@
             this.groupBox1.Location = new System.Drawing.Point(19, 34);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(10);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(342, 283);
+            this.groupBox1.Size = new System.Drawing.Size(356, 374);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "LeftGroup";
