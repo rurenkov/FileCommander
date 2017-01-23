@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace FileCommander.Presenter
 {
@@ -12,9 +13,10 @@ namespace FileCommander.Presenter
         DriveModel driveModel;
         DirectoryModel directoryModel;
         FileModel fileModel;
+        DirectoryInfo dirInfo;
 
         public List<string> GetDrives { get { return driveModel.DrivesName; } }
-
+        
         private FileCommanderView fileCommanderView;
         public PresenterClass (FileCommanderView fileCommanderView)
         {
@@ -25,7 +27,15 @@ namespace FileCommander.Presenter
             fileCommanderView.Presenter = this;     
         }
 
+        public string[] GetFoldersNames(string selectedDrive)
+        {
+            return directoryModel.GetFoldersNames(selectedDrive);
+        }
 
+        public string[] GetFilesNames(string selectedDrive)
+        {
+            return directoryModel.GetFilesNames(selectedDrive);
+        }
 
     }
 }

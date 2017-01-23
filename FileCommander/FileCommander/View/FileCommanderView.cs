@@ -16,17 +16,17 @@ namespace FileCommander
     public partial class FileCommanderView : Form
     {
         public PresenterClass Presenter { get; set; }
+        public string SelectedDrive { get; set; }
         public FileCommanderView()
         {
             InitializeComponent();
             
             DirectoryModel dirModel = new DirectoryModel();
-            
+                      
 
         }
 
         
-
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -45,45 +45,42 @@ namespace FileCommander
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            treeView1.Nodes.Clear();
             LoadContent();
            
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
-
+            
         }
 
         private void LoadContent()
         {
-            treeView1.Nodes.Clear();
-
-            DirectoryInfo directoryinfo = new DirectoryInfo(comboBox1.Text);
-            if (directoryinfo != null)
-
-            {
-
-
+          
                 try
                 {
-                    foreach (DirectoryInfo dirInfo in directoryinfo.GetDirectories())
+                    foreach (string name in Presenter.GetFoldersNames(comboBox1.Text))
                     {
                         TreeNode node = new TreeNode();
-                        node.Text = dirInfo.FullName;
+                        node.Text = name;
                         node.ImageIndex = 1;
                         node.SelectedImageIndex = 1;
                         treeView1.Nodes.Add(node);
 
+                    }
+
+                    foreach (string name in Presenter.GetFilesNames(comboBox1.Text))
+                    {
+                        TreeNode node = new TreeNode(name);
+                        treeView1.Nodes.Add(node);
                     }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-            }
-
-
-
+            
         }
 
         private void comboBox1_DropDown(object sender, EventArgs e)
