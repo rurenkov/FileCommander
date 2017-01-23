@@ -2,7 +2,6 @@ D:\vet\sharp\FileCommander\FileCommander\FileCommander\bin\Debug\FileCommander.e
 D:\vet\sharp\FileCommander\FileCommander\FileCommander\bin\Debug\FileCommander.exe
 D:\vet\sharp\FileCommander\FileCommander\FileCommander\bin\Debug\FileCommander.pdb
 D:\vet\sharp\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.csprojResolveAssemblyReference.cache
-D:\vet\sharp\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.Form1.resources
 D:\vet\sharp\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.Properties.Resources.resources
 D:\vet\sharp\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.csproj.GenerateResource.Cache
 D:\vet\sharp\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.exe
@@ -25,3 +24,4 @@ C:\WORK\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.csproj
 C:\WORK\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.Properties.Resources.resources
 C:\WORK\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.csproj.GenerateResource.Cache
 C:\WORK\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.FileCommanderView.resources
+D:\vet\sharp\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.FileCommanderView.resources

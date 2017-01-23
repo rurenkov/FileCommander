@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using FileCommander.Model;
 using FileCommander.Presenter;
+using System.Diagnostics;
 
 namespace FileCommander
 {
@@ -25,8 +26,7 @@ namespace FileCommander
                       
 
         }
-
-        
+      
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -110,6 +110,33 @@ namespace FileCommander
         {
             comboBox1.Items.Clear();
             comboBox1.Items.AddRange(Presenter.GetDrives.ToArray());
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+             /// open file with default app
+              OpenFileDialog openFileDialog = new OpenFileDialog();
+              openFileDialog.InitialDirectory = "d:\\";
+              openFileDialog.Filter = "All files (*.*)|*.*";
+            
+             if (openFileDialog.ShowDialog() == DialogResult.OK) // Test result.
+              {
+                             
+                 string file = openFileDialog.FileName;
+                //textBox1.Text = file;
+                
+                  try
+                  {
+                    Process.Start(file);
+
+                }
+                  catch (Exception ex)
+                  {
+                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                    }
+            }
+              
         }
     }
 }
