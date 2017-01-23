@@ -12,6 +12,7 @@ D:\study\projects\FileCommander\FileCommander\FileCommander\obj\Debug\FileComman
 D:\study\projects\FileCommander\FileCommander\FileCommander\bin\Debug\FileCommander.exe
 D:\study\projects\FileCommander\FileCommander\FileCommander\bin\Debug\FileCommander.pdb
 D:\study\projects\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.csprojResolveAssemblyReference.cache
+D:\study\projects\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.Form1.resources
 D:\study\projects\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.Properties.Resources.resources
 D:\study\projects\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.csproj.GenerateResource.Cache
 C:\WORK\FileCommander\FileCommander\FileCommander\bin\Debug\FileCommander.exe.config
@@ -24,4 +25,3 @@ C:\WORK\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.Proper
 C:\WORK\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.csproj.GenerateResource.Cache
 C:\WORK\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.FileCommanderView.resources
 D:\vet\sharp\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.FileCommanderView.resources
-D:\study\projects\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.FileCommanderView.resources
