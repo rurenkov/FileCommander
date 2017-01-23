@@ -115,5 +115,10 @@ namespace FileCommander
             }
               
         }
+
+        private void FileCommanderView_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
