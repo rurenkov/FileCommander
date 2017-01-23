@@ -45,8 +45,10 @@ namespace FileCommander
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            treeView1.Nodes.Clear();
-            LoadContent();
+            //treeView1.Nodes.Clear();
+            //LoadContent();
+            //LoadGridContent();
+            webBrowser1.Url = new Uri(comboBox1.Text);
            
         }
 
@@ -55,33 +57,54 @@ namespace FileCommander
             
         }
 
-        private void LoadContent()
-        {
+        //private void LoadContent()
+        //{
           
-                try
-                {
-                    foreach (string name in Presenter.GetFoldersNames(comboBox1.Text))
-                    {
-                        TreeNode node = new TreeNode();
-                        node.Text = name;
-                        node.ImageIndex = 1;
-                        node.SelectedImageIndex = 1;
-                        treeView1.Nodes.Add(node);
+        //        try
+        //        {
+        //            foreach (string name in Presenter.GetFoldersNames(comboBox1.Text))
+        //            {
+        //                TreeNode node = new TreeNode();
+        //                node.Text = name;
+        //                node.ImageIndex = 1;
+        //                node.SelectedImageIndex = 1;
+        //                treeView1.Nodes.Add(node);
 
-                    }
+        //            }
 
-                    foreach (string name in Presenter.GetFilesNames(comboBox1.Text))
-                    {
-                        TreeNode node = new TreeNode(name);
-                        treeView1.Nodes.Add(node);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+        //            foreach (string name in Presenter.GetFilesNames(comboBox1.Text))
+        //            {
+        //                TreeNode node = new TreeNode(name);
+        //                treeView1.Nodes.Add(node);
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show(ex.Message);
+        //        }
             
-        }
+        //}
+
+        //private void LoadGridContent()
+        //{
+
+        //    try
+        //    {
+                
+        //            DataGridView gridView = new DataGridView();
+        //            gridView.Rows.Add(Presenter.GetFoldersNames(comboBox1.Text));
+        //            //node.ImageIndex = 1;
+        //            //node.SelectedImageIndex = 1;
+        //            //treeView1.Nodes.Add(node);
+        //            gridView.Rows.Add(Presenter.GetFilesNames(comboBox1.Text));
+                
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+
+        //}
 
         private void comboBox1_DropDown(object sender, EventArgs e)
         {
