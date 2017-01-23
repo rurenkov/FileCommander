@@ -14,8 +14,7 @@ namespace FileCommander.Model
 
         }
 
-
-
+        
 
     }
 }

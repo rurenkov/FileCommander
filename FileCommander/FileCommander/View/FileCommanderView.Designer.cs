@@ -47,8 +47,11 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnOpenFiles = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -152,11 +155,11 @@
             // 
             this.treeView1.ImageIndex = 0;
             this.treeView1.ImageList = this.imageList1;
-            this.treeView1.Location = new System.Drawing.Point(13, 59);
+            this.treeView1.Location = new System.Drawing.Point(13, 67);
             this.treeView1.Margin = new System.Windows.Forms.Padding(10);
             this.treeView1.Name = "treeView1";
             this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.Size = new System.Drawing.Size(330, 302);
+            this.treeView1.Size = new System.Drawing.Size(330, 472);
             this.treeView1.TabIndex = 2;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -186,20 +189,39 @@
             // 
             this.groupBox1.Controls.Add(this.treeView1);
             this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Location = new System.Drawing.Point(19, 34);
+            this.groupBox1.Location = new System.Drawing.Point(19, 96);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(10);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(356, 374);
+            this.groupBox1.Size = new System.Drawing.Size(356, 579);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "LeftGroup";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.btnOpenFiles);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(19, 28);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1005, 55);
+            this.flowLayoutPanel1.TabIndex = 5;
+            // 
+            // btnOpenFiles
+            // 
+            this.btnOpenFiles.Location = new System.Drawing.Point(3, 3);
+            this.btnOpenFiles.Name = "btnOpenFiles";
+            this.btnOpenFiles.Size = new System.Drawing.Size(70, 43);
+            this.btnOpenFiles.TabIndex = 0;
+            this.btnOpenFiles.Text = "Open";
+            this.btnOpenFiles.UseVisualStyleBackColor = true;
+            this.btnOpenFiles.Click += new System.EventHandler(this.button1_Click);
             // 
             // FileCommanderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1036, 694);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -208,6 +230,7 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -232,6 +255,8 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button btnOpenFiles;
     }
 }
 
