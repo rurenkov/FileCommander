@@ -21,7 +21,9 @@ namespace FileCommander
         public FileCommanderView()
         {
             InitializeComponent();
-            
+            this.WindowState = FormWindowState.Maximized;
+
+
             DirectoryModel dirModel = new DirectoryModel();
                       
 
