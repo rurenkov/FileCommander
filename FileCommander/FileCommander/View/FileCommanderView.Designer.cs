@@ -227,7 +227,7 @@
             this.flowLayoutPanel2.Location = new System.Drawing.Point(19, 26);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(464, 41);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(283, 41);
             this.flowLayoutPanel2.TabIndex = 7;
             // 
             // comboBox1
@@ -246,11 +246,12 @@
             // 
             // textBox1
             // 
-            this.textBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
+            this.textBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Text;
             this.textBox1.Location = new System.Drawing.Point(86, 10);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(335, 20);
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(183, 20);
             this.textBox1.TabIndex = 4;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
             // 
@@ -270,7 +271,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(496, 26);
+            this.textBox2.Location = new System.Drawing.Point(347, 37);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(230, 20);
             this.textBox2.TabIndex = 8;
@@ -326,7 +327,7 @@
         internal System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.GroupBox groupBox1;
         internal System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        internal System.Windows.Forms.TextBox textBox2;
     }
 }
 

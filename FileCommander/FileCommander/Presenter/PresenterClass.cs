@@ -38,6 +38,9 @@ namespace FileCommander.Presenter
     }
         //vr/
         // selectes item from list view
+        //
+
+
         private void FileCommanderView_SelectedItemsEvent(object sender, EventArgs e)
         {
             if (this.fileCommanderView.listView1.SelectedIndices.Count <= 0)
@@ -49,9 +52,15 @@ namespace FileCommander.Presenter
             if (intselectedindex >= 0)
             {
                 this.fileCommanderView.textBox1.Text = this.fileCommanderView.listView1.Items[intselectedindex].SubItems[0].Text;
+           //     string pathy = null;
+
+             //   this.fileCommanderView.textBox2.Text = this.fileCommanderView.d.ToString(); 
+                    // fileCommanderView.listView1.Items[intselectedindex].SubItems[0].Text;
 
             }
         }
+
+
 
     private void FileCommanderView_listViewEvent(object sender, EventArgs e)
         {
