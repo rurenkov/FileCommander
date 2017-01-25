@@ -25,8 +25,19 @@ namespace FileCommander.Presenter
             fileModel = new FileModel();
             this.fileCommanderView = fileCommanderView;
             fileCommanderView.Presenter = this;
-            this.fileCommanderView.webBrowserEvent += FileCommanderView_webBrowserEvent;       
+            this.fileCommanderView.webBrowserEvent += FileCommanderView_webBrowserEvent;
+            //VR
+            this.fileCommanderView.listViewEvent += FileCommanderView_listViewEvent;
+
+
         }
+        //vr
+        private void FileCommanderView_listViewEvent(object sender, EventArgs e)
+        {
+           //this.fileCommanderView.listView1.Items[0] = new (this.fileCommanderView.comboBox1.Text);
+
+        }
+
 
         private void FileCommanderView_webBrowserEvent(object sender, EventArgs e)
         {

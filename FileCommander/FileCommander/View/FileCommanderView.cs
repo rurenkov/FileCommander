@@ -25,7 +25,7 @@ namespace FileCommander
 
 
             DirectoryModel dirModel = new DirectoryModel();
-                      
+
 
         }
       
@@ -45,9 +45,18 @@ namespace FileCommander
         }
 
         public event EventHandler webBrowserEvent;
+        // VR
+        public event EventHandler listViewEvent;
+
+       // ListView listView1 = new ListView();
+      //  listView1.Bounds = new Rectangle(new Point(10,10), new Size(300,200));
+
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+            
+            
             //treeView1.Nodes.Clear();
             //LoadContent();
             //LoadGridContent();
@@ -55,8 +64,16 @@ namespace FileCommander
             if (webBrowserEvent != null)
             {
                 webBrowserEvent(sender, e);
+                
             }
-           
+            //VR
+            if (listViewEvent != null)
+            {
+                listViewEvent(sender, e);
+                
+            }
+
+
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -136,7 +153,7 @@ namespace FileCommander
                   try
                   {
                     Process.Start(file);
-
+                    
                 }
                   catch (Exception ex)
                   {
@@ -144,6 +161,12 @@ namespace FileCommander
                     }
             }
               
+        }
+        
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+
         }
     }
 }
