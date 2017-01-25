@@ -44,7 +44,7 @@ namespace FileCommander.Presenter
                 foreach (DirectoryInfo dirInfo in GetFolders(this.fileCommanderView.comboBox1.Text))
                 {
                     string[] row1 = { "FOLDER", "", dirInfo.LastWriteTime.ToShortDateString() };
-                    this.fileCommanderView.listView1.Items.Add(dirInfo.Name).SubItems.AddRange(row1);
+                    this.fileCommanderView.listView1.Items.Add(dirInfo.Name, 1).SubItems.AddRange(row1);
                 }
 
                 
@@ -58,7 +58,7 @@ namespace FileCommander.Presenter
                 foreach (FileInfo fileInfo in GetFiles(this.fileCommanderView.comboBox1.Text))
                 {
                     string[] row1 = { "FILE", (((fileInfo.Length/1024)).ToString("0.00")), fileInfo.LastWriteTime.ToShortDateString() };
-                    this.fileCommanderView.listView1.Items.Add(fileInfo.Name).SubItems.AddRange(row1);
+                    this.fileCommanderView.listView1.Items.Add(fileInfo.Name, 0).SubItems.AddRange(row1);
                 }
             }
             catch (Exception ex)
