@@ -24,7 +24,13 @@ namespace FileCommander.Presenter
             directoryModel = new DirectoryModel();
             fileModel = new FileModel();
             this.fileCommanderView = fileCommanderView;
-            fileCommanderView.Presenter = this;     
+            fileCommanderView.Presenter = this;
+            this.fileCommanderView.webBrowserEvent += FileCommanderView_webBrowserEvent;       
+        }
+
+        private void FileCommanderView_webBrowserEvent(object sender, EventArgs e)
+        {
+            this.fileCommanderView.webBrowser1.Url = new Uri(this.fileCommanderView.comboBox1.Text);
         }
 
         public string[] GetFoldersNames(string selectedDrive)

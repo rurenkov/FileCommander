@@ -168,7 +168,6 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(73, 21);
             this.comboBox1.TabIndex = 3;
-            this.comboBox1.Text = "c:\\";
             this.comboBox1.ValueMember = "f";
             this.comboBox1.DropDown += new System.EventHandler(this.comboBox1_DropDown);
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
@@ -248,11 +247,11 @@
         private System.Windows.Forms.ToolStripMenuItem folderToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        internal System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button btnOpenFiles;
-        private System.Windows.Forms.WebBrowser webBrowser1;
+        internal System.Windows.Forms.WebBrowser webBrowser1;
     }
 }
 

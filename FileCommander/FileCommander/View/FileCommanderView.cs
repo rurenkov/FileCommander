@@ -43,14 +43,19 @@ namespace FileCommander
         {
 
         }
-       
+
+        public event EventHandler webBrowserEvent;
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             //treeView1.Nodes.Clear();
             //LoadContent();
             //LoadGridContent();
-            webBrowser1.Url = new Uri(comboBox1.Text);
+            //webBrowser1.Url = new Uri(comboBox1.Text);
+            if (webBrowserEvent != null)
+            {
+                webBrowserEvent(sender, e);
+            }
            
         }
 
