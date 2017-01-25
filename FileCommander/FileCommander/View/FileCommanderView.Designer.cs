@@ -46,14 +46,13 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.ItemName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ItemType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ItemSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ItemChanged = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnOpenFiles = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Size = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Changed = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -179,7 +178,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.webBrowser1);
+            this.groupBox1.Controls.Add(this.listView1);
             this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Location = new System.Drawing.Point(19, 96);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(10);
@@ -190,13 +189,40 @@
             this.groupBox1.Text = "LeftGroup";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // webBrowser1
+            // listView1
             // 
-            this.webBrowser1.Location = new System.Drawing.Point(13, 61);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(628, 478);
-            this.webBrowser1.TabIndex = 4;
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ItemName,
+            this.ItemType,
+            this.ItemSize,
+            this.ItemChanged});
+            this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
+            this.listView1.LargeImageList = this.imageList1;
+            this.listView1.Location = new System.Drawing.Point(13, 60);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(614, 513);
+            this.listView1.SmallImageList = this.imageList1;
+            this.listView1.TabIndex = 6;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // ItemName
+            // 
+            this.ItemName.Text = "ItemName";
+            // 
+            // ItemType
+            // 
+            this.ItemType.Text = "ItemType";
+            // 
+            // ItemSize
+            // 
+            this.ItemSize.Text = "ItemSize";
+            // 
+            // ItemChanged
+            // 
+            this.ItemChanged.Text = "ItemChanged";
+            this.ItemChanged.Width = 88;
             // 
             // flowLayoutPanel1
             // 
@@ -216,47 +242,11 @@
             this.btnOpenFiles.UseVisualStyleBackColor = true;
             this.btnOpenFiles.Click += new System.EventHandler(this.button1_Click);
             // 
-            // listView1
-            // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Name,
-            this.Type,
-            this.Size,
-            this.Changed});
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.LargeImageList = this.imageList1;
-            this.listView1.Location = new System.Drawing.Point(692, 140);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(328, 434);
-            this.listView1.SmallImageList = this.imageList1;
-            this.listView1.TabIndex = 6;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            // 
-            // Name
-            // 
-            this.Name.Text = "Name";
-            // 
-            // Type
-            // 
-            this.Type.Text = "Type";
-            // 
-            // Size
-            // 
-            this.Size.Text = "Size";
-            // 
-            // Changed
-            // 
-            this.Changed.Text = "Changed";
-            this.Changed.Width = 88;
-            // 
             // FileCommanderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1036, 694);
-            this.Controls.Add(this.listView1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
@@ -292,12 +282,11 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button btnOpenFiles;
-        internal System.Windows.Forms.WebBrowser webBrowser1;
         internal System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader Name;
-        private System.Windows.Forms.ColumnHeader Type;
-        private System.Windows.Forms.ColumnHeader Size;
-        private System.Windows.Forms.ColumnHeader Changed;
+        internal System.Windows.Forms.ColumnHeader ItemName;
+        private System.Windows.Forms.ColumnHeader ItemType;
+        private System.Windows.Forms.ColumnHeader ItemSize;
+        private System.Windows.Forms.ColumnHeader ItemChanged;
     }
 }
 

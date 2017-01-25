@@ -25,6 +25,7 @@ namespace FileCommander
 
 
             DirectoryModel dirModel = new DirectoryModel();
+            
 
 
         }
@@ -44,7 +45,7 @@ namespace FileCommander
 
         }
 
-        public event EventHandler webBrowserEvent;
+       // public event EventHandler webBrowserEvent;
         // VR
         public event EventHandler listViewEvent;
 
@@ -54,19 +55,22 @@ namespace FileCommander
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
 
-            
-            
+
+
             //treeView1.Nodes.Clear();
             //LoadContent();
             //LoadGridContent();
             //webBrowser1.Url = new Uri(comboBox1.Text);
-            if (webBrowserEvent != null)
-            {
-                webBrowserEvent(sender, e);
-                
-            }
+            //if (webBrowserEvent != null)
+            //{
+            //    webBrowserEvent(sender, e);
+
+            //}
             //VR
+            
+
             if (listViewEvent != null)
             {
                 listViewEvent(sender, e);

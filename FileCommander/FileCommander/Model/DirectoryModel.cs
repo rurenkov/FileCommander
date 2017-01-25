@@ -14,7 +14,8 @@ namespace FileCommander.Model
         
         public DirectoryInfo DirInfo { get; set; }
         public List<string> dirrectoriesNamesArray = new List<string>();
-        public List<string> filesNamesArray = new List<string>();
+        //public List<string> filesNamesArray = new List<string>();
+        public List<DirectoryInfo> foldersList = new List<DirectoryInfo>();
 
 
 
@@ -38,23 +39,35 @@ namespace FileCommander.Model
             
         }
 
-        public string[] GetFilesNames(string selectedDrive)
+        public List<DirectoryInfo> GetFolders(string selectedDrive)
         {
-
-
             DirectoryInfo directoryinfo = new DirectoryInfo(selectedDrive);
-
-            filesNamesArray.Clear();
-
-            foreach (FileInfo fileInfo in directoryinfo.GetFiles())
+            foldersList.Clear();
+            foreach (DirectoryInfo dirInfo in directoryinfo.GetDirectories())
             {
-                filesNamesArray.Add(fileInfo.Name);
+                foldersList.Add(dirInfo);
             }
 
-            return filesNamesArray.ToArray();
-
-
+            return foldersList;
         }
+
+        //public string[] GetFilesNames(string selectedDrive)
+        //{
+
+
+        //    DirectoryInfo directoryinfo = new DirectoryInfo(selectedDrive);
+
+        //    filesNamesArray.Clear();
+
+        //    foreach (FileInfo fileInfo in directoryinfo.GetFiles())
+        //    {
+        //        filesNamesArray.Add(fileInfo.Name);
+        //    }
+
+        //    return filesNamesArray.ToArray();
+
+
+        //}
 
 
 

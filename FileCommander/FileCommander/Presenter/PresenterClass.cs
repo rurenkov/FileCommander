@@ -25,7 +25,7 @@ namespace FileCommander.Presenter
             fileModel = new FileModel();
             this.fileCommanderView = fileCommanderView;
             fileCommanderView.Presenter = this;
-            this.fileCommanderView.webBrowserEvent += FileCommanderView_webBrowserEvent;
+            //this.fileCommanderView.webBrowserEvent += FileCommanderView_webBrowserEvent;
             //VR
             this.fileCommanderView.listViewEvent += FileCommanderView_listViewEvent;
 
@@ -34,15 +34,47 @@ namespace FileCommander.Presenter
         //vr
         private void FileCommanderView_listViewEvent(object sender, EventArgs e)
         {
-           //this.fileCommanderView.listView1.Items[0] = new (this.fileCommanderView.comboBox1.Text);
+            try
+            {
+                this.fileCommanderView.listView1.Items.Clear();
+                //foreach (string folderName in GetFoldersNames(this.fileCommanderView.comboBox1.Text))
+                //{               
+                //     this.fileCommanderView.listView1.Items.Add(folderName, 1);       
+                //}
+                foreach (DirectoryInfo dirInfo in GetFolders(this.fileCommanderView.comboBox1.Text))
+                {
+                    string[] row1 = { "FOLDER", "", dirInfo.LastWriteTime.ToShortDateString() };
+                    this.fileCommanderView.listView1.Items.Add(dirInfo.Name).SubItems.AddRange(row1);
+                }
+
+                
+
+                //foreach (string fileName in GetFilesNames(this.fileCommanderView.comboBox1.Text))
+                //{
+                //    string[] row1 = { "File", "", "" };
+                //    this.fileCommanderView.listView1.Items.Add("ItemName").SubItems.AddRange(row1);
+                //}
+
+                foreach (FileInfo fileInfo in GetFiles(this.fileCommanderView.comboBox1.Text))
+                {
+                    string[] row1 = { "FILE", (((fileInfo.Length/1024)).ToString("0.00")), fileInfo.LastWriteTime.ToShortDateString() };
+                    this.fileCommanderView.listView1.Items.Add(fileInfo.Name).SubItems.AddRange(row1);
+                }
+            }
+            catch (Exception ex)
+            {
+                //fileCommanderView.MessageBox.Show(ex.Message);
+            }
 
         }
+            
+            
 
 
-        private void FileCommanderView_webBrowserEvent(object sender, EventArgs e)
-        {
-            this.fileCommanderView.webBrowser1.Url = new Uri(this.fileCommanderView.comboBox1.Text);
-        }
+        //private void FileCommanderView_webBrowserEvent(object sender, EventArgs e)
+        //{
+        //    this.fileCommanderView.webBrowser1.Url = new Uri(this.fileCommanderView.comboBox1.Text);
+        //}
 
         public string[] GetFoldersNames(string selectedDrive)
         {
@@ -51,7 +83,17 @@ namespace FileCommander.Presenter
 
         public string[] GetFilesNames(string selectedDrive)
         {
-            return directoryModel.GetFilesNames(selectedDrive);
+            return fileModel.GetFilesNames(selectedDrive);
+        }
+
+        public List<FileInfo> GetFiles(string selectedDrive)
+        {
+            return fileModel.GetFiles(selectedDrive);
+        }
+
+        public List<DirectoryInfo> GetFolders(string selectedDrive)
+        {
+            return directoryModel.GetFolders(selectedDrive);
         }
 
     }
