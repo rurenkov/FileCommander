@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Windows.Forms;
 
 namespace FileCommander.Presenter
 {
@@ -28,11 +29,31 @@ namespace FileCommander.Presenter
             //this.fileCommanderView.webBrowserEvent += FileCommanderView_webBrowserEvent;
             //VR
             this.fileCommanderView.listViewEvent += FileCommanderView_listViewEvent;
+            this.fileCommanderView.selectedItemsEvent += FileCommanderView_SelectedItemsEvent;
+
+            // this.ListViewItem = ListViewItem;
 
 
+
+    }
+        //vr/
+        // selectes item from list view
+        private void FileCommanderView_SelectedItemsEvent(object sender, EventArgs e)
+        {
+            if (this.fileCommanderView.listView1.SelectedIndices.Count <= 0)
+            {
+                return;
+            }
+            int intselectedindex = this.fileCommanderView.listView1.SelectedIndices[0];
+
+            if (intselectedindex >= 0)
+            {
+                this.fileCommanderView.textBox1.Text = this.fileCommanderView.listView1.Items[intselectedindex].SubItems[0].Text;
+
+            }
         }
-        //vr
-        private void FileCommanderView_listViewEvent(object sender, EventArgs e)
+
+    private void FileCommanderView_listViewEvent(object sender, EventArgs e)
         {
             try
             {
@@ -66,16 +87,12 @@ namespace FileCommander.Presenter
                 //fileCommanderView.MessageBox.Show(ex.Message);
             }
 
+
+         
+
         }
-            
-            
 
-
-        //private void FileCommanderView_webBrowserEvent(object sender, EventArgs e)
-        //{
-        //    this.fileCommanderView.webBrowser1.Url = new Uri(this.fileCommanderView.comboBox1.Text);
-        //}
-
+     
         public string[] GetFoldersNames(string selectedDrive)
         {
             return directoryModel.GetFoldersNames(selectedDrive);
