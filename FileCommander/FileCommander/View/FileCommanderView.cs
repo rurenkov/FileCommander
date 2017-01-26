@@ -65,10 +65,17 @@ namespace FileCommander
             
             //VR
             
-
+            
             if (listViewEvent != null)
             {
-                listViewEvent(sender, e);
+                try
+                {
+                    listViewEvent(sender, e);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
                 
             }
 
@@ -126,7 +133,15 @@ namespace FileCommander
 
         private void listView1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            selectedItemsEvent(sender, e);
+            try
+            {
+                selectedItemsEvent(sender, e);
+            }
+
+            catch (UnauthorizedAccessException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
 

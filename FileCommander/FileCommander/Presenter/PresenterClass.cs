@@ -70,8 +70,7 @@ namespace FileCommander.Presenter
 
     private void FileCommanderView_listViewEvent(object sender, EventArgs e)
         {
-            try
-            {
+            
                 this.fileCommanderView.listView1.Items.Clear();
                 //foreach (string folderName in GetFoldersNames(this.fileCommanderView.comboBox1.Text))
                 //{               
@@ -98,11 +97,7 @@ namespace FileCommander.Presenter
                     string[] row1 = { "FILE", (((fileInfo.Length/1024)).ToString("0.00")), fileInfo.LastWriteTime.ToShortDateString() };
                     this.fileCommanderView.listView1.Items.Add(fileInfo.Name, 0).SubItems.AddRange(row1);
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+         
 
 
          
