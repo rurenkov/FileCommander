@@ -17,8 +17,10 @@ namespace FileCommander.Presenter
     //    DirectoryInfo dirInfo;
 
         public List<string> GetDrives { get { return driveModel.DrivesName; } }
-        
+        private string CurrentPath { get; set; }
         private FileCommanderView fileCommanderView;
+
+
         public PresenterClass (FileCommanderView fileCommanderView)
         {
             driveModel = new Model.DriveModel();
@@ -35,10 +37,33 @@ namespace FileCommander.Presenter
             this.fileCommanderView.listViewEventRight += FileCommanderView_listViewEventRight;
             this.fileCommanderView.selectedItemsEvent += FileCommanderView_SelectedItemsEvent;
             this.fileCommanderView.listView1_KeySpaceEvent += FileCommanderView_listView1_KeySpaceEvent;
-         
-       
+            this.fileCommanderView.listView1_MouseDoubleClickEvent += FileCommanderView_listView1_MouseDoubleClickEvent;
+
+
+
 
          }
+
+        private void FileCommanderView_listView1_MouseDoubleClickEvent(object sender, EventArgs e)
+        {
+            this.fileCommanderView.listView1.Items.Clear();
+
+            //List<DirectoryInfo> dirInfo = GetFolders(CurrentPath);
+
+            foreach (DirectoryInfo dirInfo in GetFolders(CurrentPath))
+            {
+                string[] row1 = { "FOLDER", "<DIR>", dirInfo.LastWriteTime.ToShortDateString() };
+                this.fileCommanderView.listView1.Items.Add(dirInfo.Name, 1).SubItems.AddRange(row1);
+            }
+
+            foreach (FileInfo fileInfo in GetFiles(this.fileCommanderView.comboBox1.Text))
+            {
+                string[] row1 = { "FILE", (((fileInfo.Length / 1024)).ToString("0.00")), fileInfo.LastWriteTime.ToShortDateString() };
+                this.fileCommanderView.listView2.Items.Add(fileInfo.Name, 0).SubItems.AddRange(row1);
+            }
+
+        }
+
 
         private void FileCommanderView_listView1_KeySpaceEvent(object sender, EventArgs e)
         {
@@ -77,16 +102,18 @@ namespace FileCommander.Presenter
                 //string[] row1 = { "SELECTED FOLDER", GetFolderSize(dirInfo), dirInfo.LastWriteTime.ToShortDateString() };
                 //this.fileCommanderView.listView1.Items.Add(dirInfo.Name, 1).SubItems.AddRange(row1);
                 //ListViewItem item = this.fileCommanderView.listView1.SelectedItems[0];
-                                                                                                  /////Calculate Folder Size by Select START
+                /////Calculate Folder Size by Select START
                 //if (fileCommanderView.listView1.SelectedItems[0].SubItems[2].Text == "<DIR>")
                 //{
                 //    fileCommanderView.listView1.SelectedItems[0].SubItems[2].Text = GetFolderSize(dirInfo);
                 //}
-                                                                                                  /////Calculate Folder Size by Select START
+                /////Calculate Folder Size by Select START
                 //     string pathy = null;
 
                 //   this.fileCommanderView.textBox2.Text = this.fileCommanderView.d.ToString(); 
                 // fileCommanderView.listView1.Items[intselectedindex].SubItems[0].Text;
+
+                CurrentPath = this.fileCommanderView.textBox1.Text;
 
             }
         }
