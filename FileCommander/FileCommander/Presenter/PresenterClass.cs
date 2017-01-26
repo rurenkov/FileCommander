@@ -51,7 +51,7 @@ namespace FileCommander.Presenter
 
             if (intselectedindex >= 0)
             {
-                this.fileCommanderView.textBox1.Text = this.fileCommanderView.listView1.Items[intselectedindex].SubItems[0].Text;
+                this.fileCommanderView.textBox1.Text = fileCommanderView.comboBox1.Text +  this.fileCommanderView.listView1.Items[intselectedindex].Text;
            //     string pathy = null;
 
              //   this.fileCommanderView.textBox2.Text = this.fileCommanderView.d.ToString(); 
@@ -73,7 +73,7 @@ namespace FileCommander.Presenter
                 //}
                 List<DirectoryInfo> names = GetFolders(this.fileCommanderView.comboBox1.Text);
 
-                foreach(var dirInfo in names)
+                foreach(DirectoryInfo dirInfo in GetFolders(this.fileCommanderView.comboBox1.Text))
                 {
                     string[] row1 = { "FOLDER", "GetFolderSize(dirInfo.FullName)", dirInfo.LastWriteTime.ToShortDateString() };
                     this.fileCommanderView.listView1.Items.Add(dirInfo.Name, 1).SubItems.AddRange(row1);
