@@ -18,6 +18,8 @@ namespace FileCommander
     {
         public PresenterClass Presenter { get; set; }
         public string SelectedDrive { get; set; }
+        public object EmpIDtextBox { get; private set; }
+
         public FileCommanderView()
         {
             InitializeComponent();
@@ -48,26 +50,19 @@ namespace FileCommander
        // public event EventHandler webBrowserEvent;
         // VR
         public event EventHandler listViewEvent;
+        public event EventHandler selectedItemsEvent;
+        // ListView listView1 = new ListView();
+        //  listView1.Bounds = new Rectangle(new Point(10,10), new Size(300,200));
 
-       // ListView listView1 = new ListView();
-      //  listView1.Bounds = new Rectangle(new Point(10,10), new Size(300,200));
 
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          
+        }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             
-
-
-
-            //treeView1.Nodes.Clear();
-            //LoadContent();
-            //LoadGridContent();
-            //webBrowser1.Url = new Uri(comboBox1.Text);
-            //if (webBrowserEvent != null)
-            //{
-            //    webBrowserEvent(sender, e);
-
-            //}
             //VR
             
 
@@ -77,7 +72,6 @@ namespace FileCommander
                 
             }
 
-
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -85,59 +79,14 @@ namespace FileCommander
             
         }
 
-        //private void LoadContent()
-        //{
-          
-        //        try
-        //        {
-        //            foreach (string name in Presenter.GetFoldersNames(comboBox1.Text))
-        //            {
-        //                TreeNode node = new TreeNode();
-        //                node.Text = name;
-        //                node.ImageIndex = 1;
-        //                node.SelectedImageIndex = 1;
-        //                treeView1.Nodes.Add(node);
-
-        //            }
-
-        //            foreach (string name in Presenter.GetFilesNames(comboBox1.Text))
-        //            {
-        //                TreeNode node = new TreeNode(name);
-        //                treeView1.Nodes.Add(node);
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show(ex.Message);
-        //        }
-            
-        //}
-
-        //private void LoadGridContent()
-        //{
-
-        //    try
-        //    {
-                
-        //            DataGridView gridView = new DataGridView();
-        //            gridView.Rows.Add(Presenter.GetFoldersNames(comboBox1.Text));
-        //            //node.ImageIndex = 1;
-        //            //node.SelectedImageIndex = 1;
-        //            //treeView1.Nodes.Add(node);
-        //            gridView.Rows.Add(Presenter.GetFilesNames(comboBox1.Text));
-                
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-
-        //}
 
         private void comboBox1_DropDown(object sender, EventArgs e)
         {
             comboBox1.Items.Clear();
+            
+
             comboBox1.Items.AddRange(Presenter.GetDrives.ToArray());
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -167,9 +116,27 @@ namespace FileCommander
               
         }
         
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
         {
-           
+
+            
+        }
+
+        private void listView1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            selectedItemsEvent(sender, e);
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }
