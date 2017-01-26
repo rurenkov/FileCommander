@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using System.Windows.Forms;
+//using System.Windows.Forms;
 
 namespace FileCommander.Presenter
 {
@@ -55,10 +55,10 @@ namespace FileCommander.Presenter
                 DirectoryInfo dirInfo = new DirectoryInfo(this.fileCommanderView.textBox1.Text);
                 //string[] row1 = { "SELECTED FOLDER", GetFolderSize(dirInfo), dirInfo.LastWriteTime.ToShortDateString() };
                 //this.fileCommanderView.listView1.Items.Add(dirInfo.Name, 1).SubItems.AddRange(row1);
-                ListViewItem item = this.fileCommanderView.listView1.SelectedItems[0];
-                if (item.SubItems[2].Text == "<DIR>")
+                //ListViewItem item = this.fileCommanderView.listView1.SelectedItems[0];
+                if (fileCommanderView.listView1.SelectedItems[0].SubItems[2].Text == "<DIR>")
                 {
-                    item.SubItems[2].Text = GetFolderSize(dirInfo);
+                    fileCommanderView.listView1.SelectedItems[0].SubItems[2].Text = GetFolderSize(dirInfo);
                 }
 
                 //     string pathy = null;
