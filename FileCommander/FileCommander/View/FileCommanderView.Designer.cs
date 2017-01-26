@@ -207,6 +207,7 @@
             // ItemName
             // 
             this.ItemName.Text = "ItemName";
+            this.ItemName.Width = 240;
             // 
             // ItemType
             // 
