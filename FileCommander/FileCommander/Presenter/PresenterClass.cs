@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Windows.Forms;
 
 namespace FileCommander.Presenter
 {
@@ -41,9 +42,11 @@ namespace FileCommander.Presenter
                 //{               
                 //     this.fileCommanderView.listView1.Items.Add(folderName, 1);       
                 //}
-                foreach (DirectoryInfo dirInfo in GetFolders(this.fileCommanderView.comboBox1.Text))
+                List<DirectoryInfo> names = GetFolders(this.fileCommanderView.comboBox1.Text);
+
+                foreach(var dirInfo in names)
                 {
-                    string[] row1 = { "FOLDER", "", dirInfo.LastWriteTime.ToShortDateString() };
+                    string[] row1 = { "FOLDER", "GetFolderSize(dirInfo.FullName)", dirInfo.LastWriteTime.ToShortDateString() };
                     this.fileCommanderView.listView1.Items.Add(dirInfo.Name, 1).SubItems.AddRange(row1);
                 }
 
@@ -63,7 +66,7 @@ namespace FileCommander.Presenter
             }
             catch (Exception ex)
             {
-                //fileCommanderView.MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);
             }
 
         }
@@ -95,6 +98,13 @@ namespace FileCommander.Presenter
         {
             return directoryModel.GetFolders(selectedDrive);
         }
+
+        public string GetFolderSize(string path)
+        {
+            string size = directoryModel.GetFolderSize(path).ToString();
+            return size;
+        }
+
 
     }
 }
