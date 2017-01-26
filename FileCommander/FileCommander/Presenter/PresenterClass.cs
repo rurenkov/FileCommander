@@ -75,7 +75,7 @@ namespace FileCommander.Presenter
 
                 foreach(DirectoryInfo dirInfo in GetFolders(this.fileCommanderView.comboBox1.Text))
                 {
-                    string[] row1 = { "FOLDER", "GetFolderSize(dirInfo.FullName)", dirInfo.LastWriteTime.ToShortDateString() };
+                    string[] row1 = { "FOLDER", GetFolderSize(dirInfo), dirInfo.LastWriteTime.ToShortDateString() };
                     this.fileCommanderView.listView1.Items.Add(dirInfo.Name, 1).SubItems.AddRange(row1);
                 }
 
@@ -124,9 +124,9 @@ namespace FileCommander.Presenter
             return directoryModel.GetFolders(selectedDrive);
         }
 
-        public string GetFolderSize(string path)
+        public string GetFolderSize(DirectoryInfo dirInfo)
         {
-            string size = directoryModel.GetFolderSize(path).ToString();
+            string size = directoryModel.GetFolderSize(dirInfo).ToString();
             return size;
         }
 

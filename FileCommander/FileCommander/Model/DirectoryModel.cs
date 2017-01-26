@@ -44,38 +44,37 @@ namespace FileCommander.Model
             DirectoryInfo directoryinfo = new DirectoryInfo(selectedDrive);
             foldersList.Clear();
             foreach (DirectoryInfo dirInfo in directoryinfo.GetDirectories())
+
             {
-                foldersList.Add(dirInfo);
+                if ((dirInfo.Attributes & FileAttributes.Hidden) == 0)
+                    foldersList.Add(dirInfo);
             }
 
             return foldersList;
         }
-        object obj = new object();
-        public long GetFolderSize( string path)
+    
+        public long GetFolderSize(DirectoryInfo d)
         {
-            
-            
-                long b = 0;
-                // 1.
-                // Get array of all file names.
-                string[] a = Directory.GetFiles(path, "*.*");
 
-                // 2.
-                // Calculate total bytes of all files in a loop.
-                
-                foreach (string name in a)
-                {
-                    // 3.
-                    // Use FileInfo to get length of each file.
-                    FileInfo info = new FileInfo(name);
-                    b += info.Length;
-                }
-                return b;
-            
-                // 4.
-                // Return total size
+
+            long size = 0;
+            // Add file sizes.
+            FileInfo[] fis = d.GetFiles();
+            foreach (FileInfo fi in fis)
+            {
                
-            
+                    size += fi.Length;
+            }
+            // Add subdirectory sizes.
+            DirectoryInfo[] dis = d.GetDirectories();
+            foreach (DirectoryInfo di in dis)
+            {
+                if ((d.Attributes & FileAttributes.Hidden) == 0)
+                    size += GetFolderSize(di);
+            }
+            return size;
+
+
         }
 
         //public string[] GetFilesNames(string selectedDrive)
