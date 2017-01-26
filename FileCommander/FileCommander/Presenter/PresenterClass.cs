@@ -27,21 +27,21 @@ namespace FileCommander.Presenter
             this.fileCommanderView = fileCommanderView;
             fileCommanderView.Presenter = this;
             //this.fileCommanderView.webBrowserEvent += FileCommanderView_webBrowserEvent;
-            //VR
+            //VR subscribers
+
             this.fileCommanderView.listViewEvent += FileCommanderView_listViewEvent;
             this.fileCommanderView.selectedItemsEvent += FileCommanderView_SelectedItemsEvent;
+         
+        
 
-            // this.ListViewItem = ListViewItem;
-
-
-
-    }
+         }
         //vr/
-        // selectes item from list view
-        //
 
 
-        private void FileCommanderView_SelectedItemsEvent(object sender, EventArgs e)
+        
+// selectes item from list view
+
+private void FileCommanderView_SelectedItemsEvent(object sender, EventArgs e)
         {
             if (this.fileCommanderView.listView1.SelectedIndices.Count <= 0)
             {

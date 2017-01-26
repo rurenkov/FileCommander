@@ -46,6 +46,7 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnOpenFiles = new System.Windows.Forms.Button();
+            this.btnChangePanel = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.ItemName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ItemType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -170,6 +171,7 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.btnOpenFiles);
+            this.flowLayoutPanel1.Controls.Add(this.btnChangePanel);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 28);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1005, 38);
@@ -185,6 +187,16 @@
             this.btnOpenFiles.UseVisualStyleBackColor = true;
             this.btnOpenFiles.Click += new System.EventHandler(this.button1_Click);
             // 
+            // btnChangePanel
+            // 
+            this.btnChangePanel.Location = new System.Drawing.Point(79, 3);
+            this.btnChangePanel.Name = "btnChangePanel";
+            this.btnChangePanel.Size = new System.Drawing.Size(121, 28);
+            this.btnChangePanel.TabIndex = 1;
+            this.btnChangePanel.Text = "<--ChangePanel-->";
+            this.btnChangePanel.UseVisualStyleBackColor = true;
+            this.btnChangePanel.Click += new System.EventHandler(this.btnChangePanel_Click);
+            // 
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -192,12 +204,13 @@
             this.ItemType,
             this.ItemSize,
             this.ItemChanged});
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.LargeImageList = this.imageList1;
-            this.listView1.Location = new System.Drawing.Point(1, 3);
+            this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(538, 594);
+            this.listView1.Size = new System.Drawing.Size(486, 540);
             this.listView1.SmallImageList = this.imageList1;
             this.listView1.TabIndex = 6;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -226,7 +239,7 @@
             // 
             this.flowLayoutPanel2.Controls.Add(this.comboBox1);
             this.flowLayoutPanel2.Controls.Add(this.textBox1);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(12, 65);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(12, 72);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(283, 41);
@@ -260,18 +273,14 @@
             // splitContainer1
             // 
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.splitContainer1.Location = new System.Drawing.Point(12, 109);
+            this.splitContainer1.Location = new System.Drawing.Point(12, 119);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.listView1);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
-            this.splitContainer1.Size = new System.Drawing.Size(1012, 566);
-            this.splitContainer1.SplitterDistance = 546;
+            this.splitContainer1.Size = new System.Drawing.Size(1012, 544);
+            this.splitContainer1.SplitterDistance = 490;
             this.splitContainer1.TabIndex = 6;
             // 
             // FileCommanderView
@@ -325,7 +334,8 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         internal System.Windows.Forms.ComboBox comboBox1;
         internal System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.SplitContainer splitContainer1;
+        internal System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Button btnChangePanel;
     }
 }
 

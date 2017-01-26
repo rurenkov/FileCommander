@@ -51,6 +51,7 @@ namespace FileCommander
         // VR
         public event EventHandler listViewEvent;
         public event EventHandler selectedItemsEvent;
+      
         // ListView listView1 = new ListView();
         //  listView1.Bounds = new Rectangle(new Point(10,10), new Size(300,200));
 
@@ -145,14 +146,29 @@ namespace FileCommander
 
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void btnChangePanel_Click(object sender, EventArgs e)
         {
+            
+            Control[] array1 = new Control[splitContainer1.Panel1.Controls.Count];
+            Control[] array2 = new Control[splitContainer1.Panel2.Controls.Count];
+            splitContainer1.Panel1.Controls.CopyTo(array1, 0);
+            splitContainer1.Panel2.Controls.CopyTo(array2, 0);
+            splitContainer1.Panel1.Controls.AddRange(array2);
+            splitContainer1.Panel2.Controls.AddRange(array1);
+            if (splitContainer1.Orientation == Orientation.Horizontal)
+            {
+                splitContainer1.SplitterDistance = splitContainer1.Height - splitContainer1.SplitterDistance;
+            }
+            else if (splitContainer1.Orientation == Orientation.Vertical)
+            {
+                splitContainer1.SplitterDistance = splitContainer1.Width - splitContainer1.SplitterDistance;
+            }
+
 
         }
-
-        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
         {
-
+            listView1.Width = splitContainer1.Panel1.Width;
         }
     }
 }
