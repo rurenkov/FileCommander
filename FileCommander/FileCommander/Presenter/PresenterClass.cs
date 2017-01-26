@@ -34,16 +34,35 @@ namespace FileCommander.Presenter
             this.fileCommanderView.listViewEvent += FileCommanderView_listViewEvent;
             this.fileCommanderView.listViewEventRight += FileCommanderView_listViewEventRight;
             this.fileCommanderView.selectedItemsEvent += FileCommanderView_SelectedItemsEvent;
+            this.fileCommanderView.listView1_KeySpaceEvent += FileCommanderView_listView1_KeySpaceEvent;
          
        
 
          }
-      
 
-        
-// selected item for list view 1
+        private void FileCommanderView_listView1_KeySpaceEvent(object sender, EventArgs e)
+        {
+            DirectoryInfo dirInfo = new DirectoryInfo(this.fileCommanderView.textBox1.Text);
+            if (fileCommanderView.listView1.SelectedItems[0].SubItems[2].Text == "<DIR>")
+            {
+                fileCommanderView.listView1.SelectedItems[0].SubItems[2].Text = GetFolderSize(dirInfo);
+            }
+        }
 
-private void FileCommanderView_SelectedItemsEvent(object sender, EventArgs e)
+
+    
+
+     
+
+
+
+
+
+
+
+        // selected item for list view 1
+
+        private void FileCommanderView_SelectedItemsEvent(object sender, EventArgs e)
         {
             if (this.fileCommanderView.listView1.SelectedIndices.Count <= 0)
             {
@@ -58,11 +77,12 @@ private void FileCommanderView_SelectedItemsEvent(object sender, EventArgs e)
                 //string[] row1 = { "SELECTED FOLDER", GetFolderSize(dirInfo), dirInfo.LastWriteTime.ToShortDateString() };
                 //this.fileCommanderView.listView1.Items.Add(dirInfo.Name, 1).SubItems.AddRange(row1);
                 //ListViewItem item = this.fileCommanderView.listView1.SelectedItems[0];
-                if (fileCommanderView.listView1.SelectedItems[0].SubItems[2].Text == "<DIR>")
-                {
-                    fileCommanderView.listView1.SelectedItems[0].SubItems[2].Text = GetFolderSize(dirInfo);
-                }
-
+                                                                                                  /////Calculate Folder Size by Select START
+                //if (fileCommanderView.listView1.SelectedItems[0].SubItems[2].Text == "<DIR>")
+                //{
+                //    fileCommanderView.listView1.SelectedItems[0].SubItems[2].Text = GetFolderSize(dirInfo);
+                //}
+                                                                                                  /////Calculate Folder Size by Select START
                 //     string pathy = null;
 
                 //   this.fileCommanderView.textBox2.Text = this.fileCommanderView.d.ToString(); 

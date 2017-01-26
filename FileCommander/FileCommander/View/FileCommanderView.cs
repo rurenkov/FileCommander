@@ -51,6 +51,7 @@ namespace FileCommander
         public event EventHandler listViewEvent;
         public event EventHandler listViewEventRight;
         public event EventHandler selectedItemsEvent;
+        public event EventHandler listView1_KeySpaceEvent;
       
         // ListView listView1 = new ListView();
         //  listView1.Bounds = new Rectangle(new Point(10,10), new Size(300,200));
@@ -170,7 +171,20 @@ namespace FileCommander
             listView2.Width = splitContainer1.Panel1.Width;
         }
 
-      
+        private void listView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Space)
+                try
+                {
+                    listView1_KeySpaceEvent(sender, e);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+        }
+
+
         private void FileCommanderView_Load(object sender, EventArgs e)
         {
             
