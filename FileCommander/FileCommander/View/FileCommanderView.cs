@@ -48,8 +48,8 @@ namespace FileCommander
         }
 
        // public event EventHandler webBrowserEvent;
-        // VR
         public event EventHandler listViewEvent;
+        public event EventHandler listViewEventRight;
         public event EventHandler selectedItemsEvent;
       
         // ListView listView1 = new ListView();
@@ -63,9 +63,7 @@ namespace FileCommander
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            //VR
-            
+
             
             if (listViewEvent != null)
             {
@@ -81,22 +79,22 @@ namespace FileCommander
             }
 
         }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-            
-        }
-
-
-        private void comboBox1_DropDown(object sender, EventArgs e)
+        
+         private void comboBox1_DropDown(object sender, EventArgs e)
         {
             comboBox1.Items.Clear();
-            
-
             comboBox1.Items.AddRange(Presenter.GetDrives.ToArray());
-            
+           
         }
-
+        
+        private void comboBox2_DropDown(object sender, EventArgs e)
+        {
+           
+            comboBox2.Items.Clear();
+            comboBox2.Items.AddRange(Presenter.GetDrives.ToArray());
+         
+        }
+        
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -145,7 +143,7 @@ namespace FileCommander
             }
 
         }
-
+        // change panels
         private void btnChangePanel_Click(object sender, EventArgs e)
         {
             
@@ -169,6 +167,40 @@ namespace FileCommander
         private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
         {
             listView1.Width = splitContainer1.Panel1.Width;
+            listView2.Width = splitContainer1.Panel1.Width;
+        }
+
+      
+        private void FileCommanderView_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+
+        }
+
+        private void listView2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox2_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (listViewEventRight != null)
+            {
+                try
+                {
+                    listViewEventRight(sender, e);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
         }
     }
 }
