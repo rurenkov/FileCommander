@@ -54,12 +54,13 @@
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.menuStrip1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -169,16 +170,16 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.btnOpenFiles);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(19, 28);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 28);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1005, 55);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1005, 38);
             this.flowLayoutPanel1.TabIndex = 5;
             // 
             // btnOpenFiles
             // 
             this.btnOpenFiles.Location = new System.Drawing.Point(3, 3);
             this.btnOpenFiles.Name = "btnOpenFiles";
-            this.btnOpenFiles.Size = new System.Drawing.Size(70, 43);
+            this.btnOpenFiles.Size = new System.Drawing.Size(70, 28);
             this.btnOpenFiles.TabIndex = 0;
             this.btnOpenFiles.Text = "Open";
             this.btnOpenFiles.UseVisualStyleBackColor = true;
@@ -194,9 +195,9 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.LargeImageList = this.imageList1;
-            this.listView1.Location = new System.Drawing.Point(19, 73);
+            this.listView1.Location = new System.Drawing.Point(1, 3);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(614, 513);
+            this.listView1.Size = new System.Drawing.Size(538, 594);
             this.listView1.SmallImageList = this.imageList1;
             this.listView1.TabIndex = 6;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -224,7 +225,7 @@
             // 
             this.flowLayoutPanel2.Controls.Add(this.comboBox1);
             this.flowLayoutPanel2.Controls.Add(this.textBox1);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(19, 26);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(12, 65);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(283, 41);
@@ -255,36 +256,32 @@
             this.textBox1.TabIndex = 4;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
             // 
-            // groupBox1
+            // splitContainer1
             // 
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.flowLayoutPanel2);
-            this.groupBox1.Controls.Add(this.listView1);
-            this.groupBox1.Location = new System.Drawing.Point(56, 109);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(10);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(660, 579);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "LeftGroup";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.splitContainer1.Location = new System.Drawing.Point(12, 109);
+            this.splitContainer1.Name = "splitContainer1";
             // 
-            // textBox2
+            // splitContainer1.Panel1
             // 
-            this.textBox2.Location = new System.Drawing.Point(347, 37);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(230, 20);
-            this.textBox2.TabIndex = 8;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.splitContainer1.Panel1.Controls.Add(this.listView1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
+            this.splitContainer1.Size = new System.Drawing.Size(1012, 566);
+            this.splitContainer1.SplitterDistance = 546;
+            this.splitContainer1.TabIndex = 6;
             // 
             // FileCommanderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1036, 694);
+            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.groupBox1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FileCommanderView";
             this.Text = "Form1";
@@ -293,8 +290,9 @@
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -325,9 +323,8 @@
         private System.Windows.Forms.ColumnHeader ItemChanged;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         internal System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.GroupBox groupBox1;
         internal System.Windows.Forms.TextBox textBox1;
-        internal System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.SplitContainer splitContainer1;
     }
 }
 
