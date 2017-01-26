@@ -48,9 +48,10 @@ namespace FileCommander
         }
 
        // public event EventHandler webBrowserEvent;
-        // VR
         public event EventHandler listViewEvent;
+        public event EventHandler listViewEventRight;
         public event EventHandler selectedItemsEvent;
+      
         // ListView listView1 = new ListView();
         //  listView1.Bounds = new Rectangle(new Point(10,10), new Size(300,200));
 
@@ -62,9 +63,7 @@ namespace FileCommander
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            //VR
-            
+
             
             if (listViewEvent != null)
             {
@@ -80,22 +79,22 @@ namespace FileCommander
             }
 
         }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-            
-        }
-
-
-        private void comboBox1_DropDown(object sender, EventArgs e)
+        
+         private void comboBox1_DropDown(object sender, EventArgs e)
         {
             comboBox1.Items.Clear();
-            
-
             comboBox1.Items.AddRange(Presenter.GetDrives.ToArray());
-            
+           
         }
-
+        
+        private void comboBox2_DropDown(object sender, EventArgs e)
+        {
+           
+            comboBox2.Items.Clear();
+            comboBox2.Items.AddRange(Presenter.GetDrives.ToArray());
+         
+        }
+        
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -144,15 +143,64 @@ namespace FileCommander
             }
 
         }
+        // change panels
+        private void btnChangePanel_Click(object sender, EventArgs e)
+        {
+            
+            Control[] array1 = new Control[splitContainer1.Panel1.Controls.Count];
+            Control[] array2 = new Control[splitContainer1.Panel2.Controls.Count];
+            splitContainer1.Panel1.Controls.CopyTo(array1, 0);
+            splitContainer1.Panel2.Controls.CopyTo(array2, 0);
+            splitContainer1.Panel1.Controls.AddRange(array2);
+            splitContainer1.Panel2.Controls.AddRange(array1);
+            if (splitContainer1.Orientation == Orientation.Horizontal)
+            {
+                splitContainer1.SplitterDistance = splitContainer1.Height - splitContainer1.SplitterDistance;
+            }
+            else if (splitContainer1.Orientation == Orientation.Vertical)
+            {
+                splitContainer1.SplitterDistance = splitContainer1.Width - splitContainer1.SplitterDistance;
+            }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+
+        }
+        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            listView1.Width = splitContainer1.Panel1.Width;
+            listView2.Width = splitContainer1.Panel1.Width;
+        }
+
+      
+        private void FileCommanderView_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+
+        }
+
+        private void listView2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        private void comboBox2_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            if (listViewEventRight != null)
+            {
+                try
+                {
+                    listViewEventRight(sender, e);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
 
+            }
         }
     }
 }
