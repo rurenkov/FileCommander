@@ -56,7 +56,10 @@ namespace FileCommander.Presenter
                 //string[] row1 = { "SELECTED FOLDER", GetFolderSize(dirInfo), dirInfo.LastWriteTime.ToShortDateString() };
                 //this.fileCommanderView.listView1.Items.Add(dirInfo.Name, 1).SubItems.AddRange(row1);
                 ListViewItem item = this.fileCommanderView.listView1.SelectedItems[0];
-                item.SubItems[2].Text = GetFolderSize(dirInfo);
+                if (item.SubItems[2].Text == "<DIR>")
+                {
+                    item.SubItems[2].Text = GetFolderSize(dirInfo);
+                }
 
                 //     string pathy = null;
 
