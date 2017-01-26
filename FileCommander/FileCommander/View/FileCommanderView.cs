@@ -53,6 +53,7 @@ namespace FileCommander
         public event EventHandler selectedItemsEvent;
         public event EventHandler listView1_KeySpaceEvent;
         public event EventHandler listView1_MouseDoubleClickEvent;
+        
       
         // ListView listView1 = new ListView();
         //  listView1.Bounds = new Rectangle(new Point(10,10), new Size(300,200));

@@ -46,7 +46,24 @@ namespace FileCommander.Presenter
 
         private void FileCommanderView_listView1_MouseDoubleClickEvent(object sender, EventArgs e)
         {
+            if (this.fileCommanderView.listView1.SelectedIndices.Count <= 0)
+            {
+                return;
+            }
+            int intselectedindex = this.fileCommanderView.listView1.SelectedIndices[0];
+
+            if (intselectedindex >= 0)
+            {
+                
+
+                this.fileCommanderView.textBox1.Text = CurrentPath + this.fileCommanderView.listView1.Items[intselectedindex].Text + "\\";
+                DirectoryInfo dirInfo = new DirectoryInfo(this.fileCommanderView.textBox1.Text);
+                CurrentPath = this.fileCommanderView.textBox1.Text;
+
+            }
+
             this.fileCommanderView.listView1.Items.Clear();
+
 
             //List<DirectoryInfo> dirInfo = GetFolders(CurrentPath);
 
@@ -56,10 +73,10 @@ namespace FileCommander.Presenter
                 this.fileCommanderView.listView1.Items.Add(dirInfo.Name, 1).SubItems.AddRange(row1);
             }
 
-            foreach (FileInfo fileInfo in GetFiles(this.fileCommanderView.comboBox1.Text))
+            foreach (FileInfo fileInfo in GetFiles(CurrentPath))
             {
                 string[] row1 = { "FILE", (((fileInfo.Length / 1024)).ToString("0.00")), fileInfo.LastWriteTime.ToShortDateString() };
-                this.fileCommanderView.listView2.Items.Add(fileInfo.Name, 0).SubItems.AddRange(row1);
+                this.fileCommanderView.listView1.Items.Add(fileInfo.Name, 0).SubItems.AddRange(row1);
             }
 
         }
@@ -75,30 +92,22 @@ namespace FileCommander.Presenter
         }
 
 
-    
-
-     
-
-
-
-
-
-
-
         // selected item for list view 1
 
         private void FileCommanderView_SelectedItemsEvent(object sender, EventArgs e)
         {
-            if (this.fileCommanderView.listView1.SelectedIndices.Count <= 0)
-            {
-                return;
-            }
-            int intselectedindex = this.fileCommanderView.listView1.SelectedIndices[0];
+            //***if (this.fileCommanderView.listView1.SelectedIndices.Count <= 0)
+            //***{
+            // ***   return;
+            //***}
+            //***int intselectedindex = this.fileCommanderView.listView1.SelectedIndices[0];
 
-            if (intselectedindex >= 0)
-            {
-                this.fileCommanderView.textBox1.Text = fileCommanderView.comboBox1.Text +  this.fileCommanderView.listView1.Items[intselectedindex].Text;
-                DirectoryInfo dirInfo = new DirectoryInfo(this.fileCommanderView.textBox1.Text);
+            //***if (intselectedindex >= 0)
+            //***{
+                //this.fileCommanderView.textBox1.Text = fileCommanderView.comboBox1.Text +  this.fileCommanderView.listView1.Items[intselectedindex].Text;
+                
+                //***this.fileCommanderView.textBox1.Text = CurrentPath + this.fileCommanderView.listView1.Items[intselectedindex].Text + "\\";
+                //***DirectoryInfo dirInfo = new DirectoryInfo(this.fileCommanderView.textBox1.Text);
                 //string[] row1 = { "SELECTED FOLDER", GetFolderSize(dirInfo), dirInfo.LastWriteTime.ToShortDateString() };
                 //this.fileCommanderView.listView1.Items.Add(dirInfo.Name, 1).SubItems.AddRange(row1);
                 //ListViewItem item = this.fileCommanderView.listView1.SelectedItems[0];
@@ -113,9 +122,9 @@ namespace FileCommander.Presenter
                 //   this.fileCommanderView.textBox2.Text = this.fileCommanderView.d.ToString(); 
                 // fileCommanderView.listView1.Items[intselectedindex].SubItems[0].Text;
 
-                CurrentPath = this.fileCommanderView.textBox1.Text;
+                //***CurrentPath = this.fileCommanderView.textBox1.Text;
 
-            }
+            //***}
         }
         //Right panel
         private void FileCommanderView_listViewEventRight(object sender, EventArgs e)
@@ -148,13 +157,17 @@ namespace FileCommander.Presenter
 
         private void FileCommanderView_listViewEvent(object sender, EventArgs e)
         {
-            
-                this.fileCommanderView.listView1.Items.Clear();
-                //foreach (string folderName in GetFoldersNames(this.fileCommanderView.comboBox1.Text))
-                //{               
-                //     this.fileCommanderView.listView1.Items.Add(folderName, 1);       
-                //}
-                List<DirectoryInfo> names = GetFolders(this.fileCommanderView.comboBox1.Text);
+
+            CurrentPath = this.fileCommanderView.comboBox1.Text;
+            this.fileCommanderView.textBox1.Text = CurrentPath;
+
+            this.fileCommanderView.listView1.Items.Clear();
+                
+            //foreach (string folderName in GetFoldersNames(this.fileCommanderView.comboBox1.Text))
+            //{               
+            //     this.fileCommanderView.listView1.Items.Add(folderName, 1);       
+            //}
+            List<DirectoryInfo> names = GetFolders(this.fileCommanderView.comboBox1.Text);
 
                 foreach(DirectoryInfo dirInfo in GetFolders(this.fileCommanderView.comboBox1.Text))
                 {
