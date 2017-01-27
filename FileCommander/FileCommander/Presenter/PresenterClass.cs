@@ -19,6 +19,7 @@ namespace FileCommander.Presenter
         public List<string> GetDrives { get { return driveModel.DrivesName; } }
         private string CurrentPath { get; set; }
         private FileCommanderView fileCommanderView;
+        public Stack<string> pathHistory = new Stack<string>();
 
 
         public PresenterClass (FileCommanderView fileCommanderView)
@@ -37,12 +38,37 @@ namespace FileCommander.Presenter
             this.fileCommanderView.listViewEventRight += FileCommanderView_listViewEventRight;
             this.fileCommanderView.selectedItemsEvent += FileCommanderView_SelectedItemsEvent;
             this.fileCommanderView.listView1_KeySpaceEvent += FileCommanderView_listView1_KeySpaceEvent;
+            this.fileCommanderView.listView1_KeyBackSpaceEvent += FileCommanderView_listView1_KeyBackSpaceEvent;
             this.fileCommanderView.listView1_MouseDoubleClickEvent += FileCommanderView_listView1_MouseDoubleClickEvent;
 
 
 
 
          }
+
+        private void FileCommanderView_listView1_KeyBackSpaceEvent(object sender, EventArgs e)
+        {
+           
+            this.fileCommanderView.listView1.Items.Clear();
+            CurrentPath = pathHistory.Pop();
+            this.fileCommanderView.textBox1.Text = CurrentPath;
+
+            List<DirectoryInfo> names = GetFolders(CurrentPath);
+
+            foreach (DirectoryInfo dirInfo in GetFolders(CurrentPath))
+            {
+                string[] row1 = { "FOLDER", "<DIR>", dirInfo.LastWriteTime.ToShortDateString() };
+                this.fileCommanderView.listView1.Items.Add(dirInfo.Name, 1).SubItems.AddRange(row1);
+            }
+
+
+            foreach (FileInfo fileInfo in GetFiles(CurrentPath))
+            {
+                string[] row1 = { "FILE", (((fileInfo.Length / 1024)).ToString("0.00")), fileInfo.LastWriteTime.ToShortDateString() };
+                this.fileCommanderView.listView1.Items.Add(fileInfo.Name, 0).SubItems.AddRange(row1);
+            }
+
+        }
 
         private void FileCommanderView_listView1_MouseDoubleClickEvent(object sender, EventArgs e)
         {
@@ -63,10 +89,11 @@ namespace FileCommander.Presenter
 
                 if (intselectedindex >= 0)
                 {
-                    
+                    pathHistory.Push(CurrentPath);
                     this.fileCommanderView.textBox1.Text = CurrentPath + this.fileCommanderView.listView1.Items[intselectedindex].Text + "\\";
                     DirectoryInfo dirInfo = new DirectoryInfo(this.fileCommanderView.textBox1.Text);
                     CurrentPath = this.fileCommanderView.textBox1.Text;
+                    
 
                 }
 
@@ -174,6 +201,7 @@ namespace FileCommander.Presenter
 
             CurrentPath = this.fileCommanderView.comboBox1.Text;
             this.fileCommanderView.textBox1.Text = CurrentPath;
+            pathHistory.Clear();
 
             this.fileCommanderView.listView1.Items.Clear();
                 
@@ -202,7 +230,9 @@ namespace FileCommander.Presenter
                     string[] row1 = { "FILE", (((fileInfo.Length/1024)).ToString("0.00")), fileInfo.LastWriteTime.ToShortDateString() };
                     this.fileCommanderView.listView1.Items.Add(fileInfo.Name, 0).SubItems.AddRange(row1);
                 }
-         
+
+                pathHistory.Push(CurrentPath);
+
 
 
         }
