@@ -52,33 +52,47 @@ namespace FileCommander.Presenter
             }
             int intselectedindex = this.fileCommanderView.listView1.SelectedIndices[0];
 
-            if (intselectedindex >= 0)
+
+
+            FileAttributes attr = File.GetAttributes(CurrentPath+this.fileCommanderView.listView1.Items[intselectedindex].Text);
+
+            // CHECK IF FOLDER Or fILE.
+            if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
             {
-                
+                //if folder open it
 
-                this.fileCommanderView.textBox1.Text = CurrentPath + this.fileCommanderView.listView1.Items[intselectedindex].Text + "\\";
-                DirectoryInfo dirInfo = new DirectoryInfo(this.fileCommanderView.textBox1.Text);
-                CurrentPath = this.fileCommanderView.textBox1.Text;
+                if (intselectedindex >= 0)
+                {
+                    
+                    this.fileCommanderView.textBox1.Text = CurrentPath + this.fileCommanderView.listView1.Items[intselectedindex].Text + "\\";
+                    DirectoryInfo dirInfo = new DirectoryInfo(this.fileCommanderView.textBox1.Text);
+                    CurrentPath = this.fileCommanderView.textBox1.Text;
 
+                }
+
+                this.fileCommanderView.listView1.Items.Clear();
+
+
+                //List<DirectoryInfo> dirInfo = GetFolders(CurrentPath);
+
+                foreach (DirectoryInfo dirInfo in GetFolders(CurrentPath))
+                {
+                    string[] row1 = { "FOLDER", "<DIR>", dirInfo.LastWriteTime.ToShortDateString() };
+                    this.fileCommanderView.listView1.Items.Add(dirInfo.Name, 1).SubItems.AddRange(row1);
+                }
+
+                foreach (FileInfo fileInfo in GetFiles(CurrentPath))
+                {
+                    string[] row1 = { "FILE", (((fileInfo.Length / 1024)).ToString("0.00")), fileInfo.LastWriteTime.ToShortDateString() };
+                    this.fileCommanderView.listView1.Items.Add(fileInfo.Name, 0).SubItems.AddRange(row1);
+                }
             }
-
-            this.fileCommanderView.listView1.Items.Clear();
-
-
-            //List<DirectoryInfo> dirInfo = GetFolders(CurrentPath);
-
-            foreach (DirectoryInfo dirInfo in GetFolders(CurrentPath))
-            {
-                string[] row1 = { "FOLDER", "<DIR>", dirInfo.LastWriteTime.ToShortDateString() };
-                this.fileCommanderView.listView1.Items.Add(dirInfo.Name, 1).SubItems.AddRange(row1);
+            else
+            {// if file - run it
+                System.Diagnostics.Process.Start(CurrentPath + this.fileCommanderView.listView1.Items[intselectedindex].Text);
             }
-
-            foreach (FileInfo fileInfo in GetFiles(CurrentPath))
-            {
-                string[] row1 = { "FILE", (((fileInfo.Length / 1024)).ToString("0.00")), fileInfo.LastWriteTime.ToShortDateString() };
-                this.fileCommanderView.listView1.Items.Add(fileInfo.Name, 0).SubItems.AddRange(row1);
-            }
-
+        
+            
         }
 
 

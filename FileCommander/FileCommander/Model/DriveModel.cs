@@ -31,7 +31,18 @@ namespace FileCommander.Model
             }
 
         }
+/// <summary>
+/// //////////////////////////////////////
+/// </summary>
+   //     string path = @"c:\temp\MyTest.txt";
 
+        /*public OpenFileMethod(string Path)
+
+        {
+            System.Diagnostics.Process.Start(Path);
+        }
+    
+    */
 
     }
 }
