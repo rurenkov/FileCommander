@@ -41,12 +41,20 @@ namespace FileCommander.Presenter
             this.fileCommanderView.listView1_KeyBackSpaceEvent += FileCommanderView_listView1_KeyBackSpaceEvent;
             this.fileCommanderView.listView1_KeyEnterEvent += FileCommanderView_listView1_OpenFolder;
             this.fileCommanderView.listView1_KeyDeleteEvent += FileCommanderView_listView1_DeleteEvent;
+            this.fileCommanderView.listView1_KeyF7Event += FileCommanderView_listView1_CreateNewDirectoryEvent;
             this.fileCommanderView.listView1_MouseDoubleClickEvent += FileCommanderView_listView1_OpenFolder;
 
 
 
 
          }
+
+        private void FileCommanderView_listView1_CreateNewDirectoryEvent(object sender, EventArgs e)
+        {
+            DirectoryInfo dirInfo = Directory.CreateDirectory(CurrentPath + "\\New Folder");
+            this.fileCommanderView.listView1.Items.Clear();
+            PopulateListView(CurrentPath);
+        }
 
         private void FileCommanderView_listView1_DeleteEvent(object sender, EventArgs e)
         {

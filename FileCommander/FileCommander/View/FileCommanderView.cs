@@ -55,6 +55,7 @@ namespace FileCommander
         public event EventHandler listView1_KeyBackSpaceEvent;
         public event EventHandler listView1_KeyEnterEvent;
         public event EventHandler listView1_KeyDeleteEvent;
+        public event EventHandler listView1_KeyF7Event;
         public event EventHandler listView1_MouseDoubleClickEvent;
         
       
@@ -227,6 +228,16 @@ namespace FileCommander
                         {
                             MessageBox.Show(ex.Message);
                         }
+                    }
+                    break;
+                    case Keys.F7:
+                    try
+                    {
+                        listView1_KeyF7Event(sender, e);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
                     }
                     break;
 
