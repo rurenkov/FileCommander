@@ -176,24 +176,31 @@ namespace FileCommander
 
         private void listView1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Space)
-                try
-                {
-                    listView1_KeySpaceEvent(sender, e);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            else if (e.KeyCode == Keys.Back)
-                try
-                {
-                    listView1_KeyBackSpaceEvent (sender, e);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+            switch (e.KeyCode)
+            {
+
+                case Keys.Space:
+                    try
+                    {
+                        listView1_KeySpaceEvent(sender, e);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    break;
+
+                case Keys.Back:
+                    try
+                    {
+                        listView1_KeyBackSpaceEvent(sender, e);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    break;
+            }
         }
 
 
