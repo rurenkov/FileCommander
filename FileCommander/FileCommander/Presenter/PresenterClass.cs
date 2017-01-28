@@ -56,7 +56,15 @@ namespace FileCommander.Presenter
             }
             int intselectedindex = this.fileCommanderView.listView1.SelectedIndices[0];
 
-            Directory.Delete(CurrentPath + this.fileCommanderView.listView1.Items[intselectedindex].Text, true);
+            if (fileCommanderView.listView1.SelectedItems[0].SubItems[1].Text == "FOLDER")
+            {
+                Directory.Delete(CurrentPath + this.fileCommanderView.listView1.Items[intselectedindex].Text, true);
+            }
+            else if (fileCommanderView.listView1.SelectedItems[0].SubItems[1].Text == "FILE")
+            {
+                File.Delete(CurrentPath + this.fileCommanderView.listView1.Items[intselectedindex].Text);
+            }
+
 
             this.fileCommanderView.listView1.Items.Clear();
             PopulateListView(CurrentPath);

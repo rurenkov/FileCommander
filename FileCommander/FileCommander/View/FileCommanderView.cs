@@ -213,7 +213,7 @@ namespace FileCommander
                     }
                     break;
                 case Keys.Delete:
-                    var confirmResult = MessageBox.Show("Are you sure to delete this item ??",
+                    var confirmResult = MessageBox.Show("Are you sure to delete <"+listView1.SelectedItems[0].Text+">?", 
                                      "Confirm Delete!!",
                                      MessageBoxButtons.YesNo);
                     if (confirmResult == DialogResult.Yes)
