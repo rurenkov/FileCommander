@@ -53,6 +53,7 @@ namespace FileCommander
         public event EventHandler selectedItemsEvent;
         public event EventHandler listView1_KeySpaceEvent;
         public event EventHandler listView1_KeyBackSpaceEvent;
+        public event EventHandler listView1_KeyEnterEvent;
         public event EventHandler listView1_MouseDoubleClickEvent;
         
       
@@ -194,6 +195,16 @@ namespace FileCommander
                     try
                     {
                         listView1_KeyBackSpaceEvent(sender, e);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    break;
+                case Keys.Enter:
+                    try
+                    {
+                        listView1_KeyEnterEvent(sender, e);
                     }
                     catch (Exception ex)
                     {

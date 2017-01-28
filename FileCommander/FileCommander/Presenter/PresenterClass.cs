@@ -39,26 +39,15 @@ namespace FileCommander.Presenter
             this.fileCommanderView.selectedItemsEvent += FileCommanderView_SelectedItemsEvent;
             this.fileCommanderView.listView1_KeySpaceEvent += FileCommanderView_listView1_KeySpaceEvent;
             this.fileCommanderView.listView1_KeyBackSpaceEvent += FileCommanderView_listView1_KeyBackSpaceEvent;
-            this.fileCommanderView.listView1_MouseDoubleClickEvent += FileCommanderView_listView1_MouseDoubleClickEvent;
+            this.fileCommanderView.listView1_KeyEnterEvent += FileCommanderView_listView1_OpenFolder;
+            this.fileCommanderView.listView1_MouseDoubleClickEvent += FileCommanderView_listView1_OpenFolder;
 
 
 
 
          }
 
-        private void FileCommanderView_listView1_KeyBackSpaceEvent(object sender, EventArgs e)
-        {
-           
-            this.fileCommanderView.listView1.Items.Clear();
-            CurrentPath = pathHistory.Pop();
-            this.fileCommanderView.textBox1.Text = CurrentPath;
-
-
-            PopulateListView(CurrentPath);
-
-        }
-
-        private void FileCommanderView_listView1_MouseDoubleClickEvent(object sender, EventArgs e)
+        private void FileCommanderView_listView1_OpenFolder(object sender, EventArgs e)
         {
             if (this.fileCommanderView.listView1.SelectedIndices.Count <= 0)
             {
@@ -68,7 +57,7 @@ namespace FileCommander.Presenter
 
 
 
-            FileAttributes attr = File.GetAttributes(CurrentPath+this.fileCommanderView.listView1.Items[intselectedindex].Text);
+            FileAttributes attr = File.GetAttributes(CurrentPath + this.fileCommanderView.listView1.Items[intselectedindex].Text);
 
             // CHECK IF FOLDER Or fILE.
             if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
@@ -81,7 +70,7 @@ namespace FileCommander.Presenter
                     this.fileCommanderView.textBox1.Text = CurrentPath + this.fileCommanderView.listView1.Items[intselectedindex].Text + "\\";
                     DirectoryInfo dirInfo = new DirectoryInfo(this.fileCommanderView.textBox1.Text);
                     CurrentPath = this.fileCommanderView.textBox1.Text;
-                    
+
 
                 }
 
@@ -95,9 +84,61 @@ namespace FileCommander.Presenter
             {// if file - run it
                 System.Diagnostics.Process.Start(CurrentPath + this.fileCommanderView.listView1.Items[intselectedindex].Text);
             }
+
+        }
+
+        private void FileCommanderView_listView1_KeyBackSpaceEvent(object sender, EventArgs e)
+        {
+           
+            this.fileCommanderView.listView1.Items.Clear();
+            CurrentPath = pathHistory.Pop();
+            this.fileCommanderView.textBox1.Text = CurrentPath;
+
+
+            PopulateListView(CurrentPath);
+
+        }
+
+        //private void FileCommanderView_listView1_MouseDoubleClickEvent(object sender, EventArgs e)
+        //{
+        //    if (this.fileCommanderView.listView1.SelectedIndices.Count <= 0)
+        //    {
+        //        return;
+        //    }
+        //    int intselectedindex = this.fileCommanderView.listView1.SelectedIndices[0];
+
+
+
+        //    FileAttributes attr = File.GetAttributes(CurrentPath+this.fileCommanderView.listView1.Items[intselectedindex].Text);
+
+        //    // CHECK IF FOLDER Or fILE.
+        //    if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+        //    {
+        //        //if folder open it
+
+        //        if (intselectedindex >= 0)
+        //        {
+        //            pathHistory.Push(CurrentPath);
+        //            this.fileCommanderView.textBox1.Text = CurrentPath + this.fileCommanderView.listView1.Items[intselectedindex].Text + "\\";
+        //            DirectoryInfo dirInfo = new DirectoryInfo(this.fileCommanderView.textBox1.Text);
+        //            CurrentPath = this.fileCommanderView.textBox1.Text;
+                    
+
+        //        }
+
+        //        this.fileCommanderView.listView1.Items.Clear();
+
+
+
+        //        PopulateListView(CurrentPath);
+        //    }
+        //    else
+        //    {// if file - run it
+        //        System.Diagnostics.Process.Start(CurrentPath + this.fileCommanderView.listView1.Items[intselectedindex].Text);
+        //    }
         
             
-        }
+        //}
 
 
         private void FileCommanderView_listView1_KeySpaceEvent(object sender, EventArgs e)
