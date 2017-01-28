@@ -53,20 +53,8 @@ namespace FileCommander.Presenter
             CurrentPath = pathHistory.Pop();
             this.fileCommanderView.textBox1.Text = CurrentPath;
 
-            List<DirectoryInfo> names = GetFolders(CurrentPath);
 
-            foreach (DirectoryInfo dirInfo in GetFolders(CurrentPath))
-            {
-                string[] row1 = { "FOLDER", "<DIR>", dirInfo.LastWriteTime.ToShortDateString() };
-                this.fileCommanderView.listView1.Items.Add(dirInfo.Name, 1).SubItems.AddRange(row1);
-            }
-
-
-            foreach (FileInfo fileInfo in GetFiles(CurrentPath))
-            {
-                string[] row1 = { "FILE", (((fileInfo.Length / 1024)).ToString("0.00")), fileInfo.LastWriteTime.ToShortDateString() };
-                this.fileCommanderView.listView1.Items.Add(fileInfo.Name, 0).SubItems.AddRange(row1);
-            }
+            PopulateListView(CurrentPath);
 
         }
 
@@ -100,19 +88,8 @@ namespace FileCommander.Presenter
                 this.fileCommanderView.listView1.Items.Clear();
 
 
-                //List<DirectoryInfo> dirInfo = GetFolders(CurrentPath);
 
-                foreach (DirectoryInfo dirInfo in GetFolders(CurrentPath))
-                {
-                    string[] row1 = { "FOLDER", "<DIR>", dirInfo.LastWriteTime.ToShortDateString() };
-                    this.fileCommanderView.listView1.Items.Add(dirInfo.Name, 1).SubItems.AddRange(row1);
-                }
-
-                foreach (FileInfo fileInfo in GetFiles(CurrentPath))
-                {
-                    string[] row1 = { "FILE", (((fileInfo.Length / 1024)).ToString("0.00")), fileInfo.LastWriteTime.ToShortDateString() };
-                    this.fileCommanderView.listView1.Items.Add(fileInfo.Name, 0).SubItems.AddRange(row1);
-                }
+                PopulateListView(CurrentPath);
             }
             else
             {// if file - run it
@@ -204,39 +181,36 @@ namespace FileCommander.Presenter
             pathHistory.Clear();
 
             this.fileCommanderView.listView1.Items.Clear();
-                
-            //foreach (string folderName in GetFoldersNames(this.fileCommanderView.comboBox1.Text))
-            //{               
-            //     this.fileCommanderView.listView1.Items.Add(folderName, 1);       
-            //}
-            List<DirectoryInfo> names = GetFolders(this.fileCommanderView.comboBox1.Text);
 
-                foreach(DirectoryInfo dirInfo in GetFolders(this.fileCommanderView.comboBox1.Text))
-                {
-                    string[] row1 = { "FOLDER", "<DIR>", dirInfo.LastWriteTime.ToShortDateString() };
-                    this.fileCommanderView.listView1.Items.Add(dirInfo.Name, 1).SubItems.AddRange(row1);
-                }
 
-                
 
-                //foreach (string fileName in GetFilesNames(this.fileCommanderView.comboBox1.Text))
-                //{
-                //    string[] row1 = { "File", "", "" };
-                //    this.fileCommanderView.listView1.Items.Add("ItemName").SubItems.AddRange(row1);
-                //}
 
-                foreach (FileInfo fileInfo in GetFiles(this.fileCommanderView.comboBox1.Text))
-                {
-                    string[] row1 = { "FILE", (((fileInfo.Length/1024)).ToString("0.00")), fileInfo.LastWriteTime.ToShortDateString() };
-                    this.fileCommanderView.listView1.Items.Add(fileInfo.Name, 0).SubItems.AddRange(row1);
-                }
+                PopulateListView(CurrentPath);
 
                 pathHistory.Push(CurrentPath);
 
+        }
 
+        private void PopulateListView(string currentPath)
+        {
+            
+
+            foreach (DirectoryInfo dirInfo in GetFolders(currentPath))
+            {
+                string[] row1 = { "FOLDER", "<DIR>", dirInfo.LastWriteTime.ToShortDateString() };
+                this.fileCommanderView.listView1.Items.Add(dirInfo.Name, 1).SubItems.AddRange(row1);
+            }
+
+
+            foreach (FileInfo fileInfo in GetFiles(currentPath))
+            {
+                string[] row1 = { "FILE", (((fileInfo.Length / 1024)).ToString("0.00")), fileInfo.LastWriteTime.ToShortDateString() };
+                this.fileCommanderView.listView1.Items.Add(fileInfo.Name, 0).SubItems.AddRange(row1);
+            }
 
         }
-        
+
+               
      
         public string[] GetFoldersNames(string selectedDrive)
         {
