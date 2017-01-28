@@ -51,7 +51,8 @@ namespace FileCommander.Presenter
 
         private void FileCommanderView_listView1_CreateNewDirectoryEvent(object sender, EventArgs e)
         {
-            DirectoryInfo dirInfo = Directory.CreateDirectory(CurrentPath + "\\New Folder");
+            FolderNameDialogForm folderNameDialog = new FolderNameDialogForm();
+            DirectoryInfo dirInfo = Directory.CreateDirectory(CurrentPath + "\\" + fileCommanderView.NewDirectoryNameInput);
             this.fileCommanderView.listView1.Items.Clear();
             PopulateListView(CurrentPath);
         }

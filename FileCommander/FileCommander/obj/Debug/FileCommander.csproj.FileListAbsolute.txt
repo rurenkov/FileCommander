@@ -25,3 +25,4 @@ C:\WORK\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.csproj
 C:\WORK\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.FileCommanderView.resources
 D:\vet\sharp\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.FileCommanderView.resources
 D:\study\projects\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.FileCommanderView.resources
+C:\WORK\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.FolderNameDialogForm.resources

@@ -20,6 +20,8 @@ namespace FileCommander
         public string SelectedDrive { get; set; }
         public object EmpIDtextBox { get; private set; }
 
+        public string NewDirectoryNameInput { get; set; }
+
         public FileCommanderView()
         {
             InitializeComponent();
@@ -231,14 +233,21 @@ namespace FileCommander
                     }
                     break;
                     case Keys.F7:
-                    try
+                    using (FolderNameDialogForm folderNameDialog = new FolderNameDialogForm())
                     {
-                        listView1_KeyF7Event(sender, e);
+                        if (folderNameDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            NewDirectoryNameInput = folderNameDialog.newFolderNameInputTextBox1.Text;
+                        }
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
+                        try
+                        {
+                            listView1_KeyF7Event(sender, e);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
                     break;
 
             }
