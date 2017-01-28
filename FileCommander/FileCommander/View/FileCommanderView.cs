@@ -54,6 +54,7 @@ namespace FileCommander
         public event EventHandler listView1_KeySpaceEvent;
         public event EventHandler listView1_KeyBackSpaceEvent;
         public event EventHandler listView1_KeyEnterEvent;
+        public event EventHandler listView1_KeyDeleteEvent;
         public event EventHandler listView1_MouseDoubleClickEvent;
         
       
@@ -211,6 +212,24 @@ namespace FileCommander
                         MessageBox.Show(ex.Message);
                     }
                     break;
+                case Keys.Delete:
+                    var confirmResult = MessageBox.Show("Are you sure to delete this item ??",
+                                     "Confirm Delete!!",
+                                     MessageBoxButtons.YesNo);
+                    if (confirmResult == DialogResult.Yes)
+                    {
+
+                        try
+                        {
+                            listView1_KeyDeleteEvent(sender, e);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }
+                    break;
+
             }
         }
 
