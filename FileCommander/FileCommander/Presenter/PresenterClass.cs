@@ -89,13 +89,15 @@ namespace FileCommander.Presenter
 
         private void FileCommanderView_listView1_KeyBackSpaceEvent(object sender, EventArgs e)
         {
-           
-            this.fileCommanderView.listView1.Items.Clear();
-            CurrentPath = pathHistory.Pop();
-            this.fileCommanderView.textBox1.Text = CurrentPath;
+            if (pathHistory.Count > 1)
+            {
+                this.fileCommanderView.listView1.Items.Clear();
+                CurrentPath = pathHistory.Pop();
+                this.fileCommanderView.textBox1.Text = CurrentPath;
 
 
-            PopulateListView(CurrentPath);
+                PopulateListView(CurrentPath);
+            }
 
         }
 
