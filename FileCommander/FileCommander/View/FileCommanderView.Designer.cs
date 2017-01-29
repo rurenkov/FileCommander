@@ -69,6 +69,7 @@
             this.btnNext = new System.Windows.Forms.Button();
             this.btnNewFolder = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.btnRename = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -192,6 +193,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnDelete);
             this.flowLayoutPanel1.Controls.Add(this.btnOpenFiles);
             this.flowLayoutPanel1.Controls.Add(this.btnChangePanel);
+            this.flowLayoutPanel1.Controls.Add(this.btnRename);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 28);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1005, 58);
@@ -379,7 +381,7 @@
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 1, 10, 10);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(183, 20);
+            this.textBox2.Size = new System.Drawing.Size(209, 20);
             this.textBox2.TabIndex = 4;
             // 
             // btnBack
@@ -421,6 +423,16 @@
             this.btnDelete.TabIndex = 3;
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.button1_Click_2);
+            // 
+            // btnRename
+            // 
+            this.btnRename.Image = global::FileCommander.Properties.Resources.folder;
+            this.btnRename.Location = new System.Drawing.Point(442, 3);
+            this.btnRename.Name = "btnRename";
+            this.btnRename.Size = new System.Drawing.Size(53, 51);
+            this.btnRename.TabIndex = 7;
+            this.btnRename.UseVisualStyleBackColor = true;
+            this.btnRename.Click += new System.EventHandler(this.btnRename_Click);
             // 
             // FileCommanderView
             // 
@@ -495,6 +507,7 @@
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnNewFolder;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnRename;
     }
 }
 

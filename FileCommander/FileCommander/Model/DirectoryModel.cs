@@ -19,6 +19,20 @@ namespace FileCommander.Model
 
 
 
+        public void Move_Rename_Directory(String srcDir, String destDir)
+        {
+            try
+            {
+                DirectoryInfo dInfo = new DirectoryInfo(srcDir);
+                dInfo.MoveTo(destDir);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
 
 
         public string[] GetFoldersNames(string selectedDrive)

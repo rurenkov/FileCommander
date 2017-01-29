@@ -42,11 +42,34 @@ namespace FileCommander.Presenter
             this.fileCommanderView.listView1_KeyDeleteEvent += FileCommanderView_listView1_DeleteEvent;
             this.fileCommanderView.listView1_KeyF7Event += FileCommanderView_listView1_CreateNewDirectoryEvent;
             this.fileCommanderView.listView1_MouseDoubleClickEvent += FileCommanderView_listView1_OpenFolder;
-
-
+            this.fileCommanderView.renameDirEvent += FileCommanderView_listView1_renameDirEvent;
 
 
          }
+
+
+        private void FileCommanderView_listView1_renameDirEvent(object sender, EventArgs e)
+        {
+
+            
+            if (this.fileCommanderView.listView1.SelectedIndices.Count <= 0)
+            {
+                return;
+            }
+            int intselectedindex = this.fileCommanderView.listView1.SelectedIndices[0];
+            string srcDir = CurrentPathLeft + this.fileCommanderView.listView1.Items[intselectedindex].Text;
+            string destDir = CurrentPathLeft + fileCommanderView.NewDirectoryNameInput;
+
+            directoryModel.Move_Rename_Directory(srcDir, destDir);
+
+         
+            this.fileCommanderView.listView1.Items.Clear();
+            PopulateListViewLeft(CurrentPathLeft);
+            
+
+        }
+
+
 
         private void FileCommanderView_listView1_CreateNewDirectoryEvent(object sender, EventArgs e)
         {
@@ -153,6 +176,8 @@ namespace FileCommander.Presenter
                 fileCommanderView.listView1.SelectedItems[0].SubItems[2].Text = GetFolderSize(dirInfo);
             }
         }
+
+       
 
 
         // selected item for list view 1
