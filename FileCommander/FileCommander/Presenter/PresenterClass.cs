@@ -225,13 +225,8 @@ namespace FileCommander.Presenter
             pathHistory.Clear();
 
             this.fileCommanderView.listView1.Items.Clear();
-
-
-
-
-                PopulateListView(CurrentPath);
-
-                pathHistory.Push(CurrentPath);
+               PopulateListView(CurrentPath);
+               pathHistory.Push(CurrentPath);
 
         }
 
