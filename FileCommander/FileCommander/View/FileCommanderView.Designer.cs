@@ -45,6 +45,12 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.btnNewFolder = new System.Windows.Forms.Button();
+            this.btnRename = new System.Windows.Forms.Button();
+            this.btnCopy = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.btnOpenFiles = new System.Windows.Forms.Button();
             this.btnChangePanel = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -65,12 +71,7 @@
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.btnBack = new System.Windows.Forms.Button();
-            this.btnNext = new System.Windows.Forms.Button();
-            this.btnNewFolder = new System.Windows.Forms.Button();
-            this.btnRename = new System.Windows.Forms.Button();
-            this.btnCopy = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.menuStrip1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -201,6 +202,72 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1005, 58);
             this.flowLayoutPanel1.TabIndex = 5;
             // 
+            // btnBack
+            // 
+            this.btnBack.Image = ((System.Drawing.Image)(resources.GetObject("btnBack.Image")));
+            this.btnBack.Location = new System.Drawing.Point(3, 3);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(53, 51);
+            this.btnBack.TabIndex = 6;
+            this.toolTip1.SetToolTip(this.btnBack, "Go back");
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // btnNext
+            // 
+            this.btnNext.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.Image")));
+            this.btnNext.Location = new System.Drawing.Point(62, 3);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(53, 51);
+            this.btnNext.TabIndex = 5;
+            this.toolTip1.SetToolTip(this.btnNext, "Open item");
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.button1_Click_3);
+            // 
+            // btnNewFolder
+            // 
+            this.btnNewFolder.Image = ((System.Drawing.Image)(resources.GetObject("btnNewFolder.Image")));
+            this.btnNewFolder.Location = new System.Drawing.Point(121, 3);
+            this.btnNewFolder.Name = "btnNewFolder";
+            this.btnNewFolder.Size = new System.Drawing.Size(53, 51);
+            this.btnNewFolder.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.btnNewFolder, "Create New Folder");
+            this.btnNewFolder.UseVisualStyleBackColor = true;
+            this.btnNewFolder.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // btnRename
+            // 
+            this.btnRename.Image = global::FileCommander.Properties.Resources.orange_rename_481;
+            this.btnRename.Location = new System.Drawing.Point(180, 3);
+            this.btnRename.Name = "btnRename";
+            this.btnRename.Size = new System.Drawing.Size(53, 51);
+            this.btnRename.TabIndex = 7;
+            this.toolTip1.SetToolTip(this.btnRename, "Rename");
+            this.btnRename.UseVisualStyleBackColor = true;
+            this.btnRename.Click += new System.EventHandler(this.btnRename_Click);
+            // 
+            // btnCopy
+            // 
+            this.btnCopy.Image = global::FileCommander.Properties.Resources.copy_icon1;
+            this.btnCopy.Location = new System.Drawing.Point(239, 3);
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.Size = new System.Drawing.Size(53, 51);
+            this.btnCopy.TabIndex = 8;
+            this.toolTip1.SetToolTip(this.btnCopy, "Copy");
+            this.btnCopy.UseVisualStyleBackColor = true;
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Image = global::FileCommander.Properties.Resources.Button_Delete_icon;
+            this.btnDelete.Location = new System.Drawing.Point(298, 3);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(53, 51);
+            this.btnDelete.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.btnDelete, "Delete");
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.button1_Click_2);
+            // 
             // btnOpenFiles
             // 
             this.btnOpenFiles.Location = new System.Drawing.Point(357, 3);
@@ -283,6 +350,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(73, 21);
             this.comboBox1.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.comboBox1, "Select Drive");
             this.comboBox1.ValueMember = "f";
             this.comboBox1.DropDown += new System.EventHandler(this.comboBox1_DropDown);
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
@@ -386,65 +454,9 @@
             this.textBox2.Size = new System.Drawing.Size(209, 20);
             this.textBox2.TabIndex = 4;
             // 
-            // btnBack
+            // toolTip1
             // 
-            this.btnBack.Image = ((System.Drawing.Image)(resources.GetObject("btnBack.Image")));
-            this.btnBack.Location = new System.Drawing.Point(3, 3);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(53, 51);
-            this.btnBack.TabIndex = 6;
-            this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
-            // btnNext
-            // 
-            this.btnNext.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.Image")));
-            this.btnNext.Location = new System.Drawing.Point(62, 3);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(53, 51);
-            this.btnNext.TabIndex = 5;
-            this.btnNext.UseVisualStyleBackColor = true;
-            this.btnNext.Click += new System.EventHandler(this.button1_Click_3);
-            // 
-            // btnNewFolder
-            // 
-            this.btnNewFolder.Image = ((System.Drawing.Image)(resources.GetObject("btnNewFolder.Image")));
-            this.btnNewFolder.Location = new System.Drawing.Point(121, 3);
-            this.btnNewFolder.Name = "btnNewFolder";
-            this.btnNewFolder.Size = new System.Drawing.Size(53, 51);
-            this.btnNewFolder.TabIndex = 2;
-            this.btnNewFolder.UseVisualStyleBackColor = true;
-            this.btnNewFolder.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // btnRename
-            // 
-            this.btnRename.Image = global::FileCommander.Properties.Resources.orange_rename_481;
-            this.btnRename.Location = new System.Drawing.Point(180, 3);
-            this.btnRename.Name = "btnRename";
-            this.btnRename.Size = new System.Drawing.Size(53, 51);
-            this.btnRename.TabIndex = 7;
-            this.btnRename.UseVisualStyleBackColor = true;
-            this.btnRename.Click += new System.EventHandler(this.btnRename_Click);
-            // 
-            // btnCopy
-            // 
-            this.btnCopy.Image = global::FileCommander.Properties.Resources.copy_icon1;
-            this.btnCopy.Location = new System.Drawing.Point(239, 3);
-            this.btnCopy.Name = "btnCopy";
-            this.btnCopy.Size = new System.Drawing.Size(53, 51);
-            this.btnCopy.TabIndex = 8;
-            this.btnCopy.UseVisualStyleBackColor = true;
-            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Image = global::FileCommander.Properties.Resources.Button_Delete_icon;
-            this.btnDelete.Location = new System.Drawing.Point(298, 3);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(53, 51);
-            this.btnDelete.TabIndex = 3;
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.button1_Click_2);
+            this.toolTip1.AutomaticDelay = 200;
             // 
             // FileCommanderView
             // 
@@ -521,6 +533,7 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnRename;
         private System.Windows.Forms.Button btnCopy;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 
