@@ -18,6 +18,59 @@ namespace FileCommander.Model
         public List<DirectoryInfo> foldersList = new List<DirectoryInfo>();
 
 
+/*
+
+    public  void CopyDirectory(String src, String dest)
+        {
+            try
+            {
+
+          //      String srcpathroot = Path.GetPathRoot(src);
+        //       String destpathroot = Path.GetPathRoot(dest);
+
+                //Create Directories
+                String[] dirs = Directory.GetDirectories(src, "*", SearchOption.AllDirectories);
+                foreach (String difVolume in dirs)
+                {
+
+                    String path = difVolume.Replace(src, dest);
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
+                }
+               
+                String[] szFiles = Directory.GetFiles(src, "*", SearchOption.AllDirectories);
+                foreach (String srcFile in szFiles)
+                {
+                    String destFile = srcFile.Replace(src, dest);
+                    File.Copy(srcFile, destFile, true);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+               // MessageBox.Show(ex.Message);
+            }
+        }
+
+    */
+
+
+        public void Move_Rename_Directory(String srcDir, String destDir)
+        {
+            try
+            {
+                DirectoryInfo dInfo = new DirectoryInfo(srcDir);
+                dInfo.MoveTo(destDir);
+
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.Message);
+            }
+        }
 
 
 

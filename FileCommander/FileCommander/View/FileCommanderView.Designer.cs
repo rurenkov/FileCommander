@@ -68,6 +68,8 @@
             this.btnBack = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnNewFolder = new System.Windows.Forms.Button();
+            this.btnRename = new System.Windows.Forms.Button();
+            this.btnCopy = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -189,6 +191,8 @@
             this.flowLayoutPanel1.Controls.Add(this.btnBack);
             this.flowLayoutPanel1.Controls.Add(this.btnNext);
             this.flowLayoutPanel1.Controls.Add(this.btnNewFolder);
+            this.flowLayoutPanel1.Controls.Add(this.btnRename);
+            this.flowLayoutPanel1.Controls.Add(this.btnCopy);
             this.flowLayoutPanel1.Controls.Add(this.btnDelete);
             this.flowLayoutPanel1.Controls.Add(this.btnOpenFiles);
             this.flowLayoutPanel1.Controls.Add(this.btnChangePanel);
@@ -199,7 +203,7 @@
             // 
             // btnOpenFiles
             // 
-            this.btnOpenFiles.Location = new System.Drawing.Point(239, 3);
+            this.btnOpenFiles.Location = new System.Drawing.Point(357, 3);
             this.btnOpenFiles.Name = "btnOpenFiles";
             this.btnOpenFiles.Size = new System.Drawing.Size(70, 28);
             this.btnOpenFiles.TabIndex = 0;
@@ -209,7 +213,7 @@
             // 
             // btnChangePanel
             // 
-            this.btnChangePanel.Location = new System.Drawing.Point(315, 3);
+            this.btnChangePanel.Location = new System.Drawing.Point(433, 3);
             this.btnChangePanel.Name = "btnChangePanel";
             this.btnChangePanel.Size = new System.Drawing.Size(121, 51);
             this.btnChangePanel.TabIndex = 1;
@@ -379,7 +383,7 @@
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 1, 10, 10);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(183, 20);
+            this.textBox2.Size = new System.Drawing.Size(209, 20);
             this.textBox2.TabIndex = 4;
             // 
             // btnBack
@@ -412,10 +416,30 @@
             this.btnNewFolder.UseVisualStyleBackColor = true;
             this.btnNewFolder.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // btnRename
+            // 
+            this.btnRename.Image = global::FileCommander.Properties.Resources.orange_rename_48;
+            this.btnRename.Location = new System.Drawing.Point(180, 3);
+            this.btnRename.Name = "btnRename";
+            this.btnRename.Size = new System.Drawing.Size(53, 51);
+            this.btnRename.TabIndex = 7;
+            this.btnRename.UseVisualStyleBackColor = true;
+            this.btnRename.Click += new System.EventHandler(this.btnRename_Click);
+            // 
+            // btnCopy
+            // 
+            this.btnCopy.Image = global::FileCommander.Properties.Resources.copy_icon;
+            this.btnCopy.Location = new System.Drawing.Point(239, 3);
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.Size = new System.Drawing.Size(53, 51);
+            this.btnCopy.TabIndex = 8;
+            this.btnCopy.UseVisualStyleBackColor = true;
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
+            // 
             // btnDelete
             // 
             this.btnDelete.Image = global::FileCommander.Properties.Resources.Button_Delete_icon;
-            this.btnDelete.Location = new System.Drawing.Point(180, 3);
+            this.btnDelete.Location = new System.Drawing.Point(298, 3);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(53, 51);
             this.btnDelete.TabIndex = 3;
@@ -495,6 +519,8 @@
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnNewFolder;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnRename;
+        private System.Windows.Forms.Button btnCopy;
     }
 }
 
