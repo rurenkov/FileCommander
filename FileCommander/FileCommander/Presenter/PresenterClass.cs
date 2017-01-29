@@ -197,7 +197,14 @@ namespace FileCommander.Presenter
 
         private void FileCommanderView_listView1_KeySpaceEvent(object sender, EventArgs e)
         {
-            DirectoryInfo dirInfo = new DirectoryInfo(this.fileCommanderView.textBox1.Text);
+            if (this.fileCommanderView.listView1.SelectedIndices.Count <= 0)
+            {
+                return;
+            }
+            int intselectedindex = this.fileCommanderView.listView1.SelectedIndices[0];
+            string selectedFolder = CurrentPath1 + this.fileCommanderView.listView1.Items[intselectedindex].Text;
+
+            DirectoryInfo dirInfo = new DirectoryInfo(selectedFolder);
             if (fileCommanderView.listView1.SelectedItems[0].SubItems[2].Text == "<DIR>")
             {
                 fileCommanderView.listView1.SelectedItems[0].SubItems[2].Text = GetFolderSize(dirInfo);
