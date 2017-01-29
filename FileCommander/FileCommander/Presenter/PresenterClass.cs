@@ -31,8 +31,6 @@ namespace FileCommander.Presenter
             fileCommanderView.Presenter = this;
             //this.fileCommanderView.webBrowserEvent += FileCommanderView_webBrowserEvent;
             
-            
-            // subscribers
 
             this.fileCommanderView.listViewEvent += FileCommanderView_listViewEvent;
             this.fileCommanderView.listViewEventRight += FileCommanderView_listViewEventRight;
