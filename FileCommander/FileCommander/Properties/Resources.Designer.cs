@@ -83,6 +83,16 @@ namespace FileCommander.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Button_Previous_icon {
+            get {
+                object obj = ResourceManager.GetObject("Button-Previous-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Custom_Icon_Design_Flatastic_8_Go_back {
             get {
                 object obj = ResourceManager.GetObject("Custom-Icon-Design-Flatastic-8-Go-back", resourceCulture);

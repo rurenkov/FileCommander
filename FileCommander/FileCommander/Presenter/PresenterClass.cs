@@ -240,7 +240,7 @@ namespace FileCommander.Presenter
 
             if (pathHistory.Count > 1)
             {
-                this.fileCommanderView.listView1.Items.Add("..").SubItems.Add(" ");
+                this.fileCommanderView.listView1.Items.Add("..", 2).SubItems.Add(" ");
             }
                 foreach (DirectoryInfo dirInfo in GetFolders(currentPath))
                 {
