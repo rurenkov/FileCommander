@@ -50,6 +50,7 @@ namespace FileCommander
         }
 
         public event EventHandler renameDirEvent;
+        public event EventHandler copyDirEvent;
 
         public event EventHandler listViewEvent;
         public event EventHandler listViewEventRight;
@@ -393,8 +394,26 @@ namespace FileCommander
             
 
         }
+
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+            
+
+           /*     try
+                {
+                    copyDirEvent(sender, e);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                */
+            }
+
+
+        }
     }
 
-    }
+    
 
 

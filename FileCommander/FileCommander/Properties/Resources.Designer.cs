@@ -93,6 +93,26 @@ namespace FileCommander.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap copy {
+            get {
+                object obj = ResourceManager.GetObject("copy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap copy_icon {
+            get {
+                object obj = ResourceManager.GetObject("copy-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Custom_Icon_Design_Flatastic_8_Go_back {
             get {
                 object obj = ResourceManager.GetObject("Custom-Icon-Design-Flatastic-8-Go-back", resourceCulture);
@@ -126,6 +146,16 @@ namespace FileCommander.Properties {
         internal static System.Drawing.Bitmap new_file1 {
             get {
                 object obj = ResourceManager.GetObject("new file1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap orange_rename_48 {
+            get {
+                object obj = ResourceManager.GetObject("orange-rename-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
