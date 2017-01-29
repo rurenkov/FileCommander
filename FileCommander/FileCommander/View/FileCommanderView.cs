@@ -297,6 +297,10 @@ namespace FileCommander
 
         private void button1_Click_2(object sender, EventArgs e)
         {
+            if (this.listView1.SelectedIndices.Count <= 0)
+            {
+                return;
+            }
             var confirmResult = MessageBox.Show("Are you sure to delete <" + listView1.SelectedItems[0].Text + ">?",
                                     "Confirm Delete!!",
                                     MessageBoxButtons.YesNo);

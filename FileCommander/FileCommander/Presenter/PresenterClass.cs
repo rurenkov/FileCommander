@@ -211,35 +211,7 @@ namespace FileCommander.Presenter
 
         private void FileCommanderView_SelectedItemsEvent(object sender, EventArgs e)
         {
-            //***if (this.fileCommanderView.listView1.SelectedIndices.Count <= 0)
-            //***{
-            // ***   return;
-            //***}
-            //***int intselectedindex = this.fileCommanderView.listView1.SelectedIndices[0];
-
-            //***if (intselectedindex >= 0)
-            //***{
-                //this.fileCommanderView.textBox1.Text = fileCommanderView.comboBox1.Text +  this.fileCommanderView.listView1.Items[intselectedindex].Text;
-                
-                //***this.fileCommanderView.textBox1.Text = CurrentPath + this.fileCommanderView.listView1.Items[intselectedindex].Text + "\\";
-                //***DirectoryInfo dirInfo = new DirectoryInfo(this.fileCommanderView.textBox1.Text);
-                //string[] row1 = { "SELECTED FOLDER", GetFolderSize(dirInfo), dirInfo.LastWriteTime.ToShortDateString() };
-                //this.fileCommanderView.listView1.Items.Add(dirInfo.Name, 1).SubItems.AddRange(row1);
-                //ListViewItem item = this.fileCommanderView.listView1.SelectedItems[0];
-                /////Calculate Folder Size by Select START
-                //if (fileCommanderView.listView1.SelectedItems[0].SubItems[2].Text == "<DIR>")
-                //{
-                //    fileCommanderView.listView1.SelectedItems[0].SubItems[2].Text = GetFolderSize(dirInfo);
-                //}
-                /////Calculate Folder Size by Select START
-                //     string pathy = null;
-
-                //   this.fileCommanderView.textBox2.Text = this.fileCommanderView.d.ToString(); 
-                // fileCommanderView.listView1.Items[intselectedindex].SubItems[0].Text;
-
-                //***CurrentPath = this.fileCommanderView.textBox1.Text;
-
-            //***}
+            
         }
         //Right panel
         private void FileCommanderView_listViewEventRight(object sender, EventArgs e)
@@ -307,19 +279,15 @@ namespace FileCommander.Presenter
             {
                 this.fileCommanderView.listView2.Items.Add("..").SubItems.Add(" ");
             }
-            List<DirectoryInfo> folders = directoryModel.GetFolders(currentPath);
-            foreach (DirectoryInfo dirInfo in folders)
-            {
 
-                string[] row1 = { "FOLDER", "<DIR>", dirInfo.LastWriteTime.ToShortDateString() };
-                this.fileCommanderView.listView2.Items.Add(dirInfo.Name, 1).SubItems.AddRange(row1);
+            foreach (var dirInfo in directoryModel.GetDirectoriesInfo(currentPath))
+            {
+                this.fileCommanderView.listView2.Items.Add(dirInfo.Key, 1).SubItems.AddRange(dirInfo.Value);
             }
 
-            List<FileInfo> files = fileModel.GetFiles(currentPath);
-            foreach (FileInfo fileInfo in files)
+            foreach (var fileInfo in fileModel.GetFilesInfo(currentPath))
             {
-                string[] row1 = { "FILE", (((fileInfo.Length / 1024)).ToString("0.00")), fileInfo.LastWriteTime.ToShortDateString() };
-                this.fileCommanderView.listView2.Items.Add(fileInfo.Name, 0).SubItems.AddRange(row1);
+                this.fileCommanderView.listView2.Items.Add(fileInfo.Key, 0).SubItems.AddRange(fileInfo.Value);
             }
 
         }
