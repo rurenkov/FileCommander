@@ -233,21 +233,7 @@ namespace FileCommander
                     }
                     break;
                     case Keys.F7:
-                    using (FolderNameDialogForm folderNameDialog = new FolderNameDialogForm())
-                    {
-                        if (folderNameDialog.ShowDialog() == DialogResult.OK)
-                        {
-                            NewDirectoryNameInput = folderNameDialog.newFolderNameInputTextBox1.Text;
-                        }
-                    }
-                        try
-                        {
-                            listView1_KeyF7Event(sender, e);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
+                   
                     break;
 
             }
@@ -286,6 +272,100 @@ namespace FileCommander
         {
             
             listView1_MouseDoubleClickEvent(sender, e);
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            using (FolderNameDialogForm folderNameDialog = new FolderNameDialogForm())
+            {
+                if (folderNameDialog.ShowDialog() == DialogResult.OK)
+                {
+                    NewDirectoryNameInput = folderNameDialog.newFolderNameInputTextBox1.Text;
+                }
+            }
+            try
+            {
+                listView1_KeyF7Event(sender, e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            var confirmResult = MessageBox.Show("Are you sure to delete <" + listView1.SelectedItems[0].Text + ">?",
+                                    "Confirm Delete!!",
+                                    MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+
+                try
+                {
+                    listView1_KeyDeleteEvent(sender, e);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void button1_Click_3(object sender, EventArgs e)
+        {
+            try
+            {
+                listView1_KeyEnterEvent(sender, e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void btnUp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                listView1_KeyBackSpaceEvent(sender, e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void button1_Click_4(object sender, EventArgs e)
+        {
+          
+
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

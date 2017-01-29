@@ -65,6 +65,10 @@
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.btnNewFolder = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -178,19 +182,24 @@
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "file.png");
             this.imageList1.Images.SetKeyName(1, "images.jpg");
+            this.imageList1.Images.SetKeyName(2, "back_small.ico");
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.Controls.Add(this.btnBack);
+            this.flowLayoutPanel1.Controls.Add(this.btnNext);
+            this.flowLayoutPanel1.Controls.Add(this.btnNewFolder);
+            this.flowLayoutPanel1.Controls.Add(this.btnDelete);
             this.flowLayoutPanel1.Controls.Add(this.btnOpenFiles);
             this.flowLayoutPanel1.Controls.Add(this.btnChangePanel);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 28);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1005, 38);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1005, 58);
             this.flowLayoutPanel1.TabIndex = 5;
             // 
             // btnOpenFiles
             // 
-            this.btnOpenFiles.Location = new System.Drawing.Point(3, 3);
+            this.btnOpenFiles.Location = new System.Drawing.Point(239, 3);
             this.btnOpenFiles.Name = "btnOpenFiles";
             this.btnOpenFiles.Size = new System.Drawing.Size(70, 28);
             this.btnOpenFiles.TabIndex = 0;
@@ -200,9 +209,9 @@
             // 
             // btnChangePanel
             // 
-            this.btnChangePanel.Location = new System.Drawing.Point(79, 3);
+            this.btnChangePanel.Location = new System.Drawing.Point(315, 3);
             this.btnChangePanel.Name = "btnChangePanel";
-            this.btnChangePanel.Size = new System.Drawing.Size(121, 28);
+            this.btnChangePanel.Size = new System.Drawing.Size(121, 51);
             this.btnChangePanel.TabIndex = 1;
             this.btnChangePanel.Text = "<--ChangePanel-->";
             this.btnChangePanel.UseVisualStyleBackColor = true;
@@ -221,7 +230,7 @@
             this.listView1.LargeImageList = this.imageList1;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(486, 538);
+            this.listView1.Size = new System.Drawing.Size(502, 593);
             this.listView1.SmallImageList = this.imageList1;
             this.listView1.TabIndex = 6;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -254,10 +263,10 @@
             // 
             this.flowLayoutPanel2.Controls.Add(this.comboBox1);
             this.flowLayoutPanel2.Controls.Add(this.textBox1);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(12, 72);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(12, 92);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(283, 41);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(283, 22);
             this.flowLayoutPanel2.TabIndex = 7;
             // 
             // comboBox1
@@ -265,8 +274,8 @@
             this.comboBox1.DisplayMember = "r";
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.comboBox1.Location = new System.Drawing.Point(10, 10);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(10, 10, 0, 10);
+            this.comboBox1.Location = new System.Drawing.Point(1, 1);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(1, 1, 0, 10);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(73, 21);
             this.comboBox1.TabIndex = 3;
@@ -277,8 +286,8 @@
             // textBox1
             // 
             this.textBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Text;
-            this.textBox1.Location = new System.Drawing.Point(86, 10);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
+            this.textBox1.Location = new System.Drawing.Point(77, 1);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 1, 10, 10);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(183, 20);
@@ -288,7 +297,7 @@
             // splitContainer1
             // 
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.splitContainer1.Location = new System.Drawing.Point(12, 121);
+            this.splitContainer1.Location = new System.Drawing.Point(5, 120);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -298,8 +307,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.listView2);
-            this.splitContainer1.Size = new System.Drawing.Size(1012, 542);
-            this.splitContainer1.SplitterDistance = 490;
+            this.splitContainer1.Size = new System.Drawing.Size(1012, 597);
+            this.splitContainer1.SplitterDistance = 506;
             this.splitContainer1.TabIndex = 6;
             // 
             // listView2
@@ -315,7 +324,7 @@
             this.listView2.LargeImageList = this.imageList1;
             this.listView2.Location = new System.Drawing.Point(0, 0);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(514, 538);
+            this.listView2.Size = new System.Drawing.Size(498, 593);
             this.listView2.SmallImageList = this.imageList1;
             this.listView2.TabIndex = 7;
             this.listView2.UseCompatibleStateImageBehavior = false;
@@ -346,17 +355,17 @@
             // 
             this.flowLayoutPanel3.Controls.Add(this.comboBox2);
             this.flowLayoutPanel3.Controls.Add(this.textBox2);
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(508, 74);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(516, 91);
             this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(332, 41);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(332, 22);
             this.flowLayoutPanel3.TabIndex = 8;
             // 
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(10, 10);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(10);
+            this.comboBox2.Location = new System.Drawing.Point(1, 1);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(1, 1, 10, 10);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(73, 21);
             this.comboBox2.TabIndex = 5;
@@ -366,27 +375,68 @@
             // textBox2
             // 
             this.textBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Text;
-            this.textBox2.Location = new System.Drawing.Point(96, 10);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
+            this.textBox2.Location = new System.Drawing.Point(87, 1);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 1, 10, 10);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(183, 20);
             this.textBox2.TabIndex = 4;
             // 
+            // btnBack
+            // 
+            this.btnBack.Image = ((System.Drawing.Image)(resources.GetObject("btnBack.Image")));
+            this.btnBack.Location = new System.Drawing.Point(3, 3);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(53, 51);
+            this.btnBack.TabIndex = 6;
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // btnNext
+            // 
+            this.btnNext.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.Image")));
+            this.btnNext.Location = new System.Drawing.Point(62, 3);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(53, 51);
+            this.btnNext.TabIndex = 5;
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.button1_Click_3);
+            // 
+            // btnNewFolder
+            // 
+            this.btnNewFolder.Image = ((System.Drawing.Image)(resources.GetObject("btnNewFolder.Image")));
+            this.btnNewFolder.Location = new System.Drawing.Point(121, 3);
+            this.btnNewFolder.Name = "btnNewFolder";
+            this.btnNewFolder.Size = new System.Drawing.Size(53, 51);
+            this.btnNewFolder.TabIndex = 2;
+            this.btnNewFolder.UseVisualStyleBackColor = true;
+            this.btnNewFolder.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Image = global::FileCommander.Properties.Resources.Button_Delete_icon;
+            this.btnDelete.Location = new System.Drawing.Point(180, 3);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(53, 51);
+            this.btnDelete.TabIndex = 3;
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.button1_Click_2);
+            // 
             // FileCommanderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1036, 694);
+            this.ClientSize = new System.Drawing.Size(1036, 727);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.flowLayoutPanel3);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "FileCommanderView";
-            this.Text = "Form1";
+            this.Text = "File Commander";
             this.Load += new System.EventHandler(this.FileCommanderView_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -441,6 +491,10 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.FontDialog fontDialog1;
+        private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnNewFolder;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
 

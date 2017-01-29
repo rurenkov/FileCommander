@@ -32,8 +32,6 @@ namespace FileCommander.Presenter
             fileCommanderView.Presenter = this;
             //this.fileCommanderView.webBrowserEvent += FileCommanderView_webBrowserEvent;
             
-            
-            // subscribers
 
             this.fileCommanderView.listViewEvent += FileCommanderView_listViewEvent;
             this.fileCommanderView.listViewEventRight += FileCommanderView_listViewEventRight;
@@ -235,7 +233,7 @@ namespace FileCommander.Presenter
 
             if (pathHistoryLeft.Count > 1)
             {
-                this.fileCommanderView.listView1.Items.Add("..").SubItems.Add(" ");
+                this.fileCommanderView.listView1.Items.Add("..", 2).SubItems.Add(" ");
             }
                 List<DirectoryInfo> folders = directoryModel.GetFolders(currentPath);
                 foreach (DirectoryInfo dirInfo in folders)
