@@ -77,6 +77,22 @@ namespace FileCommander.Model
 
         }
 
+        public Dictionary<string, string[]> GetDirectoriesInfo(string currentPath)
+        {
+            Dictionary<string, string[]> foldersInfo = new Dictionary<string, string[]>();
+            
+            foreach (DirectoryInfo dirInfo in GetFolders(currentPath))
+           {
+
+                string[] row1 = { "FOLDER", "<DIR>", dirInfo.LastWriteTime.ToShortDateString() };
+                foldersInfo.Add(dirInfo.Name, row1);
+
+                //this.fileCommanderView.listView1.Items.Add(dirInfo.Name, 1).SubItems.AddRange(row1);
+            }
+
+            return foldersInfo;
+        }
+
         //public string[] GetFilesNames(string selectedDrive)
         //{
 

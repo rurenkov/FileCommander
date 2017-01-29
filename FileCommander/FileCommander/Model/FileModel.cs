@@ -45,5 +45,18 @@ namespace FileCommander.Model
 
             return filesList;
         }
+
+        public Dictionary<string, string[]> GetFilesInfo(string currentPath)
+        {
+            Dictionary<string, string[]> filesInfo = new Dictionary<string, string[]>();
+            List<FileInfo> files = GetFiles(currentPath);
+            foreach (FileInfo fileInfo in files)
+            {
+                string[] row1 = { "FILE", (((fileInfo.Length / 1024)).ToString("0.00")), fileInfo.LastWriteTime.ToShortDateString() };
+                filesInfo.Add(fileInfo.Name, row1);
+            }
+
+            return filesInfo;
+        }
     }
 }

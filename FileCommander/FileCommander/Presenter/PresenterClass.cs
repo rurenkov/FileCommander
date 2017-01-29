@@ -235,19 +235,15 @@ namespace FileCommander.Presenter
             {
                 this.fileCommanderView.listView1.Items.Add("..", 2).SubItems.Add(" ");
             }
-                List<DirectoryInfo> folders = directoryModel.GetFolders(currentPath);
-                foreach (DirectoryInfo dirInfo in folders)
-                {
                 
-                    string[] row1 = { "FOLDER", "<DIR>", dirInfo.LastWriteTime.ToShortDateString() };
-                    this.fileCommanderView.listView1.Items.Add(dirInfo.Name, 1).SubItems.AddRange(row1);
+                foreach (var dirInfo in directoryModel.GetDirectoriesInfo(currentPath))
+                {
+                     this.fileCommanderView.listView1.Items.Add(dirInfo.Key, 1).SubItems.AddRange(dirInfo.Value);
                 }
 
-                List<FileInfo> files = fileModel.GetFiles(currentPath);
-                foreach (FileInfo fileInfo in files)
-                {
-                    string[] row1 = { "FILE", (((fileInfo.Length / 1024)).ToString("0.00")), fileInfo.LastWriteTime.ToShortDateString() };
-                    this.fileCommanderView.listView1.Items.Add(fileInfo.Name, 0).SubItems.AddRange(row1);
+                foreach (var  fileInfo in fileModel.GetFilesInfo(currentPath))
+                {                   
+                    this.fileCommanderView.listView1.Items.Add(fileInfo.Key, 0).SubItems.AddRange(fileInfo.Value);
                 }
             
         }
