@@ -418,7 +418,7 @@
             // 
             // btnRename
             // 
-            this.btnRename.Image = global::FileCommander.Properties.Resources.orange_rename_48;
+            this.btnRename.Image = global::FileCommander.Properties.Resources.orange_rename_481;
             this.btnRename.Location = new System.Drawing.Point(180, 3);
             this.btnRename.Name = "btnRename";
             this.btnRename.Size = new System.Drawing.Size(53, 51);
@@ -428,7 +428,7 @@
             // 
             // btnCopy
             // 
-            this.btnCopy.Image = global::FileCommander.Properties.Resources.copy_icon;
+            this.btnCopy.Image = global::FileCommander.Properties.Resources.copy_icon1;
             this.btnCopy.Location = new System.Drawing.Point(239, 3);
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(53, 51);

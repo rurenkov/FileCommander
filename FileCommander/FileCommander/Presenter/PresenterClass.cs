@@ -23,7 +23,7 @@ namespace FileCommander.Presenter
         public Stack<string> pathHistoryLeft = new Stack<string>();
         public Stack<string> pathHistoryRight = new Stack<string>();
 
-        public PresenterClass (FileCommanderView fileCommanderView)
+        public PresenterClass(FileCommanderView fileCommanderView)
         {
             driveModel = new Model.DriveModel();
             directoryModel = new DirectoryModel();
@@ -31,7 +31,7 @@ namespace FileCommander.Presenter
             this.fileCommanderView = fileCommanderView;
             fileCommanderView.Presenter = this;
             //this.fileCommanderView.webBrowserEvent += FileCommanderView_webBrowserEvent;
-            
+
 
             this.fileCommanderView.listViewEvent += FileCommanderView_listViewEvent;
             this.fileCommanderView.listViewEventRight += FileCommanderView_listViewEventRight;
@@ -43,8 +43,8 @@ namespace FileCommander.Presenter
             this.fileCommanderView.listView1_KeyF7Event += FileCommanderView_listView1_CreateNewDirectoryEvent;
             this.fileCommanderView.listView1_MouseDoubleClickEvent += FileCommanderView_listView1_OpenFolder;
             this.fileCommanderView.renameDirEvent += FileCommanderView_listView1_renameDirEvent;
-        //    this.fileCommanderView.copyDirEvent += FileCommanderView_listView1_copyDirEvent;
-
+            //    this.fileCommanderView.copyDirEvent += FileCommanderView_listView1_copyDirEvent;
+        }
             /*
         }
         //copy directory
