@@ -376,6 +376,10 @@ namespace FileCommander
 
         private void btnRename_Click(object sender, EventArgs e)
         {
+            if (listView1.SelectedIndices.Count <= 0)
+            {
+                return;
+            }
             using (FolderNameDialogForm folderNameDialog = new FolderNameDialogForm())
             {
                 if (folderNameDialog.ShowDialog() == DialogResult.OK)
