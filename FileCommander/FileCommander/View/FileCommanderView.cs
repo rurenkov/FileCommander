@@ -66,6 +66,37 @@ namespace FileCommander
         // ListView listView1 = new ListView();
         //  listView1.Bounds = new Rectangle(new Point(10,10), new Size(300,200));
 
+        public void PopulateListView(ListView listView, Dictionary<string, string[]> foldersDic, Dictionary<string, string[]> filesDic)
+        {
+            foreach (var dirInfo in foldersDic)
+            {
+                listView.Items.Add(dirInfo.Key, 1).SubItems.AddRange(dirInfo.Value);
+            }
+
+            foreach (var fileInfo in filesDic)
+            {
+                listView.Items.Add(fileInfo.Key, 0).SubItems.AddRange(fileInfo.Value);
+            }
+        }
+        public void PopulateListView1(Dictionary<string, string[]> foldersDic, Dictionary<string, string[]> filesDic, int pathHistory1Count)
+        {
+            if (pathHistory1Count > 1)
+            {
+                listView1.Items.Add("..").SubItems.Add(" ");
+            }
+
+            PopulateListView(listView1, foldersDic, filesDic);
+        }
+
+        public void PopulateListView2(Dictionary<string, string[]> foldersDic, Dictionary<string, string[]> filesDic, int pathHistory2Count)
+        {
+            if (pathHistory2Count > 1)
+            {
+                listView2.Items.Add("..").SubItems.Add(" ");
+            }
+
+            PopulateListView(listView2, foldersDic, filesDic);
+        }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
