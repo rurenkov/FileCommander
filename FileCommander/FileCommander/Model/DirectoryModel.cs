@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using FileCommander.Presenter;
 
+
 namespace FileCommander.Model
 {
     public class DirectoryModel
@@ -18,58 +19,45 @@ namespace FileCommander.Model
         public List<DirectoryInfo> foldersList = new List<DirectoryInfo>();
 
 
-/*
 
-    public  void CopyDirectory(String src, String dest)
+        //copy file method.
+        public void CopyFile(string src, string dest)
         {
-            try
-            {
+            
+                File.Copy(src, dest, true);
+                   
+        }
 
-          //      String srcpathroot = Path.GetPathRoot(src);
-        //       String destpathroot = Path.GetPathRoot(dest);
-
+        //copy directory method.
+        public  void CopyDirectory(String src, String dest)
+        {
+           
                 //Create Directories
                 String[] dirs = Directory.GetDirectories(src, "*", SearchOption.AllDirectories);
-                foreach (String difVolume in dirs)
-                {
-
-                    String path = difVolume.Replace(src, dest);
-                    if (!Directory.Exists(path))
-                    {
-                        Directory.CreateDirectory(path);
-                    }
-                }
-               
-                String[] szFiles = Directory.GetFiles(src, "*", SearchOption.AllDirectories);
-                foreach (String srcFile in szFiles)
-                {
-                    String destFile = srcFile.Replace(src, dest);
-                    File.Copy(srcFile, destFile, true);
-                }
-
-
-            }
-            catch (Exception ex)
+            foreach (String difVolume in dirs)
             {
-               // MessageBox.Show(ex.Message);
+              
+                    string path1 = difVolume.Replace(src, dest);  //replace path, path = dest
+                    if (!Directory.Exists(path1))
+                    {
+                        Directory.CreateDirectory(path1);
+                    }
+             }
+            // copy files inside
+            String[] szFiles = Directory.GetFiles(src, "*", SearchOption.AllDirectories);
+            foreach (String srcFile in szFiles)
+            {
+                String destFile = srcFile.Replace(src, dest);
+                File.Copy(srcFile, destFile, true);
             }
         }
 
-    */
-
-
+    
         public void Move_Rename_Directory(String srcDir, String destDir)
         {
-            try
-            {
+            
                 DirectoryInfo dInfo = new DirectoryInfo(srcDir);
                 dInfo.MoveTo(destDir);
-
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show(ex.Message);
-            }
         }
 
 
