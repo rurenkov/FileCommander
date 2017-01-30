@@ -438,7 +438,7 @@ namespace FileCommander
         {
             
 
-           /*     try
+               try
                 {
                     copyDirEvent(sender, e);
                 }
@@ -446,7 +446,7 @@ namespace FileCommander
                 {
                     MessageBox.Show(ex.Message);
                 }
-                */
+                
             }
 
 
