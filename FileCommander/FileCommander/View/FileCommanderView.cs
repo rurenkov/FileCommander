@@ -485,7 +485,7 @@ namespace FileCommander
         private void btnRename_Click(object sender, EventArgs e)
         {
 
-            if (listView1.SelectedIndices.Count <= 0)
+            if ((!IsItemSelectedView1()) & (!IsItemSelectedView2()))
             {
                 return;
             }

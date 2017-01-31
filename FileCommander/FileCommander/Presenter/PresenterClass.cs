@@ -46,7 +46,8 @@ namespace FileCommander.Presenter
             this.fileCommanderView.listView1_KeyF7Event += FileCommanderView_listView1_CreateNewDirectoryEvent;
             this.fileCommanderView.listView1_MouseDoubleClickEvent += FileCommanderView_listView1_OpenFolder;
             this.fileCommanderView.renameDirEvent += FileCommanderView_listView1_renameDirEvent;
-                this.fileCommanderView.copyDirEvent += FileCommanderView_listView1_copyDirEvent;
+            this.fileCommanderView.renameDirEvent += FileCommanderView_listView2_renameDirEvent;
+            this.fileCommanderView.copyDirEvent += FileCommanderView_listView1_copyDirEvent;
         
             
         }
@@ -90,14 +91,17 @@ namespace FileCommander.Presenter
         // rename directory or file
         private void FileCommanderView_listView1_renameDirEvent(object sender, EventArgs e)
         {
-
-            
-            if (this.fileCommanderView.listView1.SelectedIndices.Count <= 0)
+            if (!this.fileCommanderView.IsListView1Active)
             {
                 return;
             }
-            int intselectedindex = this.fileCommanderView.listView1.SelectedIndices[0];
-            string srcDir = CurrentPath1 + this.fileCommanderView.listView1.Items[intselectedindex].Text;
+
+            if (!this.fileCommanderView.IsItemSelectedView1())
+            {
+                return;
+            }
+            
+            string srcDir = CurrentPath1 + this.fileCommanderView.SelectedItemText1();
             string destDir = CurrentPath1 + fileCommanderView.NewDirectoryNameInput;
 
             directoryModel.Move_Rename_Directory(srcDir, destDir);
@@ -106,6 +110,30 @@ namespace FileCommander.Presenter
             ListView1Clear();
             PopulateListView1();
             
+
+        }
+
+        private void FileCommanderView_listView2_renameDirEvent(object sender, EventArgs e)
+        {
+            if (!this.fileCommanderView.IsListView2Active)
+            {
+                return;
+            }
+
+            if (!this.fileCommanderView.IsItemSelectedView2())
+            {
+                return;
+            }
+
+            string srcDir = CurrentPath2 + this.fileCommanderView.SelectedItemText2();
+            string destDir = CurrentPath2 + fileCommanderView.NewDirectoryNameInput;
+
+            directoryModel.Move_Rename_Directory(srcDir, destDir);
+
+
+            ListView2Clear();
+            PopulateListView2();
+
 
         }
 
@@ -172,7 +200,7 @@ namespace FileCommander.Presenter
             PopulateListView2();
 
         }
-
+        
         private void FileCommanderView_listView1_OpenFolder(object sender, EventArgs e)
         {
             if (!fileCommanderView.IsListView1Active)
@@ -215,9 +243,6 @@ namespace FileCommander.Presenter
                     }
 
                     ListView1Clear();
-
-
-
                     PopulateListView1();
                 }
                 else
