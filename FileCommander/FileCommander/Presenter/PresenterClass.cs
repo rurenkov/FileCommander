@@ -41,12 +41,14 @@ namespace FileCommander.Presenter
             this.fileCommanderView.listView_KeySpaceEvent += FileCommanderView_listView1_KeySpaceEvent;
             this.fileCommanderView.listView_KeySpaceEvent += FileCommanderView_listView2_KeySpaceEvent;
             this.fileCommanderView.listView_KeyBackSpaceEvent += FileCommanderView_listView1_KeyBackSpaceEvent;
+            this.fileCommanderView.listView_KeyBackSpaceEvent += FileCommanderView_listView2_KeyBackSpaceEvent;
             this.fileCommanderView.listView_KeyEnterEvent += FileCommanderView_listView1_OpenFolder;
             this.fileCommanderView.listView_KeyEnterEvent += FileCommanderView_listView2_OpenFolder;
             this.fileCommanderView.listView_KeyDeleteEvent += FileCommanderView_listView1_DeleteEvent;
             this.fileCommanderView.listView_KeyDeleteEvent += FileCommanderView_listView2_DeleteEvent;
             this.fileCommanderView.listView1_KeyF7Event += FileCommanderView_listView1_CreateNewDirectoryEvent;
-            this.fileCommanderView.listView1_MouseDoubleClickEvent += FileCommanderView_listView1_OpenFolder;
+            this.fileCommanderView.listView_MouseDoubleClickEvent += FileCommanderView_listView1_OpenFolder;
+            this.fileCommanderView.listView_MouseDoubleClickEvent += FileCommanderView_listView2_OpenFolder;
             this.fileCommanderView.renameDirEvent += FileCommanderView_listView1_renameDirEvent;
             this.fileCommanderView.renameDirEvent += FileCommanderView_listView2_renameDirEvent;
             this.fileCommanderView.copyDirEvent += FileCommanderView_listView1_copyDirEvent;
@@ -320,6 +322,10 @@ namespace FileCommander.Presenter
 
         private void FileCommanderView_listView1_KeyBackSpaceEvent(object sender, EventArgs e)
         {
+            if (!fileCommanderView.IsListView1Active)
+            {
+                return;
+            }
             if (pathHistory1.Count > 1)
             {
                 ListView1Clear();
@@ -328,6 +334,24 @@ namespace FileCommander.Presenter
 
 
                 PopulateListView1();
+            }
+
+        }
+
+        private void FileCommanderView_listView2_KeyBackSpaceEvent(object sender, EventArgs e)
+        {
+            if (!fileCommanderView.IsListView2Active)
+            {
+                return;
+            }
+            if (pathHistory2.Count > 1)
+            {
+                ListView2Clear();
+                CurrentPath2 = pathHistory2.Pop();
+                this.fileCommanderView.TextBox2 = CurrentPath2;
+
+
+                PopulateListView2();
             }
 
         }

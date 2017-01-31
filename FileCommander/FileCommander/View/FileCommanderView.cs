@@ -64,7 +64,7 @@ namespace FileCommander
         public event EventHandler listView_KeyEnterEvent;
         public event EventHandler listView_KeyDeleteEvent;
         public event EventHandler listView1_KeyF7Event;
-        public event EventHandler listView1_MouseDoubleClickEvent;
+        public event EventHandler listView_MouseDoubleClickEvent;
 
       //  public event EventHandler directoryExistNotification;
 
@@ -220,6 +220,7 @@ namespace FileCommander
                     break;
 
                 case Keys.Back:
+                    
                     try
                     {
                         listView_KeyBackSpaceEvent(sender, e);
@@ -281,6 +282,7 @@ namespace FileCommander
                     break;
 
                 case Keys.Back:
+                   
                     try
                     {
                         listView_KeyBackSpaceEvent(sender, e);
@@ -357,8 +359,16 @@ namespace FileCommander
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
 
-            listView1_MouseDoubleClickEvent(sender, e);
+            listView_MouseDoubleClickEvent(sender, e);
         }
+
+        private void listView2_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+            listView_MouseDoubleClickEvent(sender, e);
+        }
+
+
 
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -611,6 +621,7 @@ namespace FileCommander
             else return listView2.SelectedItems[0].Index;
 
         }
+
 
     }
     }

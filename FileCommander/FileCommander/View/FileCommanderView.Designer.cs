@@ -395,6 +395,7 @@
             this.listView2.Enter += new System.EventHandler(this.listView2_Enter);
             this.listView2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listView2_KeyDown);
             this.listView2.Leave += new System.EventHandler(this.listView2_Leave);
+            this.listView2.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView2_MouseDoubleClick);
             // 
             // columnHeader1
             // 
