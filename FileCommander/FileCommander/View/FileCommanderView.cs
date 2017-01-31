@@ -425,7 +425,7 @@ namespace FileCommander
 
         private void button1_Click_2(object sender, EventArgs e)
         {
-            if (this.listView1.SelectedIndices.Count <= 0)
+            if ((!IsItemSelectedView1()) & (!IsItemSelectedView2()))  
             {
                 return;
             }
