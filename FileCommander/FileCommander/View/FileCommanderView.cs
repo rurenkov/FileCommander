@@ -60,8 +60,8 @@ namespace FileCommander
         public event EventHandler listViewEventRight;
         public event EventHandler selectedItemsEvent;
         public event EventHandler listView_KeySpaceEvent;
-        public event EventHandler listView1_KeyBackSpaceEvent;
-        public event EventHandler listView1_KeyEnterEvent;
+        public event EventHandler listView_KeyBackSpaceEvent;
+        public event EventHandler listView_KeyEnterEvent;
         public event EventHandler listView_KeyDeleteEvent;
         public event EventHandler listView1_KeyF7Event;
         public event EventHandler listView1_MouseDoubleClickEvent;
@@ -244,7 +244,7 @@ namespace FileCommander
                 case Keys.Back:
                     try
                     {
-                        listView1_KeyBackSpaceEvent(sender, e);
+                        listView_KeyBackSpaceEvent(sender, e);
                     }
                     catch (Exception ex)
                     {
@@ -254,7 +254,7 @@ namespace FileCommander
                 case Keys.Enter:
                     try
                     {
-                        listView1_KeyEnterEvent(sender, e);
+                        listView_KeyEnterEvent(sender, e);
                     }
                     catch (Exception ex)
                     {
@@ -305,7 +305,7 @@ namespace FileCommander
                 case Keys.Back:
                     try
                     {
-                        listView1_KeyBackSpaceEvent(sender, e);
+                        listView_KeyBackSpaceEvent(sender, e);
                     }
                     catch (Exception ex)
                     {
@@ -315,7 +315,7 @@ namespace FileCommander
                 case Keys.Enter:
                     try
                     {
-                        listView1_KeyEnterEvent(sender, e);
+                        listView_KeyEnterEvent(sender, e);
                     }
                     catch (Exception ex)
                     {
@@ -430,7 +430,7 @@ namespace FileCommander
         {
             try
             {
-                listView1_KeyEnterEvent(sender, e);
+                listView_KeyEnterEvent(sender, e);
             }
             catch (Exception ex)
             {
@@ -448,7 +448,7 @@ namespace FileCommander
         {
             try
             {
-                listView1_KeyBackSpaceEvent(sender, e);
+                listView_KeyBackSpaceEvent(sender, e);
             }
             catch (Exception ex)
             {

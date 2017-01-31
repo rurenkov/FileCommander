@@ -38,8 +38,9 @@ namespace FileCommander.Presenter
             this.fileCommanderView.selectedItemsEvent += FileCommanderView_SelectedItemsEvent;
             this.fileCommanderView.listView_KeySpaceEvent += FileCommanderView_listView1_KeySpaceEvent;
             this.fileCommanderView.listView_KeySpaceEvent += FileCommanderView_listView2_KeySpaceEvent;
-            this.fileCommanderView.listView1_KeyBackSpaceEvent += FileCommanderView_listView1_KeyBackSpaceEvent;
-            this.fileCommanderView.listView1_KeyEnterEvent += FileCommanderView_listView1_OpenFolder;
+            this.fileCommanderView.listView_KeyBackSpaceEvent += FileCommanderView_listView1_KeyBackSpaceEvent;
+            this.fileCommanderView.listView_KeyEnterEvent += FileCommanderView_listView1_OpenFolder;
+            this.fileCommanderView.listView_KeyEnterEvent += FileCommanderView_listView2_OpenFolder;
             this.fileCommanderView.listView_KeyDeleteEvent += FileCommanderView_listView1_DeleteEvent;
             this.fileCommanderView.listView_KeyDeleteEvent += FileCommanderView_listView2_DeleteEvent;
             this.fileCommanderView.listView1_KeyF7Event += FileCommanderView_listView1_CreateNewDirectoryEvent;
@@ -174,43 +175,46 @@ namespace FileCommander.Presenter
 
         private void FileCommanderView_listView1_OpenFolder(object sender, EventArgs e)
         {
-            if (this.fileCommanderView.listView1.SelectedIndices.Count <= 0)
+            if (!fileCommanderView.IsListView1Active)
             {
                 return;
             }
-            int intselectedindex = this.fileCommanderView.listView1.SelectedIndices[0];
+            if (!fileCommanderView.IsItemSelectedView1())
+            {
+                return;
+            }
+            //int intselectedindex = this.fileCommanderView.listView1.SelectedIndices[0];
 
-            if (fileCommanderView.listView1.SelectedItems[0].Text == ".." & fileCommanderView.listView1.SelectedItems[0].SubItems[1].Text == " ")
+            // if (fileCommanderView.listView1.SelectedItems[0].Text == ".." & fileCommanderView.listView1.SelectedItems[0].SubItems[1].Text == " ")
+            if (fileCommanderView.SelectedItemText1() == "..")
             {
                 ListView1Clear();
                 CurrentPath1 = pathHistory1.Pop();
-                this.fileCommanderView.TextBox1= CurrentPath1;
+                this.fileCommanderView.TextBox1 = CurrentPath1;
 
 
                 PopulateListView1();
             }
 
+
+
+
+            // CHECK IF FOLDER Or fILE.
             else
             {
-
-                FileAttributes attr = File.GetAttributes(CurrentPath1 + this.fileCommanderView.listView1.Items[intselectedindex].Text);
-
-                // CHECK IF FOLDER Or fILE.
-                if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+                if (IsFolder1())
                 {
                     //if folder open it
 
-                    if (intselectedindex >= 0)
+                    if (fileCommanderView.IsItemSelectedView1())
                     {
                         pathHistory1.Push(CurrentPath1);
-                        this.fileCommanderView.TextBox1 = CurrentPath1 + this.fileCommanderView.listView1.Items[intselectedindex].Text + "\\";
-                        DirectoryInfo dirInfo = new DirectoryInfo(this.fileCommanderView.TextBox1);
+                        this.fileCommanderView.TextBox1 = CurrentPath1 + this.fileCommanderView.SelectedItemText1() + "\\";
                         CurrentPath1 = this.fileCommanderView.TextBox1;
-
 
                     }
 
-                   ListView1Clear();
+                    ListView1Clear();
 
 
 
@@ -218,7 +222,55 @@ namespace FileCommander.Presenter
                 }
                 else
                 {// if file - run it
-                    System.Diagnostics.Process.Start(CurrentPath1 + this.fileCommanderView.listView1.Items[intselectedindex].Text);
+                    RunFile1();
+                }
+            }
+            
+
+        }
+
+        private void FileCommanderView_listView2_OpenFolder(object sender, EventArgs e)
+        {
+            if (!this.fileCommanderView.IsListView2Active)
+            {
+                return;
+            }
+            if (!this.fileCommanderView.IsItemSelectedView2())
+            {
+                return;
+            }
+            if (fileCommanderView.SelectedItemText2() == "..")
+            {
+                ListView2Clear();
+                CurrentPath2 = pathHistory2.Pop();
+                this.fileCommanderView.TextBox2 = CurrentPath2;
+
+
+                PopulateListView2();
+            }
+
+            else
+            {
+                // CHECK IF FOLDER Or fILE.
+                if (IsFolder2())
+                {
+                    //if folder open it
+
+                    if (fileCommanderView.IsItemSelectedView2())
+                    {
+                        pathHistory2.Push(CurrentPath2);
+                        this.fileCommanderView.TextBox2 = CurrentPath2 + this.fileCommanderView.SelectedItemText2() + "\\";
+                        CurrentPath2 = this.fileCommanderView.TextBox2;
+
+                    }
+
+                    ListView2Clear();
+
+                    PopulateListView2();
+                }
+                else
+                {// if file - run it
+                    RunFile2();
                 }
             }
 
@@ -325,16 +377,6 @@ namespace FileCommander.Presenter
 
 
 
-        public List<FileInfo> GetFiles(string selectedDrive)
-        {
-            return fileModel.GetFiles(selectedDrive);
-        }
-
-        public List<DirectoryInfo> GetFolders(string selectedDrive)
-        {
-            return directoryModel.GetFolders(selectedDrive);
-        }
-
         public void GetFolderSize1(string currentPath)
         {
             this.fileCommanderView.UpdateSelectedItem1Size(directoryModel.SelectedFolderSize(currentPath).ToString());
@@ -383,6 +425,30 @@ namespace FileCommander.Presenter
         public void DeleteFile2()
         {
             fileModel.DeleteFile(CurrentPath2, fileCommanderView.SelectedItemText2());
+        }
+
+        public bool IsFolder1()
+        {
+            if (directoryModel.IsFolder(CurrentPath1 + this.fileCommanderView.SelectedItemText1()))
+                return true;
+            else return false;
+        }
+
+        public bool IsFolder2()
+        {
+            if (directoryModel.IsFolder(CurrentPath2 + this.fileCommanderView.SelectedItemText2()))
+                return true;
+            else return false;
+        }
+
+        public void RunFile1()
+        {
+            fileModel.RunFile(CurrentPath1 + this.fileCommanderView.SelectedItemText1());
+        }
+
+        public void RunFile2()
+        {
+            fileModel.RunFile(CurrentPath2 + this.fileCommanderView.SelectedItemText2());
         }
 
 

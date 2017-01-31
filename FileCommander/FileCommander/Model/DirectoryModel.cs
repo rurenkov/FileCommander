@@ -160,6 +160,19 @@ namespace FileCommander.Model
                 Directory.Delete(currentPath + listViewSelectedItem, true);
         }
 
+        public bool IsFolder(string path)
+        {
+            FileAttributes attr = File.GetAttributes(path);
+
+            // CHECK IF FOLDER Or fILE.
+            if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+            {
+                return true;
+
+            }
+            else return false;
+        }
+
         //public string[] GetFilesNames(string selectedDrive)
         //{
 
