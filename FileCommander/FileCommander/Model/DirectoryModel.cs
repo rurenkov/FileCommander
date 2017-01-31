@@ -143,6 +143,17 @@ namespace FileCommander.Model
             return foldersInfo;
         }
 
+        public void CreateNewDirectory(string currentPath, string newDirectoryNameInput)
+        {
+            FolderNameDialogForm folderNameDialog = new FolderNameDialogForm();
+            DirectoryInfo dirInfo = Directory.CreateDirectory(currentPath + "\\" + newDirectoryNameInput);
+        }
+
+        public void DeleteDirectory(string currentPath, string listViewSelectedItem)
+        {          
+                Directory.Delete(currentPath + listViewSelectedItem, true);
+        }
+
         //public string[] GetFilesNames(string selectedDrive)
         //{
 

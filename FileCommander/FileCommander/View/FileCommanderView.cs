@@ -21,7 +21,11 @@ namespace FileCommander
         public object EmpIDtextBox { get; private set; }
         public string NewDirectoryNameInput { get; set; }
 
+        public string TextBox1 { get { return textBox1.Text; } set { textBox1.Text = value; } }
+        public string TextBox2 { get { return textBox2.Text; } set { textBox2.Text = value; } }
 
+        public bool IsListView1Active { get; set; }
+        public bool IsListView2Active { get; set; }
         public FileCommanderView()
         {
             InitializeComponent();
@@ -58,7 +62,7 @@ namespace FileCommander
         public event EventHandler listView1_KeySpaceEvent;
         public event EventHandler listView1_KeyBackSpaceEvent;
         public event EventHandler listView1_KeyEnterEvent;
-        public event EventHandler listView1_KeyDeleteEvent;
+        public event EventHandler listView_KeyDeleteEvent;
         public event EventHandler listView1_KeyF7Event;
         public event EventHandler listView1_MouseDoubleClickEvent;
 
@@ -75,7 +79,7 @@ namespace FileCommander
         // ListView listView1 = new ListView();
         //  listView1.Bounds = new Rectangle(new Point(10,10), new Size(300,200));
 
-        public void PopulateListView(ListView listView, Dictionary<string, string[]> foldersDic, Dictionary<string, string[]> filesDic)
+        private void PopulateListView(ListView listView, Dictionary<string, string[]> foldersDic, Dictionary<string, string[]> filesDic)
         {
             foreach (var dirInfo in foldersDic)
             {
@@ -258,7 +262,8 @@ namespace FileCommander
                     }
                     break;
                 case Keys.Delete:
-                    var confirmResult = MessageBox.Show("Are you sure to delete <" + listView1.SelectedItems[0].Text + ">?",
+                    
+                    var confirmResult = MessageBox.Show("Are you sure to delete <" + ActiveListViewSelectedItemText() + ">?",
                                      "Confirm Delete!!",
                                      MessageBoxButtons.YesNo);
                     if (confirmResult == DialogResult.Yes)
@@ -266,7 +271,7 @@ namespace FileCommander
 
                         try
                         {
-                            listView1_KeyDeleteEvent(sender, e);
+                            listView_KeyDeleteEvent(sender, e);
                         }
                         catch (Exception ex)
                         {
@@ -326,12 +331,14 @@ namespace FileCommander
                 }
             }
             try
+
             {
                 listView1_KeyF7Event(sender, e);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+
             }
         }
 
@@ -341,7 +348,7 @@ namespace FileCommander
             {
                 return;
             }
-            var confirmResult = MessageBox.Show("Are you sure to delete <" + listView1.SelectedItems[0].Text + ">?",
+            var confirmResult = MessageBox.Show("Are you sure to delete <" + ActiveListViewSelectedItemText() + ">?",
                                     "Confirm Delete!!",
                                     MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
@@ -349,7 +356,7 @@ namespace FileCommander
 
                 try
                 {
-                    listView1_KeyDeleteEvent(sender, e);
+                    listView_KeyDeleteEvent(sender, e);
                 }
                 catch (Exception ex)
                 {
@@ -466,10 +473,90 @@ namespace FileCommander
                 {
                     MessageBox.Show(ex.Message);
                 }
-
+                
             }
 
+        public void ListView1Clear()
+        {
+            listView1.Items.Clear();
         }
+        public void ListView2Clear()
+        {
+            listView2.Items.Clear();
+        }
+
+        private string SelectedItemText(ListView listView)
+        {                     
+            int intselectedindex = listView.SelectedIndices[0];
+            return listView.Items[intselectedindex].Text;           
+
+        }
+
+        public string SelectedItemText1()
+        {
+           return SelectedItemText(listView1);
+
+        }
+        public string SelectedItemText2()
+        {
+            return SelectedItemText(listView2);
+
+        }
+
+        public string SelectedItem1Type()
+        {
+            return listView1.SelectedItems[0].SubItems[1].Text;            
+        }
+
+        public string SelectedItem2Type()
+        {
+            return listView2.SelectedItems[0].SubItems[1].Text;
+        }
+
+        public bool IsItemSelectedView1()
+        {
+            if (listView1.SelectedIndices.Count <= 0)
+                return false;
+            else return true;
+        }
+
+        public bool IsItemSelectedView2()
+        {
+            if (listView2.SelectedIndices.Count <= 0)
+                return false;
+            else return true;
+        }
+
+        private void listView1_Enter(object sender, EventArgs e)
+        {
+            IsListView2Active = false;
+            IsListView1Active = true;
+        }
+
+        private void listView1_Leave(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void listView2_Enter(object sender, EventArgs e)
+        {
+            IsListView1Active = false;
+            IsListView2Active = true;
+        }
+
+        private void listView2_Leave(object sender, EventArgs e)
+        {
+           
+        }
+
+        private string ActiveListViewSelectedItemText()
+        {
+            if (IsListView1Active)
+                return listView1.SelectedItems[0].Text;
+            else return listView2.SelectedItems[0].Text;
+        }
+        
+    }
     }
         }
     

@@ -39,7 +39,8 @@ namespace FileCommander.Presenter
             this.fileCommanderView.listView1_KeySpaceEvent += FileCommanderView_listView1_KeySpaceEvent;
             this.fileCommanderView.listView1_KeyBackSpaceEvent += FileCommanderView_listView1_KeyBackSpaceEvent;
             this.fileCommanderView.listView1_KeyEnterEvent += FileCommanderView_listView1_OpenFolder;
-            this.fileCommanderView.listView1_KeyDeleteEvent += FileCommanderView_listView1_DeleteEvent;
+            this.fileCommanderView.listView_KeyDeleteEvent += FileCommanderView_listView1_DeleteEvent;
+            this.fileCommanderView.listView_KeyDeleteEvent += FileCommanderView_listView2_DeleteEvent;
             this.fileCommanderView.listView1_KeyF7Event += FileCommanderView_listView1_CreateNewDirectoryEvent;
             this.fileCommanderView.listView1_MouseDoubleClickEvent += FileCommanderView_listView1_OpenFolder;
             this.fileCommanderView.renameDirEvent += FileCommanderView_listView1_renameDirEvent;
@@ -74,7 +75,7 @@ namespace FileCommander.Presenter
                     directoryModel.CopyFile(srcDir, destDir);
                 }
                 
-                this.fileCommanderView.listView1.Items.Clear();
+                ListView1Clear();
                 PopulateListView1();
              
             }
@@ -100,7 +101,7 @@ namespace FileCommander.Presenter
             directoryModel.Move_Rename_Directory(srcDir, destDir);
 
          
-            this.fileCommanderView.listView1.Items.Clear();
+            ListView1Clear();
             PopulateListView1();
             
 
@@ -110,32 +111,63 @@ namespace FileCommander.Presenter
 
         private void FileCommanderView_listView1_CreateNewDirectoryEvent(object sender, EventArgs e)
         {
-            FolderNameDialogForm folderNameDialog = new FolderNameDialogForm();
-            DirectoryInfo dirInfo = Directory.CreateDirectory(CurrentPath1 + "\\" + fileCommanderView.NewDirectoryNameInput);
-            this.fileCommanderView.listView1.Items.Clear();
+            CreateNewDirectory1();
+            ListView1Clear();
             PopulateListView1();
         }
 
         private void FileCommanderView_listView1_DeleteEvent(object sender, EventArgs e)
         {
-            if (this.fileCommanderView.listView1.SelectedIndices.Count <= 0)
+            if (!this.fileCommanderView.IsListView1Active)
             {
                 return;
             }
-            int intselectedindex = this.fileCommanderView.listView1.SelectedIndices[0];
 
-            if (fileCommanderView.listView1.SelectedItems[0].SubItems[1].Text == "FOLDER")
+            if (!this.fileCommanderView.IsItemSelectedView1())
             {
-                Directory.Delete(CurrentPath1 + this.fileCommanderView.listView1.Items[intselectedindex].Text, true);
+                return;
             }
-            else if (fileCommanderView.listView1.SelectedItems[0].SubItems[1].Text == "FILE")
+            //int intselectedindex = this.fileCommanderView.listView1.SelectedIndices[0];
+
+            if (fileCommanderView.SelectedItem1Type() == "FOLDER")
             {
-                File.Delete(CurrentPath1 + this.fileCommanderView.listView1.Items[intselectedindex].Text);
+                DeleteDirectoyr1();
+            }
+            else if (fileCommanderView.SelectedItem1Type() == "FILE")
+            {
+                DeleteFile1();
             }
 
 
-            this.fileCommanderView.listView1.Items.Clear();
+            ListView1Clear();
             PopulateListView1();
+
+        }
+
+        private void FileCommanderView_listView2_DeleteEvent(object sender, EventArgs e)
+        {
+            if (!this.fileCommanderView.IsListView2Active)
+            {
+                return;
+            }
+            if (!this.fileCommanderView.IsItemSelectedView2())
+            {
+                return;
+            }
+            //int intselectedindex = this.fileCommanderView.listView1.SelectedIndices[0];
+
+            if (fileCommanderView.SelectedItem2Type() == "FOLDER")
+            {
+                DeleteDirectoyr2();
+            }
+            else if (fileCommanderView.SelectedItem2Type() == "FILE")
+            {
+                DeleteFile2();
+            }
+
+
+            ListView2Clear();
+            PopulateListView2();
 
         }
 
@@ -149,9 +181,9 @@ namespace FileCommander.Presenter
 
             if (fileCommanderView.listView1.SelectedItems[0].Text == ".." & fileCommanderView.listView1.SelectedItems[0].SubItems[1].Text == " ")
             {
-                this.fileCommanderView.listView1.Items.Clear();
+                ListView1Clear();
                 CurrentPath1 = pathHistory1.Pop();
-                this.fileCommanderView.textBox1.Text = CurrentPath1;
+                this.fileCommanderView.TextBox1= CurrentPath1;
 
 
                 PopulateListView1();
@@ -170,14 +202,14 @@ namespace FileCommander.Presenter
                     if (intselectedindex >= 0)
                     {
                         pathHistory1.Push(CurrentPath1);
-                        this.fileCommanderView.textBox1.Text = CurrentPath1 + this.fileCommanderView.listView1.Items[intselectedindex].Text + "\\";
-                        DirectoryInfo dirInfo = new DirectoryInfo(this.fileCommanderView.textBox1.Text);
-                        CurrentPath1 = this.fileCommanderView.textBox1.Text;
+                        this.fileCommanderView.TextBox1 = CurrentPath1 + this.fileCommanderView.listView1.Items[intselectedindex].Text + "\\";
+                        DirectoryInfo dirInfo = new DirectoryInfo(this.fileCommanderView.TextBox1);
+                        CurrentPath1 = this.fileCommanderView.TextBox1;
 
 
                     }
 
-                    this.fileCommanderView.listView1.Items.Clear();
+                   ListView1Clear();
 
 
 
@@ -195,9 +227,9 @@ namespace FileCommander.Presenter
         {
             if (pathHistory1.Count > 1)
             {
-                this.fileCommanderView.listView1.Items.Clear();
+                ListView1Clear();
                 CurrentPath1 = pathHistory1.Pop();
-                this.fileCommanderView.textBox1.Text = CurrentPath1;
+                this.fileCommanderView.TextBox1 = CurrentPath1;
 
 
                 PopulateListView1();
@@ -235,19 +267,16 @@ namespace FileCommander.Presenter
         {
 
             CurrentPath2 = this.fileCommanderView.comboBox2.Text;
-            this.fileCommanderView.textBox2.Text = CurrentPath2;
+            this.fileCommanderView.TextBox2 = CurrentPath2;
             pathHistory2.Clear();
 
-            this.fileCommanderView.listView2.Items.Clear();
+            ListView2Clear();
             
 
 
             PopulateListView2();
 
             pathHistory2.Push(CurrentPath2);
-
-
-
 
         }
 
@@ -257,9 +286,9 @@ namespace FileCommander.Presenter
         {
 
             CurrentPath1 = this.fileCommanderView.comboBox1.Text;
-            this.fileCommanderView.textBox1.Text = CurrentPath1;
+            this.fileCommanderView.TextBox1 = CurrentPath1;
             pathHistory1.Clear();
-            this.fileCommanderView.listView1.Items.Clear();
+            ListView1Clear();
 
 
 
@@ -299,6 +328,48 @@ namespace FileCommander.Presenter
             return size;
         }
 
+        public void ListView1Clear()
+        {
+            this.fileCommanderView.ListView1Clear();
+        }
+
+        public void ListView2Clear()
+        {
+            this.fileCommanderView.ListView2Clear();
+        }
+
+        public void CreateNewDirectory1()
+        {
+            directoryModel.CreateNewDirectory(CurrentPath1, fileCommanderView.NewDirectoryNameInput);
+        }
+
+        public void CreateNewDirectory2()
+        {
+            directoryModel.CreateNewDirectory(CurrentPath2, fileCommanderView.NewDirectoryNameInput);
+        }
+
+        public void DeleteDirectoyr1()
+        {
+            directoryModel.DeleteDirectory(CurrentPath1, fileCommanderView.SelectedItemText1());
+        }
+
+        public void DeleteDirectoyr2()
+        {
+            directoryModel.DeleteDirectory(CurrentPath2, fileCommanderView.SelectedItemText2());
+        }
+
+        public void DeleteFile1()
+        {
+            fileModel.DeleteFile(CurrentPath1, fileCommanderView.SelectedItemText1());
+        }
+
+        public void DeleteFile2()
+        {
+            fileModel.DeleteFile(CurrentPath2, fileCommanderView.SelectedItemText2());
+        }
+
+
+        //Directory.Delete(currentPath + listViewSelectedItem, true)
 
     }
 }

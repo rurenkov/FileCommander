@@ -58,5 +58,10 @@ namespace FileCommander.Model
 
             return filesInfo;
         }
+
+        public void DeleteFile(string currentPath, string listViewSelectedItem)
+        {
+            File.Delete(currentPath + listViewSelectedItem);
+        }
     }
 }
