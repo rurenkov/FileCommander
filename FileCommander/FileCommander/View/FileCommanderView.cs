@@ -68,13 +68,13 @@ namespace FileCommander
 
       //  public event EventHandler directoryExistNotification;
 
-
+/*
         public void directoryExistNotification(bool val)
         {
             MessageBox.Show("Dyrectory already exists", "Confirmation window", MessageBoxButtons Yes)
 
         }
-
+        */
 
         // ListView listView1 = new ListView();
         //  listView1.Bounds = new Rectangle(new Point(10,10), new Size(300,200));
@@ -473,8 +473,9 @@ namespace FileCommander
                 {
                     MessageBox.Show(ex.Message);
                 }
-                
+
             }
+        }
 
         public void ListView1Clear()
         {
@@ -558,7 +559,7 @@ namespace FileCommander
         
     }
     }
-        }
+        
     
 
     
