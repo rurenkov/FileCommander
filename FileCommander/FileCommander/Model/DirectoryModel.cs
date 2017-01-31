@@ -19,36 +19,25 @@ namespace FileCommander.Model
         public List<DirectoryInfo> foldersList = new List<DirectoryInfo>();
 
 
-        
-        //copy file method.
+
+   
 
 
         //copy directory method.
-        public  void CopyDirectory(String src, String dest)
+        public void CopyDirectory(String SourcePath, String DestinationPath)
         {
-           
-                //Create Directories
-                string[] dirs = Directory.GetDirectories(src, "*", SearchOption.AllDirectories);
-            foreach (string difVolume in dirs)
-            {
-              
-                    string path1 = difVolume.Replace(src, dest);  //replace path, path = dest
-                if (!Directory.Exists(path1))
-                {
-                    Directory.CreateDirectory(path1);
-                }
-             
-             }
-            // copy files inside
-            String[] szFiles = Directory.GetFiles(src, "*", SearchOption.AllDirectories);
-            foreach (String srcFile in szFiles)
-            {
-                String destFile = srcFile.Replace(src, dest);
-                File.Copy(srcFile, destFile, true);
-            }
+            //Create  directories
+            foreach (string dirPath in Directory.GetDirectories(SourcePath, "*", SearchOption.AllDirectories))
+                Directory.CreateDirectory(dirPath.Replace(SourcePath, DestinationPath));
+
+            //Copy files + Replace
+            foreach (string newPath in Directory.GetFiles(SourcePath, "*.*",
+                SearchOption.AllDirectories))
+                File.Copy(newPath, newPath.Replace(SourcePath, DestinationPath), true);
+      
         }
 
-    
+
         public void Move_Rename_Directory(String srcDir, String destDir)
         {
             
