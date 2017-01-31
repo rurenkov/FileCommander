@@ -103,7 +103,7 @@ namespace FileCommander.Model
             return foldersList;
         }
     
-        public long GetFolderSize(DirectoryInfo d)
+        private long CalculateFolderSize(DirectoryInfo d)
         {
 
 
@@ -120,11 +120,17 @@ namespace FileCommander.Model
             foreach (DirectoryInfo di in dis)
             {
                 if ((d.Attributes & FileAttributes.Hidden) == 0)
-                    size += GetFolderSize(di);
+                    size += CalculateFolderSize(di);
             }
             return size;
 
 
+        }
+
+        public long SelectedFolderSize(string selectedFolder)
+        {
+            DirectoryInfo dirInfo = new DirectoryInfo(selectedFolder);
+            return CalculateFolderSize(dirInfo);
         }
 
         public Dictionary<string, string[]> GetDirectoriesInfo(string currentPath)

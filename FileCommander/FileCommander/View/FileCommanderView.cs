@@ -59,7 +59,7 @@ namespace FileCommander
         public event EventHandler listViewEvent;
         public event EventHandler listViewEventRight;
         public event EventHandler selectedItemsEvent;
-        public event EventHandler listView1_KeySpaceEvent;
+        public event EventHandler listView_KeySpaceEvent;
         public event EventHandler listView1_KeyBackSpaceEvent;
         public event EventHandler listView1_KeyEnterEvent;
         public event EventHandler listView_KeyDeleteEvent;
@@ -233,7 +233,7 @@ namespace FileCommander
                 case Keys.Space:
                     try
                     {
-                        listView1_KeySpaceEvent(sender, e);
+                        listView_KeySpaceEvent(sender, e);
                     }
                     catch (Exception ex)
                     {
@@ -263,6 +263,67 @@ namespace FileCommander
                     break;
                 case Keys.Delete:
                     
+                    var confirmResult = MessageBox.Show("Are you sure to delete <" + ActiveListViewSelectedItemText() + ">?",
+                                     "Confirm Delete!!",
+                                     MessageBoxButtons.YesNo);
+                    if (confirmResult == DialogResult.Yes)
+                    {
+
+                        try
+                        {
+                            listView_KeyDeleteEvent(sender, e);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }
+                    break;
+                case Keys.F7:
+
+                    break;
+
+            }
+        }
+
+        private void listView2_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+
+                case Keys.Space:
+                    try
+                    {
+                        listView_KeySpaceEvent(sender, e);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    break;
+
+                case Keys.Back:
+                    try
+                    {
+                        listView1_KeyBackSpaceEvent(sender, e);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    break;
+                case Keys.Enter:
+                    try
+                    {
+                        listView1_KeyEnterEvent(sender, e);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    break;
+                case Keys.Delete:
+
                     var confirmResult = MessageBox.Show("Are you sure to delete <" + ActiveListViewSelectedItemText() + ">?",
                                      "Confirm Delete!!",
                                      MessageBoxButtons.YesNo);
@@ -556,7 +617,20 @@ namespace FileCommander
                 return listView1.SelectedItems[0].Text;
             else return listView2.SelectedItems[0].Text;
         }
-        
+
+        public void UpdateSelectedItem1Size(string size)
+        {
+            if (listView1.SelectedItems[0].SubItems[2].Text == "<DIR>")
+                listView1.SelectedItems[0].SubItems[2].Text = size;
+        }
+
+        public void UpdateSelectedItem2Size(string size)
+        {
+            if (listView2.SelectedItems[0].SubItems[2].Text == "<DIR>")
+                listView2.SelectedItems[0].SubItems[2].Text = size;
+        }
+
+
     }
     }
         
