@@ -613,14 +613,7 @@ namespace FileCommander
                 listView2.SelectedItems[0].SubItems[2].Text = size;
         }
         // Index (int) of selected element in active window
-        public int SelectedIndexForActiveView()
-        {
-
-            if (IsListView1Active)
-                return listView1.SelectedItems[0].Index;
-            else return listView2.SelectedItems[0].Index;
-
-        }
+       
 
 
     }

@@ -21,12 +21,7 @@ namespace FileCommander.Model
 
         
         //copy file method.
-        public void CopyFile(string src, string dest)
-        {
-            
-                File.Copy(src, dest, true);
-                   
-        }
+
 
         //copy directory method.
         public  void CopyDirectory(String src, String dest)

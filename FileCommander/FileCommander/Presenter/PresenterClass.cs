@@ -52,24 +52,25 @@ namespace FileCommander.Presenter
             this.fileCommanderView.renameDirEvent += FileCommanderView_listView1_renameDirEvent;
             this.fileCommanderView.renameDirEvent += FileCommanderView_listView2_renameDirEvent;
             this.fileCommanderView.copyDirEvent += FileCommanderView_listView1_copyDirEvent;
-        
-            
+            this.fileCommanderView.copyDirEvent += FileCommanderView_listView2_copyDirEvent;
+
+
         }
 
 
         //path for selected item in Active tab
-        internal void PathForActiveView(string srcAct, string destAct)
-        {
+        //internal void PathForActiveView(string srcAct, string destAct)
+        //{
           
-         if (this.fileCommanderView.IsItemSelectedView2() == true)
-            {
-                string tmp;
-                tmp = CurrentPath1;
-                CurrentPath1 =CurrentPath2;
-                CurrentPath2 = tmp;
+        // if (this.fileCommanderView.IsItemSelectedView2() == true)
+        //    {
+        //        string tmp;
+        //        tmp = CurrentPath1;
+        //        CurrentPath1 =CurrentPath2;
+        //        CurrentPath2 = tmp;
 
-            }
-        }
+        //    }
+        //}
 
 
 
@@ -77,36 +78,60 @@ namespace FileCommander.Presenter
         //copy directory
         private void FileCommanderView_listView1_copyDirEvent(object sender, EventArgs e)
         {
+            if (!fileCommanderView.IsListView1Active)
+            {
+                return;
+            }
 
-            PathForActiveView(CurrentPath1,CurrentPath2);
-            
-           
-            
-            int intselectedindex = this.fileCommanderView.SelectedIndexForActiveView();
-            string srcAct = CurrentPath1 + this.fileCommanderView.ActiveListViewSelectedItemText();
-            string destAct = CurrentPath2 + this.fileCommanderView.ActiveListViewSelectedItemText();
-
-                
+            if (!fileCommanderView.IsItemSelectedView1())
+            {
+                return;
+            }
+                                        
                 // CHECK IF FOLDER Or fILE.
-                FileAttributes attr = File.GetAttributes(CurrentPath1 + this.fileCommanderView.ActiveListViewSelectedItemText());
-                if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+                if (IsFolder1())
                 {
-                    directoryModel.CopyDirectory(srcAct, destAct);
+                    CopyDirectory1();
                 }
                 else
                 {
-                    directoryModel.CopyFile(srcAct, destAct);
+                    CopyFile1();
                 }
                 
-                ListView1Clear();
-                PopulateListView1();
+                ListView2Clear();
+                PopulateListView2();
              
             
         }
+
+        private void FileCommanderView_listView2_copyDirEvent(object sender, EventArgs e)
+        {
+            if (!fileCommanderView.IsListView2Active)
+            {
+                return;
+            }
+
+            if (!fileCommanderView.IsItemSelectedView2())
+            {
+                return;
+            }
+
+            // CHECK IF FOLDER Or fILE.
+            if (IsFolder2())
+            {
+                CopyDirectory2();
+            }
+            else
+            {
+                CopyFile2();
+            }
+
+            ListView1Clear();
+            PopulateListView1();
+
+        }
+
         
-
-
-
         // rename directory or file
         private void FileCommanderView_listView1_renameDirEvent(object sender, EventArgs e)
         {
@@ -517,6 +542,37 @@ namespace FileCommander.Presenter
             fileModel.RunFile(CurrentPath2 + this.fileCommanderView.SelectedItemText2());
         }
 
+        public void CopyDirectory1()
+        {
+            //int intselectedindex = this.fileCommanderView.SelectedIndexForActiveView();
+            string srcAct = CurrentPath1 + this.fileCommanderView.SelectedItemText1();
+            string destAct = CurrentPath2 + this.fileCommanderView.SelectedItemText1();
+
+            directoryModel.CopyDirectory(srcAct, destAct);
+        }
+
+        public void CopyDirectory2()
+        {
+            //int intselectedindex = this.fileCommanderView.SelectedIndexForActiveView();
+            string srcAct = CurrentPath2 + this.fileCommanderView.SelectedItemText2();
+            string destAct = CurrentPath1 + this.fileCommanderView.SelectedItemText2();
+
+            directoryModel.CopyDirectory(srcAct, destAct);
+        }
+
+        public void CopyFile1()
+        {
+            string srcAct = CurrentPath1 + this.fileCommanderView.SelectedItemText1();
+            string destAct = CurrentPath2 + this.fileCommanderView.SelectedItemText1();
+            fileModel.CopyFile(srcAct, destAct);
+        }
+
+        public void CopyFile2()
+        {
+            string srcAct = CurrentPath2 + this.fileCommanderView.SelectedItemText2();
+            string destAct = CurrentPath1 + this.fileCommanderView.SelectedItemText2();
+            fileModel.CopyFile(srcAct, destAct);
+        }
 
         //Directory.Delete(currentPath + listViewSelectedItem, true)
 

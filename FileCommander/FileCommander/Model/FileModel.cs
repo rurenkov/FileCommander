@@ -64,6 +64,13 @@ namespace FileCommander.Model
             File.Delete(currentPath + listViewSelectedItem);
         }
 
+        public void CopyFile(string src, string dest)
+        {
+
+            File.Copy(src, dest, true);
+
+        }
+
         public void RunFile(string path)
         {
             System.Diagnostics.Process.Start(path);
