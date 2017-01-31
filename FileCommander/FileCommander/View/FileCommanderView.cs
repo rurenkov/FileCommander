@@ -63,7 +63,7 @@ namespace FileCommander
         public event EventHandler listView_KeyBackSpaceEvent;
         public event EventHandler listView_KeyEnterEvent;
         public event EventHandler listView_KeyDeleteEvent;
-        public event EventHandler listView1_KeyF7Event;
+        public event EventHandler listView_CreateNewFolderEvent;
         public event EventHandler listView_MouseDoubleClickEvent;
 
       //  public event EventHandler directoryExistNotification;
@@ -259,7 +259,23 @@ namespace FileCommander
                     }
                     break;
                 case Keys.F7:
+                    using (FolderNameDialogForm folderNameDialog = new FolderNameDialogForm())
+                    {
+                        if (folderNameDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            NewDirectoryNameInput = folderNameDialog.newFolderNameInputTextBox1.Text;
+                        }
+                    }
+                    try
 
+                    {
+                        listView_CreateNewFolderEvent(sender, e);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+
+                    }
                     break;
 
             }
@@ -321,7 +337,23 @@ namespace FileCommander
                     }
                     break;
                 case Keys.F7:
+                    using (FolderNameDialogForm folderNameDialog = new FolderNameDialogForm())
+                    {
+                        if (folderNameDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            NewDirectoryNameInput = folderNameDialog.newFolderNameInputTextBox1.Text;
+                        }
+                    }
+                    try
 
+                    {
+                        listView_CreateNewFolderEvent(sender, e);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+
+                    }
                     break;
 
             }
@@ -382,7 +414,7 @@ namespace FileCommander
             try
 
             {
-                listView1_KeyF7Event(sender, e);
+                listView_CreateNewFolderEvent(sender, e);
             }
             catch (Exception ex)
             {

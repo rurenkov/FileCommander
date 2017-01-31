@@ -46,8 +46,8 @@ namespace FileCommander.Presenter
             this.fileCommanderView.listView_KeyEnterEvent += FileCommanderView_listView2_OpenFolder;
             this.fileCommanderView.listView_KeyDeleteEvent += FileCommanderView_listView1_DeleteEvent;
             this.fileCommanderView.listView_KeyDeleteEvent += FileCommanderView_listView2_DeleteEvent;
-            this.fileCommanderView.listView1_KeyF7Event += FileCommanderView_listView1_CreateNewDirectoryEvent;
-            this.fileCommanderView.listView1_KeyF7Event += FileCommanderView_listView2_CreateNewDirectoryEvent;
+            this.fileCommanderView.listView_CreateNewFolderEvent += FileCommanderView_listView1_CreateNewDirectoryEvent;
+            this.fileCommanderView.listView_CreateNewFolderEvent += FileCommanderView_listView2_CreateNewDirectoryEvent;
             this.fileCommanderView.listView_MouseDoubleClickEvent += FileCommanderView_listView1_OpenFolder;
             this.fileCommanderView.listView_MouseDoubleClickEvent += FileCommanderView_listView2_OpenFolder;
             this.fileCommanderView.renameDirEvent += FileCommanderView_listView1_renameDirEvent;
