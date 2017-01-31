@@ -24,6 +24,8 @@ namespace FileCommander
         public string TextBox1 { get { return textBox1.Text; } set { textBox1.Text = value; } }
         public string TextBox2 { get { return textBox2.Text; } set { textBox2.Text = value; } }
 
+        public bool IsListView1Active { get; set; }
+        public bool IsListView2Active { get; set; }
         public FileCommanderView()
         {
             InitializeComponent();
@@ -60,7 +62,7 @@ namespace FileCommander
         public event EventHandler listView1_KeySpaceEvent;
         public event EventHandler listView1_KeyBackSpaceEvent;
         public event EventHandler listView1_KeyEnterEvent;
-        public event EventHandler listView1_KeyDeleteEvent;
+        public event EventHandler listView_KeyDeleteEvent;
         public event EventHandler listView1_KeyF7Event;
         public event EventHandler listView1_MouseDoubleClickEvent;
 
@@ -251,7 +253,8 @@ namespace FileCommander
                     }
                     break;
                 case Keys.Delete:
-                    var confirmResult = MessageBox.Show("Are you sure to delete <" + listView1.SelectedItems[0].Text + ">?",
+                    
+                    var confirmResult = MessageBox.Show("Are you sure to delete <" + ActiveListViewSelectedItemText() + ">?",
                                      "Confirm Delete!!",
                                      MessageBoxButtons.YesNo);
                     if (confirmResult == DialogResult.Yes)
@@ -259,7 +262,7 @@ namespace FileCommander
 
                         try
                         {
-                            listView1_KeyDeleteEvent(sender, e);
+                            listView_KeyDeleteEvent(sender, e);
                         }
                         catch (Exception ex)
                         {
@@ -319,12 +322,14 @@ namespace FileCommander
                 }
             }
             try
+
             {
                 listView1_KeyF7Event(sender, e);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+
             }
         }
 
@@ -334,7 +339,7 @@ namespace FileCommander
             {
                 return;
             }
-            var confirmResult = MessageBox.Show("Are you sure to delete <" + listView1.SelectedItems[0].Text + ">?",
+            var confirmResult = MessageBox.Show("Are you sure to delete <" + ActiveListViewSelectedItemText() + ">?",
                                     "Confirm Delete!!",
                                     MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
@@ -342,7 +347,7 @@ namespace FileCommander
 
                 try
                 {
-                    listView1_KeyDeleteEvent(sender, e);
+                    listView_KeyDeleteEvent(sender, e);
                 }
                 catch (Exception ex)
                 {
@@ -502,6 +507,35 @@ namespace FileCommander
             else return true;
         }
 
+        private void listView1_Enter(object sender, EventArgs e)
+        {
+            IsListView2Active = false;
+            IsListView1Active = true;
+        }
+
+        private void listView1_Leave(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void listView2_Enter(object sender, EventArgs e)
+        {
+            IsListView1Active = false;
+            IsListView2Active = true;
+        }
+
+        private void listView2_Leave(object sender, EventArgs e)
+        {
+           
+        }
+
+        private string ActiveListViewSelectedItemText()
+        {
+            if (IsListView1Active)
+                return listView1.SelectedItems[0].Text;
+            else return listView2.SelectedItems[0].Text;
+        }
+        
     }
     }
 

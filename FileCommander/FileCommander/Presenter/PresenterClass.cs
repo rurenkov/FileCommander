@@ -39,8 +39,8 @@ namespace FileCommander.Presenter
             this.fileCommanderView.listView1_KeySpaceEvent += FileCommanderView_listView1_KeySpaceEvent;
             this.fileCommanderView.listView1_KeyBackSpaceEvent += FileCommanderView_listView1_KeyBackSpaceEvent;
             this.fileCommanderView.listView1_KeyEnterEvent += FileCommanderView_listView1_OpenFolder;
-            this.fileCommanderView.listView1_KeyDeleteEvent += FileCommanderView_listView1_DeleteEvent;
-            this.fileCommanderView.listView1_KeyDeleteEvent += FileCommanderView_listView2_DeleteEvent;
+            this.fileCommanderView.listView_KeyDeleteEvent += FileCommanderView_listView1_DeleteEvent;
+            this.fileCommanderView.listView_KeyDeleteEvent += FileCommanderView_listView2_DeleteEvent;
             this.fileCommanderView.listView1_KeyF7Event += FileCommanderView_listView1_CreateNewDirectoryEvent;
             this.fileCommanderView.listView1_MouseDoubleClickEvent += FileCommanderView_listView1_OpenFolder;
             this.fileCommanderView.renameDirEvent += FileCommanderView_listView1_renameDirEvent;
@@ -117,6 +117,11 @@ namespace FileCommander.Presenter
 
         private void FileCommanderView_listView1_DeleteEvent(object sender, EventArgs e)
         {
+            if (!this.fileCommanderView.IsListView1Active)
+            {
+                return;
+            }
+
             if (!this.fileCommanderView.IsItemSelectedView1())
             {
                 return;
@@ -140,6 +145,10 @@ namespace FileCommander.Presenter
 
         private void FileCommanderView_listView2_DeleteEvent(object sender, EventArgs e)
         {
+            if (!this.fileCommanderView.IsListView2Active)
+            {
+                return;
+            }
             if (!this.fileCommanderView.IsItemSelectedView2())
             {
                 return;
