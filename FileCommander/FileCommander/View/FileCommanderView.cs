@@ -21,6 +21,8 @@ namespace FileCommander
         public object EmpIDtextBox { get; private set; }
         public string NewDirectoryNameInput { get; set; }
 
+        public string TextBox1 { get { return textBox1.Text; } set { textBox1.Text = value; } }
+        public string TextBox2 { get { return textBox2.Text; } set { textBox2.Text = value; } }
 
         public FileCommanderView()
         {
@@ -66,7 +68,7 @@ namespace FileCommander
         // ListView listView1 = new ListView();
         //  listView1.Bounds = new Rectangle(new Point(10,10), new Size(300,200));
 
-        public void PopulateListView(ListView listView, Dictionary<string, string[]> foldersDic, Dictionary<string, string[]> filesDic)
+        private void PopulateListView(ListView listView, Dictionary<string, string[]> foldersDic, Dictionary<string, string[]> filesDic)
         {
             foreach (var dirInfo in foldersDic)
             {
@@ -449,8 +451,58 @@ namespace FileCommander
                 
             }
 
+        public void ListView1Clear()
+        {
+            listView1.Items.Clear();
+        }
+        public void ListView2Clear()
+        {
+            listView2.Items.Clear();
+        }
+
+        private string SelectedItemText(ListView listView)
+        {                     
+            int intselectedindex = listView.SelectedIndices[0];
+            return listView.Items[intselectedindex].Text;           
 
         }
+
+        public string SelectedItemText1()
+        {
+           return SelectedItemText(listView1);
+
+        }
+        public string SelectedItemText2()
+        {
+            return SelectedItemText(listView2);
+
+        }
+
+        public string SelectedItem1Type()
+        {
+            return listView1.SelectedItems[0].SubItems[1].Text;            
+        }
+
+        public string SelectedItem2Type()
+        {
+            return listView2.SelectedItems[0].SubItems[1].Text;
+        }
+
+        public bool IsItemSelectedView1()
+        {
+            if (listView1.SelectedIndices.Count <= 0)
+                return false;
+            else return true;
+        }
+
+        public bool IsItemSelectedView2()
+        {
+            if (listView2.SelectedIndices.Count <= 0)
+                return false;
+            else return true;
+        }
+
+    }
     }
 
     
