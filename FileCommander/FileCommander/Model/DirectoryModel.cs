@@ -19,7 +19,7 @@ namespace FileCommander.Model
         public List<DirectoryInfo> foldersList = new List<DirectoryInfo>();
 
 
-
+        
         //copy file method.
         public void CopyFile(string src, string dest)
         {
@@ -33,8 +33,8 @@ namespace FileCommander.Model
         {
            
                 //Create Directories
-                String[] dirs = Directory.GetDirectories(src, "*", SearchOption.AllDirectories);
-            foreach (String difVolume in dirs)
+                string[] dirs = Directory.GetDirectories(src, "*", SearchOption.AllDirectories);
+            foreach (string difVolume in dirs)
             {
               
                     string path1 = difVolume.Replace(src, dest);  //replace path, path = dest
@@ -42,15 +42,7 @@ namespace FileCommander.Model
                 {
                     Directory.CreateDirectory(path1);
                 }
-                else
-                {
-                    
-                    // what to do if directoryexists??????
-                    //*****************
-                    //***************
-                    //***************
-
-                }
+             
              }
             // copy files inside
             String[] szFiles = Directory.GetFiles(src, "*", SearchOption.AllDirectories);

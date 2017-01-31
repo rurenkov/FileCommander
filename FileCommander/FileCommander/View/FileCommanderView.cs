@@ -153,28 +153,6 @@ namespace FileCommander
         private void button1_Click(object sender, EventArgs e)
         {
 
-            /// open file with default app
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = "d:\\";
-            openFileDialog.Filter = "All files (*.*)|*.*";
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK) // Test result.
-            {
-
-                string file = openFileDialog.FileName;
-                //textBox1.Text = file;
-
-                try
-                {
-                    Process.Start(file);
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
-                }
-            }
-
         }
 
 
@@ -454,18 +432,13 @@ namespace FileCommander
         private void btnCopy_Click(object sender, EventArgs e)
         {
 
-            if (this.listView1.SelectedIndices.Count <= 0)
-            {
-                return;
-            }
+            ActiveListViewSelectedItemText();
+            IsItemSelectedView1();
+            IsItemSelectedView2();
+           
+            
 
-            var confirmResult = MessageBox.Show("File <" + listView1.SelectedItems[0].Text + "> already exists!",
-                                    "Confirm Replacing!",
-                                    MessageBoxButtons.YesNo);
-            if (confirmResult == DialogResult.Yes)
-            {
-
-                try
+            try
                 {
                     copyDirEvent(sender, e);
                 }
@@ -474,7 +447,7 @@ namespace FileCommander
                     MessageBox.Show(ex.Message);
                 }
 
-            }
+            
         }
 
         public void ListView1Clear()
@@ -517,7 +490,7 @@ namespace FileCommander
         public bool IsItemSelectedView1()
         {
             if (listView1.SelectedIndices.Count <= 0)
-                return false;
+               return false;
             else return true;
         }
 
@@ -549,16 +522,33 @@ namespace FileCommander
         {
            
         }
-
-        private string ActiveListViewSelectedItemText()
+        // Name (string) of selected element in active window
+        public string ActiveListViewSelectedItemText()
         {
             if (IsListView1Active)
                 return listView1.SelectedItems[0].Text;
             else return listView2.SelectedItems[0].Text;
         }
+
+
+        // Index (int) of selected element in active window
+        public int SelectedIndexForActiveView ()
+        {
+
+            if (IsListView1Active)
+                return listView1.SelectedItems[0].Index;
+            else return listView2.SelectedItems[0].Index;
+
+        }
+
+
+
         
+        }
+        
+           
     }
-    }
+    
         
     
 

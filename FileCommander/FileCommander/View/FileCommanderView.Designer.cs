@@ -51,7 +51,6 @@
             this.btnRename = new System.Windows.Forms.Button();
             this.btnCopy = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.btnOpenFiles = new System.Windows.Forms.Button();
             this.btnChangePanel = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.ItemName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -195,7 +194,6 @@
             this.flowLayoutPanel1.Controls.Add(this.btnRename);
             this.flowLayoutPanel1.Controls.Add(this.btnCopy);
             this.flowLayoutPanel1.Controls.Add(this.btnDelete);
-            this.flowLayoutPanel1.Controls.Add(this.btnOpenFiles);
             this.flowLayoutPanel1.Controls.Add(this.btnChangePanel);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 28);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -268,19 +266,9 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.button1_Click_2);
             // 
-            // btnOpenFiles
-            // 
-            this.btnOpenFiles.Location = new System.Drawing.Point(357, 3);
-            this.btnOpenFiles.Name = "btnOpenFiles";
-            this.btnOpenFiles.Size = new System.Drawing.Size(70, 28);
-            this.btnOpenFiles.TabIndex = 0;
-            this.btnOpenFiles.Text = "Open";
-            this.btnOpenFiles.UseVisualStyleBackColor = true;
-            this.btnOpenFiles.Click += new System.EventHandler(this.button1_Click);
-            // 
             // btnChangePanel
             // 
-            this.btnChangePanel.Location = new System.Drawing.Point(433, 3);
+            this.btnChangePanel.Location = new System.Drawing.Point(357, 3);
             this.btnChangePanel.Name = "btnChangePanel";
             this.btnChangePanel.Size = new System.Drawing.Size(121, 51);
             this.btnChangePanel.TabIndex = 1;
@@ -511,7 +499,6 @@
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Button btnOpenFiles;
         internal System.Windows.Forms.ListView listView1;
         internal System.Windows.Forms.ColumnHeader ItemName;
         private System.Windows.Forms.ColumnHeader ItemType;
