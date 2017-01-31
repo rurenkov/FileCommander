@@ -63,5 +63,11 @@ namespace FileCommander.Model
         {
             File.Delete(currentPath + listViewSelectedItem);
         }
+
+        public void RunFile(string path)
+        {
+            System.Diagnostics.Process.Start(path);
+        }
+
     }
 }

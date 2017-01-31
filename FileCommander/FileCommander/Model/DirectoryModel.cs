@@ -95,7 +95,7 @@ namespace FileCommander.Model
             return foldersList;
         }
     
-        public long GetFolderSize(DirectoryInfo d)
+        private long CalculateFolderSize(DirectoryInfo d)
         {
 
 
@@ -112,11 +112,17 @@ namespace FileCommander.Model
             foreach (DirectoryInfo di in dis)
             {
                 if ((d.Attributes & FileAttributes.Hidden) == 0)
-                    size += GetFolderSize(di);
+                    size += CalculateFolderSize(di);
             }
             return size;
 
 
+        }
+
+        public long SelectedFolderSize(string selectedFolder)
+        {
+            DirectoryInfo dirInfo = new DirectoryInfo(selectedFolder);
+            return CalculateFolderSize(dirInfo);
         }
 
         public Dictionary<string, string[]> GetDirectoriesInfo(string currentPath)
@@ -144,6 +150,19 @@ namespace FileCommander.Model
         public void DeleteDirectory(string currentPath, string listViewSelectedItem)
         {          
                 Directory.Delete(currentPath + listViewSelectedItem, true);
+        }
+
+        public bool IsFolder(string path)
+        {
+            FileAttributes attr = File.GetAttributes(path);
+
+            // CHECK IF FOLDER Or fILE.
+            if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+            {
+                return true;
+
+            }
+            else return false;
         }
 
         //public string[] GetFilesNames(string selectedDrive)
