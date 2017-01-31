@@ -27,3 +27,4 @@ D:\vet\sharp\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.F
 D:\study\projects\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.FileCommanderView.resources
 C:\WORK\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.FolderNameDialogForm.resources
 D:\vet\sharp\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.FolderNameDialogForm.resources
+D:\study\projects\FileCommander\FileCommander\FileCommander\obj\Debug\FileCommander.FolderNameDialogForm.resources

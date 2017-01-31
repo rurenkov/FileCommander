@@ -38,10 +38,19 @@ namespace FileCommander.Model
             {
               
                     string path1 = difVolume.Replace(src, dest);  //replace path, path = dest
-                    if (!Directory.Exists(path1))
-                    {
-                        Directory.CreateDirectory(path1);
-                    }
+                if (!Directory.Exists(path1))
+                {
+                    Directory.CreateDirectory(path1);
+                }
+                else
+                {
+                    
+                    // what to do if directoryexists??????
+                    //*****************
+                    //***************
+                    //***************
+
+                }
              }
             // copy files inside
             String[] szFiles = Directory.GetFiles(src, "*", SearchOption.AllDirectories);

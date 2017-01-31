@@ -76,6 +76,7 @@ namespace FileCommander.Presenter
                 
                 this.fileCommanderView.listView1.Items.Clear();
                 PopulateListView1();
+             
             }
 
         }

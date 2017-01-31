@@ -62,6 +62,15 @@ namespace FileCommander
         public event EventHandler listView1_KeyF7Event;
         public event EventHandler listView1_MouseDoubleClickEvent;
 
+      //  public event EventHandler directoryExistNotification;
+
+
+        public void directoryExistNotification(bool val)
+        {
+            MessageBox.Show("Dyrectory already exists", "Confirmation window", MessageBoxButtons Yes)
+
+        }
+
 
         // ListView listView1 = new ListView();
         //  listView1.Bounds = new Rectangle(new Point(10,10), new Size(300,200));
@@ -82,7 +91,7 @@ namespace FileCommander
         {
             if (pathHistory1Count > 1)
             {
-                listView1.Items.Add("..").SubItems.Add(" ");
+                listView1.Items.Add("..", 2).SubItems.Add(" ");
             }
 
             PopulateListView(listView1, foldersDic, filesDic);
@@ -92,7 +101,7 @@ namespace FileCommander
         {
             if (pathHistory2Count > 1)
             {
-                listView2.Items.Add("..").SubItems.Add(" ");
+                listView2.Items.Add("..", 2).SubItems.Add(" ");
             }
 
             PopulateListView(listView2, foldersDic, filesDic);
@@ -407,6 +416,7 @@ namespace FileCommander
 
         private void btnRename_Click(object sender, EventArgs e)
         {
+
             if (listView1.SelectedIndices.Count <= 0)
             {
                 return;
@@ -430,15 +440,25 @@ namespace FileCommander
 
             }
 
-            
+
 
         }
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
-            
 
-               try
+            if (this.listView1.SelectedIndices.Count <= 0)
+            {
+                return;
+            }
+
+            var confirmResult = MessageBox.Show("File <" + listView1.SelectedItems[0].Text + "> already exists!",
+                                    "Confirm Replacing!",
+                                    MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+
+                try
                 {
                     copyDirEvent(sender, e);
                 }
@@ -446,12 +466,13 @@ namespace FileCommander
                 {
                     MessageBox.Show(ex.Message);
                 }
-                
-            }
 
+            }
 
         }
     }
+        }
+    
 
     
 
