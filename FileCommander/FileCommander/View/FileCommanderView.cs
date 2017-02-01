@@ -29,7 +29,7 @@ namespace FileCommander
         public FileCommanderView()
         {
             InitializeComponent();
-            this.WindowState = FormWindowState.Maximized;
+            this.WindowState = FormWindowState.Normal;
 
 
             DirectoryModel dirModel = new DirectoryModel();
@@ -58,7 +58,6 @@ namespace FileCommander
 
         public event EventHandler renameDirEvent;
         public event EventHandler copyDirEvent;
-
         public event EventHandler listViewEvent;
         public event EventHandler listViewEventRight;
         public event EventHandler selectedItemsEvent;
@@ -69,18 +68,7 @@ namespace FileCommander
         public event EventHandler listView_CreateNewFolderEvent;
         public event EventHandler listView_MouseDoubleClickEvent;
 
-      //  public event EventHandler directoryExistNotification;
-
-/*
-        public void directoryExistNotification(bool val)
-        {
-            MessageBox.Show("Dyrectory already exists", "Confirmation window", MessageBoxButtons Yes)
-
-        }
-        */
-
-        // ListView listView1 = new ListView();
-        //  listView1.Bounds = new Rectangle(new Point(10,10), new Size(300,200));
+     
 
         private void PopulateListView(ListView listView, Dictionary<string, string[]> foldersDic, Dictionary<string, string[]> filesDic)
         {
@@ -137,14 +125,14 @@ namespace FileCommander
             }
 
         }
-
+        // open left panel
         private void comboBox1_DropDown(object sender, EventArgs e)
         {
             comboBox1.Items.Clear();
             comboBox1.Items.AddRange(Presenter.GetDrives.ToArray());
 
         }
-
+        // open right panel
         private void comboBox2_DropDown(object sender, EventArgs e)
         {
 
@@ -179,7 +167,7 @@ namespace FileCommander
             }
 
         }
-        // change panels
+        // switch panels
         private void btnChangePanel_Click(object sender, EventArgs e)
         {
 
@@ -200,12 +188,13 @@ namespace FileCommander
 
 
         }
+        // dock listview to split container
         private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
         {
             listView1.Width = splitContainer1.Panel1.Width;
             listView2.Width = splitContainer1.Panel1.Width;
         }
-
+        // key press left tab
         private void listView1_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -283,7 +272,7 @@ namespace FileCommander
 
             }
         }
-
+        // key press rigth tab
         private void listView2_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -404,7 +393,7 @@ namespace FileCommander
         }
 
 
-
+        // create new directory button
         private void button1_Click_1(object sender, EventArgs e)
         {
             using (FolderNameDialogForm folderNameDialog = new FolderNameDialogForm())
@@ -425,7 +414,7 @@ namespace FileCommander
 
             }
         }
-
+        // delete button
         private void button1_Click_2(object sender, EventArgs e)
         {
             if ((!IsItemSelectedView1()) & (!IsItemSelectedView2()))  
@@ -466,7 +455,7 @@ namespace FileCommander
         {
 
         }
-
+        // backspace button (back)
         private void btnBack_Click(object sender, EventArgs e)
         {
             try
@@ -504,7 +493,7 @@ namespace FileCommander
         {
 
         }
-
+        // rename buttom
         private void btnRename_Click(object sender, EventArgs e)
         {
 
@@ -534,7 +523,7 @@ namespace FileCommander
 
 
         }
-
+        // copy button
         private void btnCopy_Click(object sender, EventArgs e)
         {
 
@@ -647,7 +636,7 @@ namespace FileCommander
             if (listView2.SelectedItems[0].SubItems[2].Text == "<DIR>")
                 listView2.SelectedItems[0].SubItems[2].Text = size;
         }
-        // Index (int) of selected element in active window
+
        
 
 

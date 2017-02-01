@@ -15,13 +15,9 @@ namespace FileCommander.Model
         
         public DirectoryInfo DirInfo { get; set; }
         public List<string> dirrectoriesNamesArray = new List<string>();
-        //public List<string> filesNamesArray = new List<string>();
-        public List<DirectoryInfo> foldersList = new List<DirectoryInfo>();
+         public List<DirectoryInfo> foldersList = new List<DirectoryInfo>();
 
-
-
-   
-
+        
 
         //copy directory method.
         public void CopyDirectory(String SourcePath, String DestinationPath)
@@ -119,8 +115,7 @@ namespace FileCommander.Model
                 string[] row1 = { "FOLDER", "<DIR>", dirInfo.LastWriteTime.ToShortDateString() };
                 foldersInfo.Add(dirInfo.Name, row1);
 
-                //this.fileCommanderView.listView1.Items.Add(dirInfo.Name, 1).SubItems.AddRange(row1);
-            }
+                 }
 
             return foldersInfo;
         }
@@ -149,25 +144,6 @@ namespace FileCommander.Model
             else return false;
         }
 
-        //public string[] GetFilesNames(string selectedDrive)
-        //{
-
-
-        //    DirectoryInfo directoryinfo = new DirectoryInfo(selectedDrive);
-
-        //    filesNamesArray.Clear();
-
-        //    foreach (FileInfo fileInfo in directoryinfo.GetFiles())
-        //    {
-        //        filesNamesArray.Add(fileInfo.Name);
-        //    }
-
-        //    return filesNamesArray.ToArray();
-
-
-        //}
-
-
-
+   
     }
 }
