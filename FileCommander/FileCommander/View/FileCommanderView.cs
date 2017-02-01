@@ -10,8 +10,7 @@ namespace FileCommander
     public partial class FileCommanderView : Form, IFileCommanderView
     {
         public PresenterClass Presenter { get; set; }
-        public string SelectedDrive { get; set; }
-        public object EmpIDtextBox { get; private set; }
+
         public string NewDirectoryNameInput { get; set; }
 
         public string TextBox1
