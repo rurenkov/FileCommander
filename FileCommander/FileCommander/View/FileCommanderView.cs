@@ -1,16 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
 using FileCommander.Model;
 using FileCommander.Presenter;
-using System.Diagnostics;
 
 namespace FileCommander
 {
@@ -29,7 +21,7 @@ namespace FileCommander
         public FileCommanderView()
         {
             InitializeComponent();
-            this.WindowState = FormWindowState.Normal;
+            WindowState = FormWindowState.Normal;
 
 
             DirectoryModel dirModel = new DirectoryModel();
