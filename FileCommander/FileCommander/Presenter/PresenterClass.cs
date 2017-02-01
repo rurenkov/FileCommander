@@ -1,10 +1,7 @@
 ﻿using FileCommander.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
+
 //using System.Windows.Forms;
 
 namespace FileCommander.Presenter
@@ -119,18 +116,18 @@ namespace FileCommander.Presenter
         // rename directory or file left
         private void FileCommanderView_listView1_renameDirEvent(object sender, EventArgs e)
         {
-            if (!this._fileCommanderView.IsListView1Active)
+            if (!this.fileCommanderView.IsListView1Active)
             {
                 return;
             }
 
-            if (!this._fileCommanderView.IsItemSelectedView1())
+            if (!this.fileCommanderView.IsItemSelectedView1())
             {
                 return;
             }
 
-            string srcDir = CurrentPath1 + this._fileCommanderView.SelectedItemText1();
-            string destDir = CurrentPath1 + _fileCommanderView.NewDirectoryNameInput;
+            string srcDir = CurrentPath1 + this.fileCommanderView.SelectedItemText1();
+            string destDir = CurrentPath1 + fileCommanderView.NewDirectoryNameInput;
 
             directoryModel.MoveRenameDirectory(srcDir, destDir);
 
@@ -143,20 +140,20 @@ namespace FileCommander.Presenter
         // rename directory or file right
         private void FileCommanderView_listView2_renameDirEvent(object sender, EventArgs e)
         {
-            if (!this._fileCommanderView.IsListView2Active)
+            if (!this.fileCommanderView.IsListView2Active)
             {
                 return;
             }
 
-            if (!this._fileCommanderView.IsItemSelectedView2())
+            if (!this.fileCommanderView.IsItemSelectedView2())
             {
                 return;
             }
 
-            string srcDir = CurrentPath2 + this._fileCommanderView.SelectedItemText2();
-            string destDir = CurrentPath2 + _fileCommanderView.NewDirectoryNameInput;
+            string srcDir = CurrentPath2 + this.fileCommanderView.SelectedItemText2();
+            string destDir = CurrentPath2 + fileCommanderView.NewDirectoryNameInput;
 
-            directoryModel.MoveRenameDirectory(srcDir, destDir);
+            directoryModel.Move_Rename_Directory(srcDir, destDir);
 
 
             ListView2Clear();
@@ -191,12 +188,12 @@ namespace FileCommander.Presenter
         //delete event left
         private void FileCommanderView_listView1_DeleteEvent(object sender, EventArgs e)
         {
-            if (!this._fileCommanderView.IsListView1Active)
+            if (!this.fileCommanderView.IsListView1Active)
             {
                 return;
             }
 
-            if (!this._fileCommanderView.IsItemSelectedView1())
+            if (!this.fileCommanderView.IsItemSelectedView1())
             {
                 return;
             }
@@ -219,11 +216,11 @@ namespace FileCommander.Presenter
         //delete event right
         private void FileCommanderView_listView2_DeleteEvent(object sender, EventArgs e)
         {
-            if (!this._fileCommanderView.IsListView2Active)
+            if (!this.fileCommanderView.IsListView2Active)
             {
                 return;
             }
-            if (!this._fileCommanderView.IsItemSelectedView2())
+            if (!this.fileCommanderView.IsItemSelectedView2())
             {
                 return;
             }
@@ -258,7 +255,7 @@ namespace FileCommander.Presenter
             {
                 ListView1Clear();
                 CurrentPath1 = pathHistory1.Pop();
-                this._fileCommanderView.TextBox1 = CurrentPath1;
+                this.fileCommanderView.TextBox1 = CurrentPath1;
 
 
                 PopulateListView1();
@@ -274,8 +271,8 @@ namespace FileCommander.Presenter
                     if (_fileCommanderView.IsItemSelectedView1())
                     {
                         pathHistory1.Push(CurrentPath1);
-                        this._fileCommanderView.TextBox1 = CurrentPath1 + this._fileCommanderView.SelectedItemText1() + "\\";
-                        CurrentPath1 = this._fileCommanderView.TextBox1;
+                        this.fileCommanderView.TextBox1 = CurrentPath1 + this.fileCommanderView.SelectedItemText1() + "\\";
+                        CurrentPath1 = this.fileCommanderView.TextBox1;
 
                     }
 
@@ -293,11 +290,11 @@ namespace FileCommander.Presenter
         // open folder right
         private void FileCommanderView_listView2_OpenFolder(object sender, EventArgs e)
         {
-            if (!this._fileCommanderView.IsListView2Active)
+            if (!this.fileCommanderView.IsListView2Active)
             {
                 return;
             }
-            if (!this._fileCommanderView.IsItemSelectedView2())
+            if (!this.fileCommanderView.IsItemSelectedView2())
             {
                 return;
             }
@@ -305,7 +302,7 @@ namespace FileCommander.Presenter
             {
                 ListView2Clear();
                 CurrentPath2 = pathHistory2.Pop();
-                this._fileCommanderView.TextBox2 = CurrentPath2;
+                this.fileCommanderView.TextBox2 = CurrentPath2;
 
 
                 PopulateListView2();
@@ -321,8 +318,8 @@ namespace FileCommander.Presenter
                     if (_fileCommanderView.IsItemSelectedView2())
                     {
                         pathHistory2.Push(CurrentPath2);
-                        this._fileCommanderView.TextBox2 = CurrentPath2 + this._fileCommanderView.SelectedItemText2() + "\\";
-                        CurrentPath2 = this._fileCommanderView.TextBox2;
+                        this.fileCommanderView.TextBox2 = CurrentPath2 + this.fileCommanderView.SelectedItemText2() + "\\";
+                        CurrentPath2 = this.fileCommanderView.TextBox2;
 
                     }
 
@@ -348,7 +345,7 @@ namespace FileCommander.Presenter
             {
                 ListView1Clear();
                 CurrentPath1 = pathHistory1.Pop();
-                this._fileCommanderView.TextBox1 = CurrentPath1;
+                this.fileCommanderView.TextBox1 = CurrentPath1;
 
 
                 PopulateListView1();
@@ -366,7 +363,7 @@ namespace FileCommander.Presenter
             {
                 ListView2Clear();
                 CurrentPath2 = pathHistory2.Pop();
-                this._fileCommanderView.TextBox2 = CurrentPath2;
+                this.fileCommanderView.TextBox2 = CurrentPath2;
 
 
                 PopulateListView2();
@@ -376,12 +373,12 @@ namespace FileCommander.Presenter
 
         private void FileCommanderView_listView1_KeySpaceEvent(object sender, EventArgs e)
         {
-            if (!this._fileCommanderView.IsItemSelectedView1())
+            if (!this.fileCommanderView.IsItemSelectedView1())
             {
                 return;
             }
 
-            string selectedFolder = CurrentPath1 + this._fileCommanderView.SelectedItemText1();
+            string selectedFolder = CurrentPath1 + this.fileCommanderView.SelectedItemText1();
 
 
             GetFolderSize1(selectedFolder);
@@ -389,12 +386,12 @@ namespace FileCommander.Presenter
         }
         private void FileCommanderView_listView2_KeySpaceEvent(object sender, EventArgs e)
         {
-            if (!this._fileCommanderView.IsItemSelectedView2())
+            if (!this.fileCommanderView.IsItemSelectedView2())
             {
                 return;
             }
 
-            string selectedFolder = CurrentPath2 + this._fileCommanderView.SelectedItemText2();
+            string selectedFolder = CurrentPath2 + this.fileCommanderView.SelectedItemText2();
 
 
 
@@ -414,8 +411,8 @@ namespace FileCommander.Presenter
         private void FileCommanderView_listViewEvent2(object sender, EventArgs e)
         {
 
-            CurrentPath2 = this._fileCommanderView.SelectedDrive2;
-            this._fileCommanderView.TextBox2 = CurrentPath2;
+            CurrentPath2 = this.fileCommanderView.SelectedDrive2;
+            this.fileCommanderView.TextBox2 = CurrentPath2;
             pathHistory2.Clear();
 
             ListView2Clear();
@@ -433,8 +430,8 @@ namespace FileCommander.Presenter
         private void FileCommanderView_listViewEvent1(object sender, EventArgs e)
         {
 
-            CurrentPath1 = this._fileCommanderView.SelectedDrive1;
-            this._fileCommanderView.TextBox1 = CurrentPath1;
+            CurrentPath1 = this.fileCommanderView.SelectedDrive1;
+            this.fileCommanderView.TextBox1 = CurrentPath1;
             pathHistory1.Clear();
             ListView1Clear();
             PopulateListView1();
@@ -444,7 +441,7 @@ namespace FileCommander.Presenter
 
         private void PopulateListView1()
         {
-            this._fileCommanderView.PopulateListView1(directoryModel.GetDirectoriesInfo(CurrentPath1), _fileModel.GetFilesInfo(CurrentPath1), pathHistory1.Count);
+            this.fileCommanderView.PopulateListView1(directoryModel.GetDirectoriesInfo(CurrentPath1), fileModel.GetFilesInfo(CurrentPath1), pathHistory1.Count);
         }
 
 
@@ -457,22 +454,22 @@ namespace FileCommander.Presenter
 
         public void GetFolderSize1(string currentPath)
         {
-            this._fileCommanderView.UpdateSelectedItem1Size(directoryModel.SelectedFolderSize(currentPath).ToString());
+            this.fileCommanderView.UpdateSelectedItem1Size(directoryModel.SelectedFolderSize(currentPath).ToString());
         }
 
         public void GetFolderSize2(string currentPath)
         {
-            this._fileCommanderView.UpdateSelectedItem2Size(directoryModel.SelectedFolderSize(currentPath).ToString());
+            this.fileCommanderView.UpdateSelectedItem2Size(directoryModel.SelectedFolderSize(currentPath).ToString());
         }
 
         public void ListView1Clear()
         {
-            this._fileCommanderView.ListView1Clear();
+            this.fileCommanderView.ListView1Clear();
         }
 
         public void ListView2Clear()
         {
-            this._fileCommanderView.ListView2Clear();
+            this.fileCommanderView.ListView2Clear();
         }
 
         public void CreateNewDirectory1()
@@ -507,56 +504,56 @@ namespace FileCommander.Presenter
 
         public bool IsFolder1()
         {
-            if (directoryModel.IsFolder(CurrentPath1 + this._fileCommanderView.SelectedItemText1()))
+            if (directoryModel.IsFolder(CurrentPath1 + this.fileCommanderView.SelectedItemText1()))
                 return true;
             else return false;
         }
 
         public bool IsFolder2()
         {
-            if (directoryModel.IsFolder(CurrentPath2 + this._fileCommanderView.SelectedItemText2()))
+            if (directoryModel.IsFolder(CurrentPath2 + this.fileCommanderView.SelectedItemText2()))
                 return true;
             else return false;
         }
 
         public void RunFile1()
         {
-            _fileModel.RunFile(CurrentPath1 + this._fileCommanderView.SelectedItemText1());
+            fileModel.RunFile(CurrentPath1 + this.fileCommanderView.SelectedItemText1());
         }
 
         public void RunFile2()
         {
-            _fileModel.RunFile(CurrentPath2 + this._fileCommanderView.SelectedItemText2());
+            fileModel.RunFile(CurrentPath2 + this.fileCommanderView.SelectedItemText2());
         }
 
         public void CopyDirectory1()
         {
-            string srcAct = CurrentPath1 + this._fileCommanderView.SelectedItemText1();
-            string destAct = CurrentPath2 + this._fileCommanderView.SelectedItemText1();
+            string srcAct = CurrentPath1 + this.fileCommanderView.SelectedItemText1();
+            string destAct = CurrentPath2 + this.fileCommanderView.SelectedItemText1();
 
             directoryModel.CopyDirectory(srcAct, destAct);
         }
 
         public void CopyDirectory2()
         {
-            string srcAct = CurrentPath2 + this._fileCommanderView.SelectedItemText2();
-            string destAct = CurrentPath1 + this._fileCommanderView.SelectedItemText2();
+            string srcAct = CurrentPath2 + this.fileCommanderView.SelectedItemText2();
+            string destAct = CurrentPath1 + this.fileCommanderView.SelectedItemText2();
 
             directoryModel.CopyDirectory(srcAct, destAct);
         }
 
         public void CopyFile1()
         {
-            string srcAct = CurrentPath1 + this._fileCommanderView.SelectedItemText1();
-            string destAct = CurrentPath2 + this._fileCommanderView.SelectedItemText1();
-            _fileModel.CopyFile(srcAct, destAct);
+            string srcAct = CurrentPath1 + this.fileCommanderView.SelectedItemText1();
+            string destAct = CurrentPath2 + this.fileCommanderView.SelectedItemText1();
+            fileModel.CopyFile(srcAct, destAct);
         }
 
         public void CopyFile2()
         {
-            string srcAct = CurrentPath2 + this._fileCommanderView.SelectedItemText2();
-            string destAct = CurrentPath1 + this._fileCommanderView.SelectedItemText2();
-            _fileModel.CopyFile(srcAct, destAct);
+            string srcAct = CurrentPath2 + this.fileCommanderView.SelectedItemText2();
+            string destAct = CurrentPath1 + this.fileCommanderView.SelectedItemText2();
+            fileModel.CopyFile(srcAct, destAct);
         }
 
     }
