@@ -359,6 +359,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "File Commander";
             this.Load += new System.EventHandler(this.FileCommanderView_Load);
+            //this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FileCommanderView_KeyDown);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
