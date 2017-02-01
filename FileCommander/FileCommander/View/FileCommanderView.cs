@@ -314,7 +314,7 @@ namespace FileCommander
                             listView2.Focus();
                             listView2.Items[0].Selected = true;
                             IsListView2Active = true;
-                            IsListView2Active = false;
+                            IsListView1Active = false;
                         }
 
                     }
