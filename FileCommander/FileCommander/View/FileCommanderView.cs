@@ -13,14 +13,24 @@ namespace FileCommander
         public object EmpIDtextBox { get; private set; }
         public string NewDirectoryNameInput { get; set; }
 
-        public string TextBox1 { get { return textBox1.Text; } set { textBox1.Text = value; } }
-        public string TextBox2 { get { return textBox2.Text; } set { textBox2.Text = value; } }
+        public string TextBox1
+        {
+            get { return textBox1.Text; }
+            set { textBox1.Text = value; }
+        }
+
+        public string TextBox2
+        {
+            get { return textBox2.Text; }
+            set { textBox2.Text = value; }
+        }
 
         public bool IsListView1Active { get; set; }
         public bool IsListView2Active { get; set; }
+
         public FileCommanderView()
         {
-           
+
             InitializeComponent();
             WindowState = FormWindowState.Normal;
 
@@ -47,11 +57,18 @@ namespace FileCommander
 
         }
 
-        public string SelectedDrive1 { get { return comboBox1.Text; } set { comboBox1.Text = value; } }
-        public string SelectedDrive2 { get { return comboBox2.Text; } set { comboBox2.Text = value; } }
+        public string SelectedDrive1
+        {
+            get { return comboBox1.Text; }
+            set { comboBox1.Text = value; }
+        }
 
+        public string SelectedDrive2
+        {
+            get { return comboBox2.Text; }
+            set { comboBox2.Text = value; }
+        }
 
-        
         public event EventHandler RenameDirEvent;
         public event EventHandler CopyDirEvent;
         public event EventHandler ListViewEvent;
@@ -69,7 +86,8 @@ namespace FileCommander
 
 
 
-        private void PopulateListView(ListView listView, Dictionary<string, string[]> foldersDic, Dictionary<string, string[]> filesDic)
+        private void PopulateListView(ListView listView, Dictionary<string, string[]> foldersDic,
+            Dictionary<string, string[]> filesDic)
         {
             foreach (var dirInfo in foldersDic)
             {
@@ -81,7 +99,9 @@ namespace FileCommander
                 listView.Items.Add(fileInfo.Key, 0).SubItems.AddRange(fileInfo.Value);
             }
         }
-        public void PopulateListView1(Dictionary<string, string[]> foldersDic, Dictionary<string, string[]> filesDic, int pathHistory1Count)
+
+        public void PopulateListView1(Dictionary<string, string[]> foldersDic, Dictionary<string, string[]> filesDic,
+            int pathHistory1Count)
         {
             if (pathHistory1Count > 1)
             {
@@ -91,7 +111,8 @@ namespace FileCommander
             PopulateListView(listView1, foldersDic, filesDic);
         }
 
-        public void PopulateListView2(Dictionary<string, string[]> foldersDic, Dictionary<string, string[]> filesDic, int pathHistory2Count)
+        public void PopulateListView2(Dictionary<string, string[]> foldersDic, Dictionary<string, string[]> filesDic,
+            int pathHistory2Count)
         {
             if (pathHistory2Count > 1)
             {
@@ -124,6 +145,7 @@ namespace FileCommander
             }
 
         }
+
         // open left panel
         private void comboBox1_DropDown(object sender, EventArgs e)
         {
@@ -166,6 +188,7 @@ namespace FileCommander
             }
 
         }
+
         // switch panels
         private void btnChangePanel_Click(object sender, EventArgs e)
         {
@@ -188,12 +211,15 @@ namespace FileCommander
 
 
         }
+
         // dock listview to split container
         private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
         {
             listView1.Width = splitContainer1.Panel1.Width;
             listView2.Width = splitContainer1.Panel1.Width;
+
         }
+
         // key press left tab
         private void listView1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -212,7 +238,7 @@ namespace FileCommander
                     break;
 
                 case Keys.Back:
-                    
+
                     try
                     {
                         if (ListViewKeyBackSpaceEvent != null) ListViewKeyBackSpaceEvent(sender, e);
@@ -233,10 +259,11 @@ namespace FileCommander
                     }
                     break;
                 case Keys.Delete:
-                    
-                    var confirmResult = MessageBox.Show("Are you sure to delete <" + ActiveListViewSelectedItemText() + ">?",
-                                     "Confirm Delete!!",
-                                     MessageBoxButtons.YesNo);
+
+                    var confirmResult =
+                        MessageBox.Show("Are you sure to delete <" + ActiveListViewSelectedItemText() + ">?",
+                            "Confirm Delete!!",
+                            MessageBoxButtons.YesNo);
                     if (confirmResult == DialogResult.Yes)
                     {
 
@@ -269,6 +296,45 @@ namespace FileCommander
 
                     }
                     break;
+                case Keys.F2:
+                    try
+                    {
+                        if (IsListView1Active)
+                        {
+                            listView2.Focus();
+                            listView2.Items[0].Selected = true;
+                            IsListView1Active = false;
+                            IsListView2Active = true;
+                        }
+                        else if (IsListView2Active)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            listView2.Focus();
+                            listView2.Items[0].Selected = true;
+                            IsListView2Active = true;
+                            IsListView1Active = false;
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    break;
+                case Keys.F5:
+                    try
+                    {
+                        if (CopyDirEvent != null) CopyDirEvent(sender, e);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    break;
+
                 case Keys.F6:
                     try
                     {
@@ -283,6 +349,7 @@ namespace FileCommander
 
             }
         }
+
         // key press rigth tab
         private void listView2_KeyDown(object sender, KeyEventArgs e)
         {
@@ -301,7 +368,7 @@ namespace FileCommander
                     break;
 
                 case Keys.Back:
-                   
+
                     try
                     {
                         if (ListViewKeyBackSpaceEvent != null) ListViewKeyBackSpaceEvent(sender, e);
@@ -323,9 +390,10 @@ namespace FileCommander
                     break;
                 case Keys.Delete:
 
-                    var confirmResult = MessageBox.Show("Are you sure to delete <" + ActiveListViewSelectedItemText() + ">?",
-                                     "Confirm Delete!!",
-                                     MessageBoxButtons.YesNo);
+                    var confirmResult =
+                        MessageBox.Show("Are you sure to delete <" + ActiveListViewSelectedItemText() + ">?",
+                            "Confirm Delete!!",
+                            MessageBoxButtons.YesNo);
                     if (confirmResult == DialogResult.Yes)
                     {
 
@@ -359,6 +427,45 @@ namespace FileCommander
                     }
                     
                     break;
+                case Keys.F1:
+                    try
+                    {
+                        if (IsListView1Active)
+                        {
+                            return;
+                        }
+                        else if (IsListView2Active)
+                        {
+                            listView1.Focus();
+                            listView1.Items[0].Selected = true;
+                            IsListView2Active = false;
+                            IsListView1Active = true;
+                        }
+                        else
+                        {
+                            listView1.Focus();
+                            listView1.Items[0].Selected = true;
+                            IsListView1Active = true;
+                            IsListView2Active = false;
+
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    break;
+                case Keys.F5:
+                    try
+                    {
+                        if (CopyDirEvent != null) CopyDirEvent(sender, e);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    break;
                 case Keys.F6:
                     try
                     {
@@ -370,7 +477,8 @@ namespace FileCommander
                         MessageBox.Show(ex.Message);
                     }
                     break;
-                    
+
+
             }
         }
 
@@ -435,16 +543,17 @@ namespace FileCommander
 
             }
         }
+
         // delete button
         private void button1_Click_2(object sender, EventArgs e)
         {
-            if ((!IsItemSelectedView1()) & (!IsItemSelectedView2()))  
+            if ((!IsItemSelectedView1()) & (!IsItemSelectedView2()))
             {
                 return;
             }
             var confirmResult = MessageBox.Show("Are you sure to delete <" + ActiveListViewSelectedItemText() + ">?",
-                                    "Confirm Delete!!",
-                                    MessageBoxButtons.YesNo);
+                "Confirm Delete!!",
+                MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {
 
@@ -476,6 +585,7 @@ namespace FileCommander
         {
 
         }
+
         // backspace button (back)
         private void btnBack_Click(object sender, EventArgs e)
         {
@@ -514,6 +624,7 @@ namespace FileCommander
         {
 
         }
+
         // rename buttom
         private void btnRename_Click(object sender, EventArgs e)
         {
@@ -544,6 +655,7 @@ namespace FileCommander
 
 
         }
+
         // copy button
         private void btnCopy_Click(object sender, EventArgs e)
         {
@@ -551,42 +663,44 @@ namespace FileCommander
             ActiveListViewSelectedItemText();
             IsItemSelectedView1();
             IsItemSelectedView2();
-           
-            
+
+
 
             try
-                {
-                    if (CopyDirEvent != null) CopyDirEvent(sender, e);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+            {
+                if (CopyDirEvent != null) CopyDirEvent(sender, e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
-            
+
         }
 
         public void ListView1Clear()
         {
             listView1.Items.Clear();
         }
+
         public void ListView2Clear()
         {
             listView2.Items.Clear();
         }
 
         private string SelectedItemText(ListView listView)
-        {                     
+        {
             int intselectedindex = listView.SelectedIndices[0];
-            return listView.Items[intselectedindex].Text;           
+            return listView.Items[intselectedindex].Text;
 
         }
 
         public string SelectedItemText1()
         {
-           return SelectedItemText(listView1);
+            return SelectedItemText(listView1);
 
         }
+
         public string SelectedItemText2()
         {
             return SelectedItemText(listView2);
@@ -595,7 +709,7 @@ namespace FileCommander
 
         public string SelectedItem1Type()
         {
-            return listView1.SelectedItems[0].SubItems[1].Text;            
+            return listView1.SelectedItems[0].SubItems[1].Text;
         }
 
         public string SelectedItem2Type()
@@ -606,7 +720,7 @@ namespace FileCommander
         public bool IsItemSelectedView1()
         {
             if (listView1.SelectedIndices.Count <= 0)
-               return false;
+                return false;
             else return true;
         }
 
@@ -625,7 +739,7 @@ namespace FileCommander
 
         private void listView1_Leave(object sender, EventArgs e)
         {
-            
+
         }
 
         private void listView2_Enter(object sender, EventArgs e)
@@ -636,8 +750,9 @@ namespace FileCommander
 
         private void listView2_Leave(object sender, EventArgs e)
         {
-           
+
         }
+
         // Name (string) of selected element in active window
         public string ActiveListViewSelectedItemText()
         {
@@ -657,11 +772,11 @@ namespace FileCommander
             if (listView2.SelectedItems[0].SubItems[2].Text == "<DIR>")
                 listView2.SelectedItems[0].SubItems[2].Text = size;
         }
-        
+
         //
         public void GetDrives(List<string> drivesList)
         {
-            
+
             comboBox1.Items.AddRange(drivesList.ToArray());
             comboBox2.Items.AddRange(drivesList.ToArray());
         }
