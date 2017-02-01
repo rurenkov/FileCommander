@@ -26,6 +26,7 @@ namespace FileCommander
 
 
             DirectoryModel dirModel = new DirectoryModel();
+            
 
 
 
@@ -49,6 +50,8 @@ namespace FileCommander
         public string SelectedDrive1 { get { return comboBox1.Text; } set { comboBox1.Text = value; } }
         public string SelectedDrive2 { get { return comboBox2.Text; } set { comboBox2.Text = value; } }
 
+
+        
         public event EventHandler RenameDirEvent;
         public event EventHandler CopyDirEvent;
         public event EventHandler ListViewEvent;
@@ -266,6 +269,17 @@ namespace FileCommander
 
                     }
                     break;
+                case Keys.F6:
+                    try
+                    {
+                        if (CopyDirEvent != null) CopyDirEvent(sender, e);
+                        if (ListViewKeyDeleteEvent != null) ListViewKeyDeleteEvent(sender, e);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    break;
 
             }
         }
@@ -343,8 +357,20 @@ namespace FileCommander
                         MessageBox.Show(ex.Message);
 
                     }
+                    
                     break;
-
+                case Keys.F6:
+                    try
+                    {
+                        if (CopyDirEvent != null) CopyDirEvent(sender, e);
+                        if (ListViewKeyDeleteEvent != null) ListViewKeyDeleteEvent(sender, e);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    break;
+                    
             }
         }
 
@@ -640,12 +666,19 @@ namespace FileCommander
             comboBox2.Items.AddRange(drivesList.ToArray());
         }
 
+        private void button1_Click_5(object sender, EventArgs e)
+        {
+            try
+            {
+                if (CopyDirEvent != null) CopyDirEvent(sender, e);
+                if (ListViewKeyDeleteEvent != null) ListViewKeyDeleteEvent(sender, e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
-
-
-
-
-
+        }
     }
 }
 
