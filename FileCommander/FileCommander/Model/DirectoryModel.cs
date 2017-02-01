@@ -18,6 +18,11 @@ namespace FileCommander.Model
         //copy directory method.
         public void CopyDirectory(String SourcePath, String DestinationPath)
         {
+            if (!Directory.Exists(DestinationPath))
+            {
+                Directory.CreateDirectory(DestinationPath);
+            }
+
             //Create  directories
             foreach (string dirPath in Directory.GetDirectories(SourcePath, "*", SearchOption.AllDirectories))
                 Directory.CreateDirectory(dirPath.Replace(SourcePath, DestinationPath));
