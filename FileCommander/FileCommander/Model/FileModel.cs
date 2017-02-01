@@ -8,9 +8,9 @@ namespace FileCommander.Model
         public Dictionary<string, string> DrivesInfo { get; set; }
 
         public DirectoryInfo DirInfo { get; set; }
-        public List<FileInfo> filesList = new  List<FileInfo>();
+        public List<FileInfo> FilesList = new  List<FileInfo>();
         
-        public List<string> filesNamesArray = new List<string>();
+        public List<string> FilesNamesArray = new List<string>();
 
         public string[] GetFilesNames(string selectedDrive)
         {
@@ -18,14 +18,14 @@ namespace FileCommander.Model
 
             DirectoryInfo directoryinfo = new DirectoryInfo(selectedDrive);
 
-            filesNamesArray.Clear();
+            FilesNamesArray.Clear();
 
             foreach (FileInfo fileInfo in directoryinfo.GetFiles())
             {
-                filesNamesArray.Add(fileInfo.Name);
+                FilesNamesArray.Add(fileInfo.Name);
             }
 
-            return filesNamesArray.ToArray();
+            return FilesNamesArray.ToArray();
 
 
         }
@@ -33,13 +33,13 @@ namespace FileCommander.Model
         public List<FileInfo> GetFiles(string selectedDrive)
         {
             DirectoryInfo directoryinfo = new DirectoryInfo(selectedDrive);
-            filesList.Clear();
+            FilesList.Clear();
             foreach (FileInfo fileInfo in directoryinfo.GetFiles())
             {
-                filesList.Add(fileInfo);
+                FilesList.Add(fileInfo);
             }
 
-            return filesList;
+            return FilesList;
         }
 
         public Dictionary<string, string[]> GetFilesInfo(string currentPath)

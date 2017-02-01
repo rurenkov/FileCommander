@@ -16,8 +16,10 @@ namespace FileCommander
         event EventHandler ListViewKeyDeleteEvent;
         event EventHandler ListViewCreateNewFolderEvent;
         event EventHandler ListViewMouseDoubleClickEvent;
+        event EventHandler UpdateDrivesCombobox1;
+        event EventHandler UpdateDrivesCombobox2;
 
-         bool IsListView1Active { get; }
+        bool IsListView1Active { get; }
          bool IsListView2Active { get; }
 
         bool IsItemSelectedView1();
@@ -47,6 +49,8 @@ namespace FileCommander
 
         void ListView1Clear();
         void ListView2Clear();
+
+        void GetDrives(List<string> drivesList);
 
     }
 }

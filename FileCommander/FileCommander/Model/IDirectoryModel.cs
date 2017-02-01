@@ -5,7 +5,7 @@ namespace FileCommander.Model
 {
     public interface IDirectoryModel
     {
-         void CopyDirectory(string SourcePath, string DestinationPath);
+         void CopyDirectory(string sourcePath, string sestinationPath);
          void MoveRenameDirectory(string srcDir, string destDir);
          long SelectedFolderSize(string selectedFolder);
          Dictionary<string, string[]> GetDirectoriesInfo(string currentPath);

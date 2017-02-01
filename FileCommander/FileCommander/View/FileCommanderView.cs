@@ -20,6 +20,7 @@ namespace FileCommander
         public bool IsListView2Active { get; set; }
         public FileCommanderView()
         {
+           
             InitializeComponent();
             WindowState = FormWindowState.Normal;
 
@@ -59,8 +60,11 @@ namespace FileCommander
         public event EventHandler ListViewKeyDeleteEvent;
         public event EventHandler ListViewCreateNewFolderEvent;
         public event EventHandler ListViewMouseDoubleClickEvent;
+        public event EventHandler UpdateDrivesCombobox1;
+        public event EventHandler UpdateDrivesCombobox2;
 
-     
+
+
 
         private void PopulateListView(ListView listView, Dictionary<string, string[]> foldersDic, Dictionary<string, string[]> filesDic)
         {
@@ -121,16 +125,16 @@ namespace FileCommander
         private void comboBox1_DropDown(object sender, EventArgs e)
         {
             comboBox1.Items.Clear();
-            comboBox1.Items.AddRange(Presenter.GetDrives.ToArray());
-
+            //comboBox1.Items.AddRange(Presenter.GetDrives.ToArray());
+            if (UpdateDrivesCombobox1 != null) UpdateDrivesCombobox1(sender, e);
         }
+
         // open right panel
         private void comboBox2_DropDown(object sender, EventArgs e)
         {
-
             comboBox2.Items.Clear();
-            comboBox2.Items.AddRange(Presenter.GetDrives.ToArray());
-
+            //comboBox2.Items.AddRange(Presenter.GetDrives.ToArray());
+            if (UpdateDrivesCombobox2 != null) UpdateDrivesCombobox2(sender, e);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -163,19 +167,20 @@ namespace FileCommander
         private void btnChangePanel_Click(object sender, EventArgs e)
         {
 
-            Control[] array1 = new Control[splitContainer1.Panel1.Controls.Count];
-            Control[] array2 = new Control[splitContainer1.Panel2.Controls.Count];
+            var array1 = new Control[splitContainer1.Panel1.Controls.Count];
+            var array2 = new Control[splitContainer1.Panel2.Controls.Count];
             splitContainer1.Panel1.Controls.CopyTo(array1, 0);
             splitContainer1.Panel2.Controls.CopyTo(array2, 0);
             splitContainer1.Panel1.Controls.AddRange(array2);
             splitContainer1.Panel2.Controls.AddRange(array1);
-            if (splitContainer1.Orientation == Orientation.Horizontal)
+            switch (splitContainer1.Orientation)
             {
-                splitContainer1.SplitterDistance = splitContainer1.Height - splitContainer1.SplitterDistance;
-            }
-            else if (splitContainer1.Orientation == Orientation.Vertical)
-            {
-                splitContainer1.SplitterDistance = splitContainer1.Width - splitContainer1.SplitterDistance;
+                case Orientation.Horizontal:
+                    splitContainer1.SplitterDistance = splitContainer1.Height - splitContainer1.SplitterDistance;
+                    break;
+                case Orientation.Vertical:
+                    splitContainer1.SplitterDistance = splitContainer1.Width - splitContainer1.SplitterDistance;
+                    break;
             }
 
 
@@ -374,14 +379,12 @@ namespace FileCommander
 
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-
-            ListViewMouseDoubleClickEvent(sender, e);
+            if (ListViewMouseDoubleClickEvent != null) ListViewMouseDoubleClickEvent(sender, e);
         }
 
         private void listView2_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-
-            ListViewMouseDoubleClickEvent(sender, e);
+            if (ListViewMouseDoubleClickEvent != null) ListViewMouseDoubleClickEvent(sender, e);
         }
 
 
@@ -398,7 +401,7 @@ namespace FileCommander
             try
 
             {
-                ListViewCreateNewFolderEvent(sender, e);
+                if (ListViewCreateNewFolderEvent != null) ListViewCreateNewFolderEvent(sender, e);
             }
             catch (Exception ex)
             {
@@ -421,7 +424,7 @@ namespace FileCommander
 
                 try
                 {
-                    ListViewKeyDeleteEvent(sender, e);
+                    if (ListViewKeyDeleteEvent != null) ListViewKeyDeleteEvent(sender, e);
                 }
                 catch (Exception ex)
                 {
@@ -434,7 +437,7 @@ namespace FileCommander
         {
             try
             {
-                ListViewKeyEnterEvent(sender, e);
+                if (ListViewKeyEnterEvent != null) ListViewKeyEnterEvent(sender, e);
             }
             catch (Exception ex)
             {
@@ -452,7 +455,7 @@ namespace FileCommander
         {
             try
             {
-                ListViewKeyBackSpaceEvent(sender, e);
+                if (ListViewKeyBackSpaceEvent != null) ListViewKeyBackSpaceEvent(sender, e);
             }
             catch (Exception ex)
             {
@@ -503,7 +506,7 @@ namespace FileCommander
 
                 try
                 {
-                    RenameDirEvent(sender, e);
+                    if (RenameDirEvent != null) RenameDirEvent(sender, e);
                 }
                 catch (Exception ex)
                 {
@@ -527,7 +530,7 @@ namespace FileCommander
 
             try
                 {
-                    CopyDirEvent(sender, e);
+                    if (CopyDirEvent != null) CopyDirEvent(sender, e);
                 }
                 catch (Exception ex)
                 {
@@ -628,8 +631,19 @@ namespace FileCommander
             if (listView2.SelectedItems[0].SubItems[2].Text == "<DIR>")
                 listView2.SelectedItems[0].SubItems[2].Text = size;
         }
+        
+        //
+        public void GetDrives(List<string> drivesList)
+        {
+            
+            comboBox1.Items.AddRange(drivesList.ToArray());
+            comboBox2.Items.AddRange(drivesList.ToArray());
+        }
 
-       
+
+
+
+
 
 
     }
