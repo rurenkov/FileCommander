@@ -7,7 +7,7 @@ using System.IO;
 
 namespace FileCommander.Model
 {
-   public class DriveModel
+   public class DriveModel : IDriveModel
     {
         public DriveInfo[] AllDrives = DriveInfo.GetDrives();
         private List<string> drivesName = new List<string>();

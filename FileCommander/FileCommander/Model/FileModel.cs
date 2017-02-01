@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FileCommander.Model
 {
-    public class FileModel
+    public class FileModel : IFileModel
     {
         public Dictionary<string, string> DrivesInfo { get; set; }
 

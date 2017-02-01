@@ -14,7 +14,7 @@ using System.Diagnostics;
 
 namespace FileCommander
 {
-    public partial class FileCommanderView : Form
+    public partial class FileCommanderView : Form, IFileCommanderView
     {
         public PresenterClass Presenter { get; set; }
         public string SelectedDrive { get; set; }
@@ -56,17 +56,17 @@ namespace FileCommander
         public string SelectedDrive1 { get { return comboBox1.Text; } set { comboBox1.Text = value; } }
         public string SelectedDrive2 { get { return comboBox2.Text; } set { comboBox2.Text = value; } }
 
-        public event EventHandler renameDirEvent;
-        public event EventHandler copyDirEvent;
-        public event EventHandler listViewEvent;
-        public event EventHandler listViewEventRight;
-        public event EventHandler selectedItemsEvent;
-        public event EventHandler listView_KeySpaceEvent;
-        public event EventHandler listView_KeyBackSpaceEvent;
-        public event EventHandler listView_KeyEnterEvent;
-        public event EventHandler listView_KeyDeleteEvent;
-        public event EventHandler listView_CreateNewFolderEvent;
-        public event EventHandler listView_MouseDoubleClickEvent;
+        public event EventHandler RenameDirEvent;
+        public event EventHandler CopyDirEvent;
+        public event EventHandler ListViewEvent;
+        public event EventHandler ListViewEventRight;
+        public event EventHandler SelectedItemsEvent;
+        public event EventHandler ListViewKeySpaceEvent;
+        public event EventHandler ListViewKeyBackSpaceEvent;
+        public event EventHandler ListViewKeyEnterEvent;
+        public event EventHandler ListViewKeyDeleteEvent;
+        public event EventHandler ListViewCreateNewFolderEvent;
+        public event EventHandler ListViewMouseDoubleClickEvent;
 
      
 
@@ -111,11 +111,11 @@ namespace FileCommander
         {
 
 
-            if (listViewEvent != null)
+            if (ListViewEvent != null)
             {
                 try
                 {
-                    listViewEvent(sender, e);
+                    ListViewEvent(sender, e);
                 }
                 catch (Exception ex)
                 {
@@ -158,7 +158,7 @@ namespace FileCommander
         {
             try
             {
-                selectedItemsEvent(sender, e);
+                SelectedItemsEvent(sender, e);
             }
 
             catch (UnauthorizedAccessException ex)
@@ -203,7 +203,7 @@ namespace FileCommander
                 case Keys.Space:
                     try
                     {
-                        listView_KeySpaceEvent(sender, e);
+                        if (ListViewKeySpaceEvent != null) ListViewKeySpaceEvent(sender, e);
                     }
                     catch (Exception ex)
                     {
@@ -215,7 +215,7 @@ namespace FileCommander
                     
                     try
                     {
-                        listView_KeyBackSpaceEvent(sender, e);
+                        if (ListViewKeyBackSpaceEvent != null) ListViewKeyBackSpaceEvent(sender, e);
                     }
                     catch (Exception ex)
                     {
@@ -225,7 +225,7 @@ namespace FileCommander
                 case Keys.Enter:
                     try
                     {
-                        listView_KeyEnterEvent(sender, e);
+                        if (ListViewKeyEnterEvent != null) ListViewKeyEnterEvent(sender, e);
                     }
                     catch (Exception ex)
                     {
@@ -242,7 +242,7 @@ namespace FileCommander
 
                         try
                         {
-                            listView_KeyDeleteEvent(sender, e);
+                            if (ListViewKeyDeleteEvent != null) ListViewKeyDeleteEvent(sender, e);
                         }
                         catch (Exception ex)
                         {
@@ -261,7 +261,7 @@ namespace FileCommander
                     try
 
                     {
-                        listView_CreateNewFolderEvent(sender, e);
+                        if (ListViewCreateNewFolderEvent != null) ListViewCreateNewFolderEvent(sender, e);
                     }
                     catch (Exception ex)
                     {
@@ -281,7 +281,7 @@ namespace FileCommander
                 case Keys.Space:
                     try
                     {
-                        listView_KeySpaceEvent(sender, e);
+                        if (ListViewKeySpaceEvent != null) ListViewKeySpaceEvent(sender, e);
                     }
                     catch (Exception ex)
                     {
@@ -293,7 +293,7 @@ namespace FileCommander
                    
                     try
                     {
-                        listView_KeyBackSpaceEvent(sender, e);
+                        if (ListViewKeyBackSpaceEvent != null) ListViewKeyBackSpaceEvent(sender, e);
                     }
                     catch (Exception ex)
                     {
@@ -303,7 +303,7 @@ namespace FileCommander
                 case Keys.Enter:
                     try
                     {
-                        listView_KeyEnterEvent(sender, e);
+                        if (ListViewKeyEnterEvent != null) ListViewKeyEnterEvent(sender, e);
                     }
                     catch (Exception ex)
                     {
@@ -320,7 +320,7 @@ namespace FileCommander
 
                         try
                         {
-                            listView_KeyDeleteEvent(sender, e);
+                            if (ListViewKeyDeleteEvent != null) ListViewKeyDeleteEvent(sender, e);
                         }
                         catch (Exception ex)
                         {
@@ -339,7 +339,7 @@ namespace FileCommander
                     try
 
                     {
-                        listView_CreateNewFolderEvent(sender, e);
+                        if (ListViewCreateNewFolderEvent != null) ListViewCreateNewFolderEvent(sender, e);
                     }
                     catch (Exception ex)
                     {
@@ -366,11 +366,11 @@ namespace FileCommander
 
         private void comboBox2_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            if (listViewEventRight != null)
+            if (ListViewEventRight != null)
             {
                 try
                 {
-                    listViewEventRight(sender, e);
+                    ListViewEventRight(sender, e);
                 }
                 catch (Exception ex)
                 {
@@ -383,13 +383,13 @@ namespace FileCommander
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
 
-            listView_MouseDoubleClickEvent(sender, e);
+            ListViewMouseDoubleClickEvent(sender, e);
         }
 
         private void listView2_MouseDoubleClick(object sender, MouseEventArgs e)
         {
 
-            listView_MouseDoubleClickEvent(sender, e);
+            ListViewMouseDoubleClickEvent(sender, e);
         }
 
 
@@ -406,7 +406,7 @@ namespace FileCommander
             try
 
             {
-                listView_CreateNewFolderEvent(sender, e);
+                ListViewCreateNewFolderEvent(sender, e);
             }
             catch (Exception ex)
             {
@@ -429,7 +429,7 @@ namespace FileCommander
 
                 try
                 {
-                    listView_KeyDeleteEvent(sender, e);
+                    ListViewKeyDeleteEvent(sender, e);
                 }
                 catch (Exception ex)
                 {
@@ -442,7 +442,7 @@ namespace FileCommander
         {
             try
             {
-                listView_KeyEnterEvent(sender, e);
+                ListViewKeyEnterEvent(sender, e);
             }
             catch (Exception ex)
             {
@@ -460,7 +460,7 @@ namespace FileCommander
         {
             try
             {
-                listView_KeyBackSpaceEvent(sender, e);
+                ListViewKeyBackSpaceEvent(sender, e);
             }
             catch (Exception ex)
             {
@@ -511,7 +511,7 @@ namespace FileCommander
 
                 try
                 {
-                    renameDirEvent(sender, e);
+                    RenameDirEvent(sender, e);
                 }
                 catch (Exception ex)
                 {
@@ -535,7 +535,7 @@ namespace FileCommander
 
             try
                 {
-                    copyDirEvent(sender, e);
+                    CopyDirEvent(sender, e);
                 }
                 catch (Exception ex)
                 {
@@ -641,7 +641,7 @@ namespace FileCommander
 
 
     }
-    }
+}
 
 
 

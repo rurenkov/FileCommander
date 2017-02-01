@@ -9,7 +9,7 @@ using FileCommander.Presenter;
 
 namespace FileCommander.Model
 {
-    public class DirectoryModel
+    public class DirectoryModel : IDirectoryModel
     {
         public Dictionary<string, string> DrivesInfo { get; set; }
         
@@ -34,7 +34,7 @@ namespace FileCommander.Model
         }
 
 
-        public void Move_Rename_Directory(String srcDir, String destDir)
+        public void MoveRenameDirectory(String srcDir, String destDir)
         {
             
                 DirectoryInfo dInfo = new DirectoryInfo(srcDir);
