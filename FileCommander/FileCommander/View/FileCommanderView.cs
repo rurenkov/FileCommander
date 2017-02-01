@@ -323,6 +323,16 @@ namespace FileCommander
                         MessageBox.Show(ex.Message);
                     }
                     break;
+                case Keys.F5:
+                    try
+                    {
+                        if (CopyDirEvent != null) CopyDirEvent(sender, e);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    break;
 
             }
         }
@@ -426,6 +436,16 @@ namespace FileCommander
 
                         }
 
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    break;
+                case Keys.F5:
+                    try
+                    {
+                        if (CopyDirEvent != null) CopyDirEvent(sender, e);
                     }
                     catch (Exception ex)
                     {
