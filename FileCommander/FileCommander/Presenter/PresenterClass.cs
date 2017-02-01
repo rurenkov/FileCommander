@@ -438,7 +438,7 @@ namespace FileCommander.Presenter
         private void FileCommanderView_listViewEvent2(object sender, EventArgs e)
         {
 
-            CurrentPath2 = this.fileCommanderView.comboBox2.Text;
+            CurrentPath2 = this.fileCommanderView.SelectedDrive2;
             this.fileCommanderView.TextBox2 = CurrentPath2;
             pathHistory2.Clear();
 
@@ -457,7 +457,7 @@ namespace FileCommander.Presenter
         private void FileCommanderView_listViewEvent1(object sender, EventArgs e)
         {
 
-            CurrentPath1 = this.fileCommanderView.comboBox1.Text;
+            CurrentPath1 = this.fileCommanderView.SelectedDrive1;
             this.fileCommanderView.TextBox1 = CurrentPath1;
             pathHistory1.Clear();
             ListView1Clear();

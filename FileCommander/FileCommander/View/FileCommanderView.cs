@@ -53,6 +53,9 @@ namespace FileCommander
 
         }
 
+        public string SelectedDrive1 { get { return comboBox1.Text; } set { comboBox1.Text = value; } }
+        public string SelectedDrive2 { get { return comboBox2.Text; } set { comboBox2.Text = value; } }
+
         public event EventHandler renameDirEvent;
         public event EventHandler copyDirEvent;
 
