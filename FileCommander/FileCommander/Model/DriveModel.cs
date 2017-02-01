@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.IO;
 
 namespace FileCommander.Model
 {
-   public class DriveModel
+    public class DriveModel
     {
         public DriveInfo[] AllDrives = DriveInfo.GetDrives();
         private List<string> drivesName = new List<string>();
