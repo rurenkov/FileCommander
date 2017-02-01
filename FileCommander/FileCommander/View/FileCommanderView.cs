@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Text;
 using System.Windows.Forms;
 using FileCommander.Model;
 using FileCommander.Presenter;
@@ -297,27 +298,13 @@ namespace FileCommander
                     }
                     break;
                 case Keys.F2:
+                    if (listView2.Top == null)
+                    {
+                        return;
+                    }
                     try
                     {
-                        if (IsListView1Active)
-                        {
-                            listView2.Focus();
-                            listView2.Items[0].Selected = true;
-                            IsListView1Active = false;
-                            IsListView2Active = true;
-                        }
-                        else if (IsListView2Active)
-                        {
-                            return;
-                        }
-                        else
-                        {
-                            listView2.Focus();
-                            listView2.Items[0].Selected = true;
-                            IsListView2Active = true;
-                            IsListView1Active = false;
-                        }
-
+                       GetFocusedListView2();
                     }
                     catch (Exception ex)
                     {
@@ -428,27 +415,13 @@ namespace FileCommander
                     
                     break;
                 case Keys.F1:
+                    if (listView1.Top == null)
+                    {
+                        return;
+                    }
                     try
                     {
-                        if (IsListView1Active)
-                        {
-                            return;
-                        }
-                        else if (IsListView2Active)
-                        {
-                            listView1.Focus();
-                            listView1.Items[0].Selected = true;
-                            IsListView2Active = false;
-                            IsListView1Active = true;
-                        }
-                        else
-                        {
-                            listView1.Focus();
-                            listView1.Items[0].Selected = true;
-                            IsListView1Active = true;
-                            IsListView2Active = false;
-
-                        }
+                        GetFocusedListView1();
 
                     }
                     catch (Exception ex)
@@ -793,6 +766,58 @@ namespace FileCommander
                 MessageBox.Show(ex.Message);
             }
 
+        }
+
+        private void GetFocusedListView1()
+        {
+            
+           
+                if (IsListView1Active)
+                {
+                    return;
+                }
+                else if (IsListView2Active)
+                {
+                    listView1.Focus();
+                    listView1.Items[0].Selected = true;
+                    IsListView2Active = false;
+                    IsListView1Active = true;
+                }
+                else
+                {
+                    listView1.Focus();
+                    listView1.Items[0].Selected = true;
+                    IsListView1Active = true;
+                    IsListView2Active = false;
+
+                }
+            
+
+        }
+
+        private void GetFocusedListView2()
+        {
+          
+            
+                if (IsListView1Active)
+                {
+                    listView2.Focus();
+                    listView2.Items[0].Selected = true;
+                    IsListView1Active = false;
+                    IsListView2Active = true;
+                }
+                else if (IsListView2Active)
+                {
+                    return;
+                }
+                else
+                {
+                    listView2.Focus();
+                    listView2.Items[0].Selected = true;
+                    IsListView2Active = true;
+                    IsListView1Active = false;
+                }
+            
         }
     }
 }
